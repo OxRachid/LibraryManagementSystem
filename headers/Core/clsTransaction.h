@@ -58,18 +58,7 @@ class clsTransaction {
 
     public:
         // constructor parameter
-        clsTransaction(
-            enMode mode,
-            int trans_ID,
-            string checkoutperformer,
-            string checkinperformer,
-            string accountnumber,
-            int book_ID,
-            enRole role,
-            clsDate checkout_date,
-            clsDate due_date,
-            clsDate return_date,
-            enTransStatus status);
+        clsTransaction(enMode mode, int trans_ID, string checkoutperformer, string checkinperformer, string accountnumber, int book_ID, enRole role, clsDate checkout_date, clsDate due_date, clsDate return_date, enTransStatus status);
 
         // Setters
         void SetTrans_ID(int trans_ID);
@@ -98,6 +87,8 @@ class clsTransaction {
         bool isEmpty();
         // is book returned
         bool isBookReturned();
+        // checks if a member has already borrowed the same book and has not returned it yet
+        static bool isBookStillBorrowedByMember(string accountnumber, int book_ID);
         // is member exist
         static bool isAccountNumberExist(string accountnumber);
         // is book id exist

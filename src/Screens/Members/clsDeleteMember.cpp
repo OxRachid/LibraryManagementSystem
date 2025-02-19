@@ -16,7 +16,7 @@ void clsDeleteMember::_PrintMemberData(clsMember member) {
     cout << left << setw(20) << " Lastname" << " : " << member.GetLastName() << endl;
     cout << left << setw(20) << " Email" << " : " << member.GetEmail() << endl;
     cout << left << setw(20) << " Phone" << " : " << member.GetPhone() << endl;
-    cout << left << setw(20) << " Role" << " : " << member.GetRole() << endl;
+    cout << left << setw(20) << " Role" << " : " << member.MemberRoleToString() << endl;
     cout << left << setw(20) << " Password" << " : " << member.GetPassword() << endl;
     cout << left << setw(20) << " Borrowed Books" << " : " << member.GetTotalBorrowedBooks() << endl;
     cout << left << setw(20) << " Account Status" << " : " << member.AccountStatusToString() << endl;

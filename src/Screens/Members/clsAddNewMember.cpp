@@ -15,7 +15,7 @@ void clsAddNewMember::_PrintMemberData(clsMember member) {
     cout << left << setw(20) << " Lastname" << " : " << member.GetLastName() << endl;
     cout << left << setw(20) << " Email" << " : " << member.GetEmail() << endl;
     cout << left << setw(20) << " Phone" << " : " << member.GetPhone() << endl;
-    cout << left << setw(20) << " Role" << " : " << member.GetRole() << endl;
+    cout << left << setw(20) << " Role" << " : " << member.MemberRoleToString() << endl;
     cout << left << setw(20) << " Password" << " : " << member.GetPassword() << endl;
     cout << left << setw(20) << " Borrowed Books" << " : " << member.GetTotalBorrowedBooks() << endl;
     cout << left << setw(20) << " Account Status" << " : " << member.AccountStatusToString() << endl;
@@ -40,7 +40,7 @@ string clsAddNewMember::_GetUniqueAccountNumber() {
 
 // Get Role Choice
 short clsAddNewMember::_GetRoleChoice() {
-    return clsInputValidate::Readnumberbetween(1, 2, " ⊙ What's Your Role [1] Student [2] Teacher ? ");
+    return clsInputValidate::Readnumberbetween(0, 2, " ⊙ What's Your Role [0] Student [1] Teacher [2] NON ? ");
 }
 
 // Read Memeber obj data
