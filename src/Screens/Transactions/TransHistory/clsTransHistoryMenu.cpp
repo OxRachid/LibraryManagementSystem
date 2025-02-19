@@ -1,5 +1,6 @@
 #include "../../../../headers/Screens/Transactions/TransHistory/clsTransHistoryMenu.h"
 #include "../../../../headers/Lib/clsInputValidate.h"
+#include "../../../../headers/Screens/Transactions/TransHistory/clsBorrowedList.h"
 #include "../../../../headers/Screens/Transactions/TransHistory/clsListAllTrans.h"
 #include <cstdlib>
 #include <iomanip>
@@ -62,7 +63,7 @@ void clsTransHistoryMenu::_ListAll() {
 // list borrowed
 void clsTransHistoryMenu::_ListBorrowed() {
     system("clear");
-    cout << "soon";
+    clsBorrowedList::BorrowedListScreen();
 }
 // list returned
 void clsTransHistoryMenu::_ListReturned() {

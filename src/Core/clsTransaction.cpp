@@ -286,23 +286,23 @@ vector<clsTransaction> clsTransaction::GetBorrowedList() {
     vector<clsTransaction> vBorrowed;
     for (clsTransaction &trans : _vTransactions) {
         if (trans.GetStatus() == enTransStatus::BORROWED) {
-            _vTransactions.push_back(trans);
+            vBorrowed.push_back(trans);
         }
     }
 
-    return _vTransactions;
+    return vBorrowed;
 }
 
 // Get returned list
 vector<clsTransaction> clsTransaction::GetReturnedList() {
-    vector<clsTransaction> vBorrowed;
+    vector<clsTransaction> vReturned;
     for (clsTransaction &trans : _vTransactions) {
         if (trans.GetStatus() == enTransStatus::RETURNED) {
-            _vTransactions.push_back(trans);
+            vReturned.push_back(trans);
         }
     }
 
-    return _vTransactions;
+    return vReturned;
 }
 
 // add Borrow Record to vector
