@@ -17,12 +17,13 @@ clsTransactionsMenu::eTransOptions clsTransactionsMenu::_GetUserChoice() {
 void clsTransactionsMenu::_PrintMenu() {
     system("clear");
     PrintHeaderScreen("TRANSACTIONS MENU SCREEN", "📚", Colors::Cyan);
-    cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
+    cout << Colors::GetGreen() << "                             ϟ\n"
+         << Colors::RESET();
     PrintHeaderScreen("Transactions Menu", "📋", Colors::Cyan, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Borrow Book" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[2] Return Book" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[3] Borrowing History" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[3] Transactions History" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Track Members" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Track Books" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[6] Exit" << endl;
@@ -40,7 +41,7 @@ void clsTransactionsMenu::_PerformOption(eTransOptions option) {
             break;
         }
         case eTransOptions::BORROWING_HISTORY: {
-            _BorrowingHistory();
+            _TransactionsHistory();
             break;
         }
         case eTransOptions::TRACK_MEMBER: {
@@ -77,7 +78,7 @@ void clsTransactionsMenu::_ReturnBook() {
     clsReturnBook::ReturnBookScreen();
 }
 // BORROWING_HISTORY
-void clsTransactionsMenu::_BorrowingHistory() {
+void clsTransactionsMenu::_TransactionsHistory() {
     system("clear");
     cout << "sooon";
 }

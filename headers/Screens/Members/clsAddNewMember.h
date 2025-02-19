@@ -15,7 +15,7 @@ class clsAddNewMember : protected clsScreen {
         // Get member obj to Add
         static clsMember _GetAddObjMode();
         // Get Role Choice
-        static string _GetRoleChoice();
+        static short _GetRoleChoice();
 
     public:
         // Add new Member screen

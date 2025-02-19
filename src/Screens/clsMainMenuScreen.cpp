@@ -1,7 +1,7 @@
 #include "../../headers/Screens/clsMainMenuScreen.h"
 #include "../../headers/Core/clsBook.h"
-#include "../../headers/Core/clsBorrowRecord.h"
 #include "../../headers/Core/clsMember.h"
+#include "../../headers/Core/clsTransaction.h"
 #include "../../headers/Lib/clsInputValidate.h"
 #include "../../headers/Screens/Books/clsBooksManage.h"
 #include "../../headers/Screens/Members/clsMemberManage.h"
@@ -24,7 +24,8 @@ clsMainMenuScreen::enMainMenuOptions clsMainMenuScreen::_GetUserChoice() {
 void clsMainMenuScreen::_PrintMainMenu() {
     system("clear");
     PrintHeaderScreen("MAIN MENU SCREEN", "📚", Colors::Yellow);
-    cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
+    cout << Colors::GetGreen() << "                             ϟ\n"
+         << Colors::RESET();
     PrintHeaderScreen("Main Menue ", "📋", Colors::Yellow, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Books Manage" << endl;
@@ -98,8 +99,8 @@ void clsMainMenuScreen::MainMenuScreen() {
         clsBook::LoadBooksFromFile();
         // load Members from file
         clsMember::LoadMembersFromFile();
-        // load clsBorrowRecords history
-        clsBorrowRecord::LoadBorrowRecords();
+        // load clsTransactions history
+        clsTransaction::LoadBorrowRecords();
         dataLoaded = true;
     }
 

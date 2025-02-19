@@ -24,7 +24,7 @@ class clsTransactionsMenu : protected clsScreen {
         // RETURN_BOOK
         static void _ReturnBook();
         // BORROWING_HISTORY
-        static void _BorrowingHistory();
+        static void _TransactionsHistory();
         // TRACK_MEMBER
         static void _TrackMemberActivity();
         // TRACK_BOOK

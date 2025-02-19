@@ -12,9 +12,9 @@ class clsMember : public clsPerson {
 
         // enum for obj mode
         enum eMemberMode {
-            EmptyMode = 1,
-            UpdateMode = 2,
-            AddNewMode = 3
+            EmptyMode = 0,
+            UpdateMode = 1,
+            AddNewMode = 2
         };
 
         // enum for account status
@@ -23,11 +23,17 @@ class clsMember : public clsPerson {
             BLOCKED = 1,
             CLOSED = 2
         };
+        // enum for member Role
+        enum eMemberRole {
+            STUDENT = 0,
+            TEACHER = 1,
+            NON = 2
+        };
 
         eMemberMode _Mode;
         string _AccountNumber;
         string _Password;
-        string _Role;
+        eMemberRole _Role;
         short _TotalBorrowedBooks;
         short _LateReturns;
         eAccountStatus _AccountStatus;
@@ -55,18 +61,18 @@ class clsMember : public clsPerson {
             string lastname,
             string email,
             string phone,
-            string role,
+            eMemberRole role,
             short totalborrowedbooks,
             eAccountStatus status);
         // setter
         void SetPassword(string password);
-        void SetRole(string role);
+        void SetRole(short role);
         void SetBorrowedBooks(short total);
         void SetAccountStatus(eAccountStatus status);
         // getter
         string GetAccountNumber() const;
         string GetPassword() const;
-        string GetRole() const;
+        eMemberRole GetRole() const;
         short GetTotalBorrowedBooks() const;
         eAccountStatus GetAccountStatus();
         // is empty
@@ -105,6 +111,10 @@ class clsMember : public clsPerson {
         void ReturnBook(bool isLate = false);
         // convert enum eAccountstatus to string
         string AccountStatusToString();
+        // convert enum eMemberRole to string
+        string MemberRoleToString();
+        // check if member exceeded the BorrowBook limit
+        bool isBorrowLimitExceeded();
 };
 
 #endif // !CLSMEMBER_H
