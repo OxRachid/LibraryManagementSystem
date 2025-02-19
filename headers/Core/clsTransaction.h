@@ -48,9 +48,9 @@ class clsTransaction {
         // Get Add BorrowRecord obj
         static clsTransaction _GetAddModeRecord(string AccountNumber, int book_ID, enRole role);
         // convert BorrowRecords to line
-        static clsTransaction _LineToRecord(string line, string seperator = "#-#");
+        static clsTransaction _LineToRecord(string line, string seperator = "#//#");
         // convert line to BorrowRecord
-        string _RecordToLine(string seperator = "#-#");
+        string _RecordToLine(string seperator = "#//#");
         // add Borrow Record to vector
         void _AddBorrowRecord();
         // update Borrow Record in vector

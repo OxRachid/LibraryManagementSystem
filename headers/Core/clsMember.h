@@ -41,9 +41,9 @@ class clsMember : public clsPerson {
         // Get Empty member obj
         static clsMember _GetEmptyMemberObj();
         // Convert line to member obj
-        static clsMember _LineToMember(string line, string seperator = "#-#");
+        static clsMember _LineToMember(string line, string seperator = "#//#");
         // convert member obj to line
-        string _MemberToLine(string seperator = "#-#");
+        string _MemberToLine(string seperator = "#//#");
         // add member
         void _addMember();
         // update member
@@ -53,28 +53,31 @@ class clsMember : public clsPerson {
 
     public:
         // constructor parameter
-        clsMember(
-            eMemberMode mode,
-            string accountnumber,
-            string password,
-            string firstname,
-            string lastname,
-            string email,
-            string phone,
-            eMemberRole role,
-            short totalborrowedbooks,
-            eAccountStatus status);
+        clsMember(eMemberMode mode,   // mode
+            string accountnumber,     // accountnumber
+            string password,          // password
+            string firstname,         // firstname
+            string lastname,          // lastname
+            string email,             // email
+            string phone,             // phone
+            eMemberRole role,         // role
+            short totalborrowedbooks, // totalborrowedbooks
+            short latereturns,        // latereturns
+            eAccountStatus status);   // status
         // setter
         void SetPassword(string password);
         void SetRole(short role);
         void SetBorrowedBooks(short total);
+        void UpdateLateReturns();
+        void SetLateReturns(short value);
         void SetAccountStatus(eAccountStatus status);
         // getter
         string GetAccountNumber() const;
         string GetPassword() const;
         eMemberRole GetRole() const;
         short GetTotalBorrowedBooks() const;
-        eAccountStatus GetAccountStatus();
+        short GetLateReturns() const;
+        eAccountStatus GetAccountStatus() const;
         // is empty
         bool isEmpty();
 

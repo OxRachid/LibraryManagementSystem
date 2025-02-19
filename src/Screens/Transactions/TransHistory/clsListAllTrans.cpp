@@ -16,10 +16,10 @@ void clsListAllTrans::ListAllTransScreen() {
     const vector<clsTransaction> &vTrans = clsTransaction::GetTransactionsList();
     PrintHeaderScreen("ALL TRANS LIST", to_string(vTrans.size()), Colors::Blue, false, 130);
     short width = 25;
-    cout << Colors::GetBoldYellow() << setfill(' ') << left << setw(width - 16) << "TransID" << left << setw(width - 10) << "OUT-Performer" << left << setw(width - 10) << "IN-Performer" << left << setw(width - 14) << "Ac-Number" << left << setw(width - 15) << "BookID" << left << setw(width - 14) << "Role" << left << setw(width - 12) << "OUT-Date" << left << setw(width - 12) << "Due-Date" << left << setw(width - 12) << "ReturnDate" << left << setw(width - 13) << "Status" << Colors::RESET() << endl;
+    cout << Colors::GetBlue() << setfill(' ') << left << setw(width - 16) << "TransID" << left << setw(width - 10) << "OUT-Performer" << left << setw(width - 10) << "IN-Performer" << left << setw(width - 14) << "Ac-Number" << left << setw(width - 15) << "BookID" << left << setw(width - 14) << "Role" << left << setw(width - 12) << "OUT-Date" << left << setw(width - 12) << "Due-Date" << left << setw(width - 12) << "ReturnDate" << left << setw(width - 13) << "Status" << Colors::RESET() << endl;
     cout << Colors::GetBlue() << setw(130) << setfill('-') << "" << Colors::RESET() << endl;
     if (vTrans.empty()) {
-        cout << Colors::GetRed() << "          No Data Found" << Colors::RESET() << endl;
+        cout << Colors::GetRed() << "               No Data Found" << Colors::RESET() << endl;
     } else {
         for (const clsTransaction &T : vTrans) {
             _DisplayTransDetails(T);

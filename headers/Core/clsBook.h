@@ -31,9 +31,9 @@ class clsBook : protected clsScreen {
         // Get empty book obj
         static clsBook _GetEmptyBookObj();
         // _Convert Line To Book Record
-        static clsBook _LineToBook(string line, string delim);
+        static clsBook _LineToBook(string line, string seperator = "#//#");
         // _Convert book record To line
-        string _BookToLine(string seperator = "#-#");
+        string _BookToLine(string seperator = "#//#");
         // add book helper
         void _AddBook();
         // delete book helper

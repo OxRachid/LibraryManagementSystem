@@ -1,7 +1,7 @@
 #include "../../../headers/Screens/Books/clsBooksManage.h"
 #include "../../../headers/Lib/clsInputValidate.h"
+#include "../../../headers/Screens/Books/ListBooks/clsListMenu.h"
 #include "../../../headers/Screens/Books/clsAddNewBook.h"
-#include "../../../headers/Screens/Books/clsBooksList.h"
 #include "../../../headers/Screens/Books/clsDeleteBook.h"
 #include "../../../headers/Screens/Books/clsFindBook.h"
 #include "../../../headers/Screens/Books/clsUpdateBook.h"
@@ -34,8 +34,8 @@ void clsBooksManage::_PrintBooksManageMenu() {
 // Perform Books manage options
 void clsBooksManage::_PerformBooksManageOptions(enBooksManageOptions options) {
     switch (options) {
-        case enBooksManageOptions::eListAllBooks: {
-            _ListAllBooksScreen();
+        case enBooksManageOptions::eListBooks: {
+            _ListBooksScreen();
             break;
         }
         case enBooksManageOptions::eAddBook: {
@@ -70,9 +70,9 @@ void clsBooksManage::_PerformBooksManageOptions(enBooksManageOptions options) {
 }
 
 // list all Books
-void clsBooksManage::_ListAllBooksScreen() {
+void clsBooksManage::_ListBooksScreen() {
     system("clear");
-    clsBooksList::BooksListScreen();
+    clsListMenu::ListMenuScreen();
 }
 // Add book screen
 void clsBooksManage::_AddBookScreen() {
