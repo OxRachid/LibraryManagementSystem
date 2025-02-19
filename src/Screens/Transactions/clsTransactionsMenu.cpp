@@ -1,5 +1,6 @@
 #include "../../../headers/Screens/Transactions/clsTransactionsMenu.h"
 #include "../../../headers/Lib/clsInputValidate.h"
+#include "../../../headers/Screens/Transactions/TransHistory/clsTransHistoryMenu.h"
 #include "../../../headers/Screens/Transactions/clsBorrowBook.h"
 #include "../../../headers/Screens/Transactions/clsReturnBook.h"
 #include <cstdlib>
@@ -17,8 +18,7 @@ clsTransactionsMenu::eTransOptions clsTransactionsMenu::_GetUserChoice() {
 void clsTransactionsMenu::_PrintMenu() {
     system("clear");
     PrintHeaderScreen("TRANSACTIONS MENU SCREEN", "📚", Colors::Cyan);
-    cout << Colors::GetGreen() << "                             ϟ\n"
-         << Colors::RESET();
+    cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
     PrintHeaderScreen("Transactions Menu", "📋", Colors::Cyan, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Borrow Book" << endl;
@@ -80,7 +80,7 @@ void clsTransactionsMenu::_ReturnBook() {
 // BORROWING_HISTORY
 void clsTransactionsMenu::_TransactionsHistory() {
     system("clear");
-    cout << "sooon";
+    clsTransHistoryMenu::TransHistoryMenuScreen();
 }
 // TRACK_MEMBER
 void clsTransactionsMenu::_TrackMemberActivity() {

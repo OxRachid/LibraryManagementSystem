@@ -70,7 +70,7 @@ void clsTransHistoryMenu::_ListReturned() {
 }
 
 // trans hustory screen
-void clsTransHistoryMenu::TransHistoryMenu() {
+void clsTransHistoryMenu::TransHistoryMenuScreen() {
     enTransMenuOptions option;
     do {
         _PrintNenu();

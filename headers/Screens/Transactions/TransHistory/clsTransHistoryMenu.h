@@ -26,7 +26,7 @@ class clsTransHistoryMenu : protected clsScreen {
 
     public:
         // trans hustory screen
-        static void TransHistoryMenu();
+        static void TransHistoryMenuScreen();
 };
 
 #endif // !CLSTRANSHISTORYMENU_H
