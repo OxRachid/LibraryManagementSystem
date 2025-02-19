@@ -1,5 +1,6 @@
 #include "../../../../headers/Screens/Transactions/TransHistory/clsTransHistoryMenu.h"
 #include "../../../../headers/Lib/clsInputValidate.h"
+#include "../../../../headers/Screens/Transactions/TransHistory/clsListAllTrans.h"
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -56,7 +57,7 @@ void clsTransHistoryMenu::_PerformOption(enTransMenuOptions option) {
 // List all
 void clsTransHistoryMenu::_ListAll() {
     system("clear");
-    cout << "soon";
+    clsListAllTrans::ListAllTransScreen();
 }
 // list borrowed
 void clsTransHistoryMenu::_ListBorrowed() {

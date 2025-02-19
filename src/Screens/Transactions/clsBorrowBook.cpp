@@ -17,7 +17,7 @@ void clsBorrowBook::_PrintMemberData(clsMember member) {
     cout << left << setw(20) << " Lastname" << " : " << member.GetLastName() << endl;
     cout << left << setw(20) << " Email" << " : " << member.GetEmail() << endl;
     cout << left << setw(20) << " Phone" << " : " << member.GetPhone() << endl;
-    cout << left << setw(20) << " Role" << " : " << member.GetRole() << endl;
+    cout << left << setw(20) << " Role" << " : " << member.MemberRoleToString() << endl;
     cout << left << setw(20) << " Borrowed Books" << " : " << member.GetTotalBorrowedBooks() << endl;
     cout << left << setw(20) << " Account Status" << " : " << member.AccountStatusToString() << endl;
     cout << setw(41) << setfill('-') << "" << Colors::RESET() << endl;
@@ -86,15 +86,21 @@ void clsBorrowBook::BorrowBookScreen() {
     clsBook TargetBook = _GetTargetBook();
     _PrintBookData(TargetBook);
 
+    // checks if a member has already borrowed the same book and has not returned it yet
+    if (clsTransaction::isBookStillBorrowedByMember(TargetMember.GetAccountNumber(), TargetBook.GetID())) {
+        cout << Colors::GetRed() << " [ You borrowed this book and hasn't returned it yet ]" << Colors::RESET() << endl;
+        return;
+    }
+
     if (clsInputValidate::AskUser("\n ⊕ Are u sure wanna borrow this book to " + TargetMember.GetFullName())) {
         // perform operation
         if (TargetBook.Borrow()) {
             // Increase total of borrowing books of TargetMember
             TargetMember.BorrowBook();
-            _PrintBookData(TargetBook);
-            cout << Colors::GetGreen() << " [ Book Info After Operation ]" << Colors::RESET() << endl;
             _PrintMemberData(TargetMember);
             cout << Colors::GetGreen() << " [ Member Info After Operation ]" << Colors::RESET() << endl;
+            _PrintBookData(TargetBook);
+            cout << Colors::GetGreen() << " [ Book Info After Operation ]" << Colors::RESET() << endl;
             // create log borrowing record
             clsTransaction::log_borrowing_transaction(TargetMember.GetAccountNumber(), TargetBook.GetID(), (clsTransaction::enRole)(short)TargetMember.GetRole());
         } else {

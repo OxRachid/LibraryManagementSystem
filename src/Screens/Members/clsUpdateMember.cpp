@@ -15,7 +15,7 @@ void clsUpdateMember::_PrintMemberData(clsMember member) {
     cout << left << setw(20) << " Lastname" << " : " << member.GetLastName() << endl;
     cout << left << setw(20) << " Email" << " : " << member.GetEmail() << endl;
     cout << left << setw(20) << " Phone" << " : " << member.GetPhone() << endl;
-    cout << left << setw(20) << " Role" << " : " << member.GetRole() << endl;
+    cout << left << setw(20) << " Role" << " : " << member.MemberRoleToString() << endl;
     cout << left << setw(20) << " Password" << " : " << member.GetPassword() << endl;
     cout << left << setw(20) << " Borrowed Books" << " : " << member.GetTotalBorrowedBooks() << endl;
     cout << left << setw(20) << " Account Status" << " : " << member.AccountStatusToString() << endl;
@@ -44,7 +44,7 @@ clsMember clsUpdateMember::_GetTargetMember() {
 
 // Get Role Choice
 short clsUpdateMember::_UpdateRoleChoice() {
-    return clsInputValidate::Readnumberbetween(1, 2, " ⊙ What's Role [1] Student [2] Teacher ? ");
+    return clsInputValidate::Readnumberbetween(0, 2, " ⊙ What's Role [0] Student [1] Teacher [2] NON ? ");
 }
 
 // Read new data

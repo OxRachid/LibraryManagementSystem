@@ -103,6 +103,12 @@ bool clsTransaction::isBookReturned() {
     return (_Status == enTransStatus::RETURNED);
 }
 
+// checks if a member has already borrowed the same book and has not returned it yet
+bool clsTransaction::isBookStillBorrowedByMember(string accountnumber, int book_ID) {
+    clsTransaction trans = Find(accountnumber, book_ID);
+    return (!trans.isBookReturned());
+}
+
 // is member exist
 bool clsTransaction::isAccountNumberExist(string accountnumber) {
     clsTransaction record = Find(accountnumber);

@@ -63,32 +63,30 @@ bool clsMember::isEmpty() {
 // Get Empty member obj
 clsMember clsMember::_GetEmptyMemberObj() {
 
-    return clsMember(
-        eMemberMode::EmptyMode, // Member mode (empty mode, possibly a placeholder)
-        EMPTY_STR,              // Account number (empty)
-        EMPTY_STR,              // Password (empty)
-        EMPTY_STR,              // First name (empty)
-        EMPTY_STR,              // Last name (empty)
-        EMPTY_STR,              // Email (empty)
-        EMPTY_STR,              // Phone (empty)
-        eMemberRole::NON,       // Member role (none)
-        DEFAULT_INT,            // Total borrowed books (default integer value)
-        eAccountStatus::BLOCKED // Account status (blocked)
+    return clsMember(eMemberMode::EmptyMode, // Member mode (empty mode, possibly a placeholder)
+        EMPTY_STR,                           // Account number (empty)
+        EMPTY_STR,                           // Password (empty)
+        EMPTY_STR,                           // First name (empty)
+        EMPTY_STR,                           // Last name (empty)
+        EMPTY_STR,                           // Email (empty)
+        EMPTY_STR,                           // Phone (empty)
+        eMemberRole::NON,                    // Member role (none)
+        DEFAULT_INT,                         // Total borrowed books (default integer value)
+        eAccountStatus::BLOCKED              // Account status (blocked)
     );
 }
 // Get Add new member obj
 clsMember clsMember::GetAddNewMemberObj(string accountnumber) {
-    return clsMember(
-        eMemberMode::AddNewMode, // Member mode
-        accountnumber,           // Account number
-        EMPTY_STR,               // Password
-        EMPTY_STR,               // First name
-        EMPTY_STR,               // Last name
-        EMPTY_STR,               // Email
-        EMPTY_STR,               // Phone
-        eMemberRole::NON,        // Member role
-        DEFAULT_INT,             // Total borrowed books
-        eAccountStatus::ACTIVE   // Account status
+    return clsMember(eMemberMode::AddNewMode, // Member mode
+        accountnumber,                        // Account number
+        EMPTY_STR,                            // Password
+        EMPTY_STR,                            // First name
+        EMPTY_STR,                            // Last name
+        EMPTY_STR,                            // Email
+        EMPTY_STR,                            // Phone
+        eMemberRole::NON,                     // Member role
+        DEFAULT_INT,                          // Total borrowed books
+        eAccountStatus::ACTIVE                // Account status
     );
 }
 
@@ -96,17 +94,16 @@ clsMember clsMember::GetAddNewMemberObj(string accountnumber) {
 clsMember clsMember::_LineToMember(string line, string seperator) {
     vector<string> vStr = clsString::Split(line, seperator);
 
-    return clsMember(
-        eMemberMode::UpdateMode,      // Member mode (update existing member)
-        vStr[0],                      // Account number
-        vStr[1],                      // Password
-        vStr[2],                      // First name
-        vStr[3],                      // Last name
-        vStr[4],                      // Email
-        vStr[5],                      // Phone
-        (eMemberRole)stoi(vStr[6]),   // Member role (converted from string to enum)
-        stoi(vStr[7]),                // Total borrowed books (converted from string to integer)
-        (eAccountStatus)stoi(vStr[8]) // Account status (converted from string to enum)
+    return clsMember(eMemberMode::UpdateMode, // Member mode (update existing member)
+        vStr[0],                              // Account number
+        vStr[1],                              // Password
+        vStr[2],                              // First name
+        vStr[3],                              // Last name
+        vStr[4],                              // Email
+        vStr[5],                              // Phone
+        (eMemberRole)stoi(vStr[6]),           // Member role (converted from string to enum)
+        stoi(vStr[7]),                        // Total borrowed books (converted from string to integer)
+        (eAccountStatus)stoi(vStr[8])         // Account status (converted from string to enum)
     );
 }
 // convert member obj to line
@@ -119,7 +116,7 @@ string clsMember::_MemberToLine(string seperator) {
     line += GetEmail() + seperator;
     line += GetPhone() + seperator;
     line += to_string((short)_Role) + seperator;
-    line += to_string(_TotalBorrowedBooks);
+    line += to_string(_TotalBorrowedBooks) + seperator;
     line += to_string((short)_AccountStatus);
 
     return line;
@@ -280,22 +277,20 @@ void clsMember::ReturnBook(bool isLate) {
 
 // convert enum eAccountstatus to string
 string clsMember::AccountStatusToString() {
-    return (_AccountStatus == eAccountStatus::ACTIVE) ? "ACTIVE" : (_AccountStatus == eAccountStatus::BLOCKED) ? "BLOCKED"
-                                                                                                               : "CLOSED";
+    return (_AccountStatus == eAccountStatus::ACTIVE) ? "ACTIVE" : (_AccountStatus == eAccountStatus::BLOCKED) ? "BLOCKED" : "CLOSED";
 }
 
 // convert enum eMemberRole to string
 string clsMember::MemberRoleToString() {
-    return (_Role == eMemberRole::STUDENT) ? "STUDENT" : (_Role == eMemberRole::TEACHER) ? "TEACHER"
-                                                                                         : "NON";
+    return (_Role == eMemberRole::STUDENT) ? "STUDENT" : (_Role == eMemberRole::TEACHER) ? "TEACHER" : "NON";
 }
 
 // check if member exceeded the BorrowBook limit
 bool clsMember::isBorrowLimitExceeded() {
     if (_Role == eMemberRole::STUDENT) {
-        return (_TotalBorrowedBooks > 3);
+        return (_TotalBorrowedBooks > 2);
     }
-    return (_TotalBorrowedBooks > 6);
+    return (_TotalBorrowedBooks > 5);
 }
 
 // save

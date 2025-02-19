@@ -10,7 +10,7 @@ using namespace std;
 // Display Member data
 void clsListMembers::_DisplayMemberData(clsMember member) {
     short width = 14;
-    cout << Colors::GetBlue() << setfill(' ') << left << setw(width) << member.GetFullName() << left << setw(width - 5) << member.GetRole() << left << setw(width - 4) << member.GetAccountNumber() << left << setw(width) << member.GetPassword() << left << setw(width - 3) << member.GetTotalBorrowedBooks() << left << setw(width - 6) << member.AccountStatusToString() << Colors::RESET() << endl;
+    cout << Colors::GetBlue() << setfill(' ') << left << setw(width) << member.GetFullName() << left << setw(width - 5) << member.MemberRoleToString() << left << setw(width - 4) << member.GetAccountNumber() << left << setw(width) << member.GetPassword() << left << setw(width - 3) << member.GetTotalBorrowedBooks() << left << setw(width - 6) << member.AccountStatusToString() << Colors::RESET() << endl;
 }
 
 // list All Members
@@ -71,8 +71,7 @@ void clsListMembers::_ListTeachers() {
 void clsListMembers::_PrintMenu() {
     system("clear");
     PrintHeaderScreen("LIST OPTIONS SCREEN", "📍", Colors::Blue);
-    cout << Colors::GetGreen() << "                             ϟ\n"
-         << Colors::RESET();
+    cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
     PrintHeaderScreen("List By", "📌", Colors::Blue, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] All Members" << endl;
