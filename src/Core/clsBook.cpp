@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <memory>
 #include <string>
 #include <vector>
 using namespace std;
@@ -128,18 +127,17 @@ bool clsBook::isEmpty() {
 
 // Get empty book obj
 clsBook clsBook::_GetEmptyBookObj() {
-    return clsBook(
-        enMode::EmptyMode, // Mode
-        DEFAULT_INT,       // ID
-        EMPTY_STR,         // Title
-        EMPTY_STR,         // Author
-        EMPTY_STR,         // ISBN
-        DEFAULT_INT,       // Edition
-        EMPTY_STR,         // Genre
-        DEFAULT_DATE,      // PublicationDate
-        DEFAULT_INT,       // TotalCopies
-        DEFAULT_INT,       // AvailableCopies
-        DEFAULT_INT        // BorrowedCopies
+    return clsBook(enMode::EmptyMode, // Mode
+        DEFAULT_INT,                  // ID
+        EMPTY_STR,                    // Title
+        EMPTY_STR,                    // Author
+        EMPTY_STR,                    // ISBN
+        DEFAULT_INT,                  // Edition
+        EMPTY_STR,                    // Genre
+        DEFAULT_DATE,                 // PublicationDate
+        DEFAULT_INT,                  // TotalCopies
+        DEFAULT_INT,                  // AvailableCopies
+        DEFAULT_INT                   // BorrowedCopies
     );
 }
 
@@ -151,37 +149,34 @@ clsBook clsBook::GetAddNewBookObj(string ISBN) {
         ID = clsUtil::GenerateNumber(5);
     }
 
-    return clsBook(
-        enMode::AddBookMode, // Mode
-        ID,                  // ID
-        EMPTY_STR,           // Title
-        EMPTY_STR,           // Author
-        ISBN,                // ISBN
-        1,                   // Edition
-        EMPTY_STR,           // Genre
-        clsDate(),           // PublicationDate
-        DEFAULT_INT,         // TotalCopies
-        DEFAULT_INT,         // AvailableCopies
-        DEFAULT_INT          // BorrowedCopies
+    return clsBook(enMode::AddBookMode, // Mode
+        ID,                             // ID
+        EMPTY_STR,                      // Title
+        EMPTY_STR,                      // Author
+        ISBN,                           // ISBN
+        1,                              // Edition
+        EMPTY_STR,                      // Genre
+        clsDate(),                      // PublicationDate
+        DEFAULT_INT,                    // TotalCopies
+        DEFAULT_INT,                    // AvailableCopies
+        DEFAULT_INT                     // BorrowedCopies
     );
 }
 
 // _Convert Line To Book Record
-clsBook clsBook::_LineToBook(string line, string delim) {
-    vector<string> vStr = clsString::Split(line, delim);
-
-    return clsBook(
-        enMode::UpdateMode, // Mode
-        stoi(vStr[0]),      // ID
-        vStr[1],            // Title
-        vStr[2],            // Author
-        vStr[3],            // ISBN
-        stoi(vStr[4]),      // Edition
-        vStr[5],            // Genre
-        clsDate(vStr[6]),   // PublicationDate
-        stoi(vStr[7]),      // TotalCopies
-        stoi(vStr[8]),      // AvailableCopies
-        stoi(vStr[9])       // BorrowedCopies
+clsBook clsBook::_LineToBook(string line, string seperator) {
+    vector<string> vStr = clsString::Split(line, seperator);
+    return clsBook(enMode::UpdateMode, // Mode
+        stoi(vStr[0]),                 // ID
+        vStr[1],                       // Title
+        vStr[2],                       // Author
+        vStr[3],                       // ISBN
+        stoi(vStr[4]),                 // Edition
+        vStr[5],                       // Genre
+        clsDate(vStr[6]),              // PublicationDate
+        stoi(vStr[7]),                 // TotalCopies
+        stoi(vStr[8]),                 // AvailableCopies
+        stoi(vStr[9])                  // BorrowedCopies
     );
 }
 
@@ -310,7 +305,7 @@ void clsBook::LoadBooksFromFile() {
     if (Myfile.is_open()) {
         string line = "";
         while (getline(Myfile, line)) {
-            clsBook book = _LineToBook(line, "#-#");
+            clsBook book = _LineToBook(line);
             _vBooksList.push_back(book);
         }
         Myfile.close();

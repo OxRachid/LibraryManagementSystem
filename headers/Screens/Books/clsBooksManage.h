@@ -6,7 +6,7 @@ class clsBooksManage : protected clsScreen {
     private:
         // enum for books manage options
         enum enBooksManageOptions {
-            eListAllBooks = 1,
+            eListBooks = 1,
             eAddBook = 2,
             eRemoveBook = 3,
             eUpdateBook = 4,
@@ -20,7 +20,7 @@ class clsBooksManage : protected clsScreen {
         // Perform Books manage options
         static void _PerformBooksManageOptions(enBooksManageOptions options);
         // list all Books
-        static void _ListAllBooksScreen();
+        static void _ListBooksScreen();
         // Add book screen
         static void _AddBookScreen();
         // remove book screen

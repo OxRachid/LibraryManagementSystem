@@ -19,6 +19,7 @@ void clsReturnBook::_PrintMemberData(clsMember member) {
     cout << left << setw(20) << " Phone" << " : " << member.GetPhone() << endl;
     cout << left << setw(20) << " Role" << " : " << member.MemberRoleToString() << endl;
     cout << left << setw(20) << " Borrowed Books" << " : " << member.GetTotalBorrowedBooks() << endl;
+    cout << left << setw(20) << " Late Returns" << " : " << member.GetLateReturns() << endl;
     cout << left << setw(20) << " Account Status" << " : " << member.AccountStatusToString() << endl;
     cout << setw(41) << setfill('-') << "" << Colors::RESET() << endl;
 }
