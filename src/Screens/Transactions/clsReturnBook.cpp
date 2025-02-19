@@ -1,7 +1,7 @@
 #include "../../../headers/Screens/Transactions/clsReturnBook.h"
 #include "../../../headers/Core/clsBook.h"
-#include "../../../headers/Core/clsBorrowRecord.h"
 #include "../../../headers/Core/clsMember.h"
+#include "../../../headers/Core/clsTransaction.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include <iomanip>
 #include <iostream>
@@ -41,7 +41,7 @@ void clsReturnBook::_PrintBookData(clsBook book) {
 }
 
 // Print Transaction data
-void clsReturnBook::_PrintTransData(clsBorrowRecord record) {
+void clsReturnBook::_PrintTransData(clsTransaction record) {
     cout << endl;
     PrintHeaderScreen("[Transaction Data]", "💡", Colors::Blue, false, 41);
     cout << Colors::GetBlue() << left << setw(20) << setfill(' ') << " Transaction ID" << " : " << record.GetTrans_ID() << endl;
@@ -49,6 +49,7 @@ void clsReturnBook::_PrintTransData(clsBorrowRecord record) {
     cout << left << setw(20) << " Checkin Performer" << " : " << record.GetCheckinPerformer() << endl;
     cout << left << setw(20) << " AccountNumber" << " : " << record.GetAccountNumber() << endl;
     cout << left << setw(20) << " Book ID" << " : " << record.GetBookID() << endl;
+    cout << left << setw(20) << " Role" << " : " << record.RoleToString() << endl;
     cout << left << setw(20) << " Checkout Date" << " : " << clsDate::ConvertDateToString(record.GetCheckoutDate()) << endl;
     cout << left << setw(20) << " Due Date" << " : " << clsDate::ConvertDateToString(record.GetDueDate()) << endl;
     cout << left << setw(20) << " Return Date" << " : " << clsDate::ConvertDateToString(record.GetReturnDate()) << endl;
@@ -57,7 +58,7 @@ void clsReturnBook::_PrintTransData(clsBorrowRecord record) {
 }
 
 // Get target Transaction
-clsBorrowRecord clsReturnBook::_GetTargetTransaction(string &accountnumber, int &bookID) {
+clsTransaction clsReturnBook::_GetTargetTransaction(string &accountnumber, int &bookID) {
     bool isExist = false;
     do {
         if (isExist) {
@@ -65,9 +66,9 @@ clsBorrowRecord clsReturnBook::_GetTargetTransaction(string &accountnumber, int 
         }
         accountnumber = clsInputValidate::ReadString("\n * Enter AccountNumber : ");
         bookID = clsInputValidate::ReadNumber<int>(" * Enter Book ID : ");
-        isExist = !clsBorrowRecord::isTransactionExist(accountnumber, bookID);
+        isExist = !clsTransaction::isTransactionExist(accountnumber, bookID);
     } while (isExist);
-    return clsBorrowRecord::Find(accountnumber, bookID);
+    return clsTransaction::Find(accountnumber, bookID);
 }
 
 // Borrow Book Screen
@@ -78,7 +79,7 @@ void clsReturnBook::ReturnBookScreen() {
     string accountnumber;
     int bookID;
     // Get the Target Transaction
-    clsBorrowRecord TargetTrans = _GetTargetTransaction(accountnumber, bookID);
+    clsTransaction TargetTrans = _GetTargetTransaction(accountnumber, bookID);
     // print target Transaction
     _PrintTransData(TargetTrans);
     // check if book was already returnd

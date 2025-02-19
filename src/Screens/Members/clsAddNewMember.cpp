@@ -39,9 +39,8 @@ string clsAddNewMember::_GetUniqueAccountNumber() {
 }
 
 // Get Role Choice
-string clsAddNewMember::_GetRoleChoice() {
-    short RoleChoice = clsInputValidate::Readnumberbetween(1, 2, " ⊙ What's Your Role [1] Student [2] Teacher ? ");
-    return (RoleChoice == 1) ? "student" : "teacher";
+short clsAddNewMember::_GetRoleChoice() {
+    return clsInputValidate::Readnumberbetween(1, 2, " ⊙ What's Your Role [1] Student [2] Teacher ? ");
 }
 
 // Read Memeber obj data

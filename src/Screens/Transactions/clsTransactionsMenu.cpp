@@ -1,5 +1,6 @@
 #include "../../../headers/Screens/Transactions/clsTransactionsMenu.h"
 #include "../../../headers/Lib/clsInputValidate.h"
+#include "../../../headers/Screens/Transactions/TransHistory/clsTransHistoryMenu.h"
 #include "../../../headers/Screens/Transactions/clsBorrowBook.h"
 #include "../../../headers/Screens/Transactions/clsReturnBook.h"
 #include <cstdlib>
@@ -22,7 +23,7 @@ void clsTransactionsMenu::_PrintMenu() {
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Borrow Book" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[2] Return Book" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[3] Borrowing History" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[3] Transactions History" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Track Members" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Track Books" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[6] Exit" << endl;
@@ -40,7 +41,7 @@ void clsTransactionsMenu::_PerformOption(eTransOptions option) {
             break;
         }
         case eTransOptions::BORROWING_HISTORY: {
-            _BorrowingHistory();
+            _TransactionsHistory();
             break;
         }
         case eTransOptions::TRACK_MEMBER: {
@@ -77,9 +78,9 @@ void clsTransactionsMenu::_ReturnBook() {
     clsReturnBook::ReturnBookScreen();
 }
 // BORROWING_HISTORY
-void clsTransactionsMenu::_BorrowingHistory() {
+void clsTransactionsMenu::_TransactionsHistory() {
     system("clear");
-    cout << "sooon";
+    clsTransHistoryMenu::TransHistoryMenuScreen();
 }
 // TRACK_MEMBER
 void clsTransactionsMenu::_TrackMemberActivity() {

@@ -14,7 +14,7 @@ class clsUpdateMember : protected clsScreen {
         // Read new data
         static void _ReadNewData(clsMember &member);
         // Get Role Choice
-        static string _UpdateRoleChoice();
+        static short _UpdateRoleChoice();
 
     public:
         // Update Target member screen

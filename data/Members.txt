@@ -1,5 +1,5 @@
-A222#-#123#-#Rachid#-#elln#-#rach@#-#0679#-#student#-#3#-#0
-A333#-#555#-#Ali#-#Hassan#-#Ali@#-#0678#-#teacher#-#1#-#0
-A444#-#666#-#Dounia#-#sef#-#dounia@gmail.com#-#064534267#-#student#-#0#-#0
-A666#-#9999#-#Latifa#-#Lahsen#-#Latifa@gmail.com#-#0645231287#-#student#-#0#-#0
-A555#-#345#-#Said#-#bihi#-#Said@gmail.com#-#0678543277#-#teacher#-#0#-#0
+A222#-#123#-#Rachid#-#elln#-#rach@#-#0679#-#0#-#3#-#0
+A333#-#555#-#Ali#-#Hassan#-#Ali@#-#0678#-#1#-#1#-#0
+A444#-#666#-#Dounia#-#sef#-#dounia@gmail.com#-#064534267#-#0#-#0#-#0
+A666#-#9999#-#Latifa#-#Lahsen#-#Latifa@gmail.com#-#0645231287#-#0#-#0#-#0
+A555#-#345#-#Said#-#bihi#-#Said@gmail.com#-#0678543277#-#1#-#0#-#0

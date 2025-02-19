@@ -1,7 +1,7 @@
 #include "../../../headers/Screens/Transactions/clsBorrowBook.h"
 #include "../../../headers/Core/clsBook.h"
-#include "../../../headers/Core/clsBorrowRecord.h"
 #include "../../../headers/Core/clsMember.h"
+#include "../../../headers/Core/clsTransaction.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include <iomanip>
 #include <iostream>
@@ -76,6 +76,12 @@ void clsBorrowBook::BorrowBookScreen() {
     // Get TargetMember
     clsMember TargetMember = _GetTargetMember();
     _PrintMemberData(TargetMember);
+    // Check borrowing book limit
+    if (TargetMember.isBorrowLimitExceeded()) {
+        cout << Colors::GetRed() << " [ You have exceeded the allowed borrowing limit ]" << Colors::RESET() << endl;
+        return;
+    }
+
     // Get TargetBook
     clsBook TargetBook = _GetTargetBook();
     _PrintBookData(TargetBook);
@@ -90,7 +96,7 @@ void clsBorrowBook::BorrowBookScreen() {
             _PrintMemberData(TargetMember);
             cout << Colors::GetGreen() << " [ Member Info After Operation ]" << Colors::RESET() << endl;
             // create log borrowing record
-            clsBorrowRecord::log_borrowing_transaction(TargetMember.GetAccountNumber(), TargetBook.GetID(), TargetMember.GetRole());
+            clsTransaction::log_borrowing_transaction(TargetMember.GetAccountNumber(), TargetBook.GetID(), (clsTransaction::enRole)(short)TargetMember.GetRole());
         } else {
             cout << Colors::GetRed() << " [ Borrowing Failed ]" << Colors::RESET() << endl;
         }

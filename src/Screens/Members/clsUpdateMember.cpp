@@ -43,9 +43,8 @@ clsMember clsUpdateMember::_GetTargetMember() {
 }
 
 // Get Role Choice
-string clsUpdateMember::_UpdateRoleChoice() {
-    short RoleChoice = clsInputValidate::Readnumberbetween(1, 2, " ⊙ What's Role [1] Student [2] Teacher ? ");
-    return (RoleChoice == 1) ? "student" : "teacher";
+short clsUpdateMember::_UpdateRoleChoice() {
+    return clsInputValidate::Readnumberbetween(1, 2, " ⊙ What's Role [1] Student [2] Teacher ? ");
 }
 
 // Read new data

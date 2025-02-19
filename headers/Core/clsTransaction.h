@@ -1,14 +1,22 @@
-#ifndef CLSBORROWRECORD_H
-#define CLSBORROWRECORD_H
+#ifndef CLSTRANSACTION_H
+#define CLSTRANSACTION_H
 
 #include "../Lib/clsDate.h"
 #include <string>
 #include <vector>
 
-class clsBorrowRecord {
+class clsTransaction {
+    public:
+        // enum for member Role
+        enum enRole {
+            STUDENT = 0,
+            TEACHER = 1,
+            NON = 2
+        };
+
     private:
         // static vector hold all Borrow books Records
-        static vector<clsBorrowRecord> _vBorrowRecords;
+        static vector<clsTransaction> _vTransactions;
 
         // enum foe mode option
         enum enMode {
@@ -18,7 +26,7 @@ class clsBorrowRecord {
         };
 
         // enum for transaction status
-        enum enStatus {
+        enum enTransStatus {
             BORROWED = 0,
             RETURNED = 1
         };
@@ -29,18 +37,18 @@ class clsBorrowRecord {
         string _CheckinPerformer;
         string _AccountNumber;
         int _BookID;
-        string _Role;
+        enRole _Role;
         clsDate _CheckoutDate;
         clsDate _DueDate;
         clsDate _ReturnDate;
-        enStatus _Status;
+        enTransStatus _Status;
 
         // get empty obj
-        static clsBorrowRecord _GetEmptyRecord();
+        static clsTransaction _GetEmptyRecord();
         // Get Add BorrowRecord obj
-        static clsBorrowRecord _GetAddModeRecord(string AccountNumber, int book_ID, string role);
+        static clsTransaction _GetAddModeRecord(string AccountNumber, int book_ID, enRole role);
         // convert BorrowRecords to line
-        static clsBorrowRecord _LineToRecord(string line, string seperator = "#-#");
+        static clsTransaction _LineToRecord(string line, string seperator = "#-#");
         // convert line to BorrowRecord
         string _RecordToLine(string seperator = "#-#");
         // add Borrow Record to vector
@@ -50,18 +58,18 @@ class clsBorrowRecord {
 
     public:
         // constructor parameter
-        clsBorrowRecord(
+        clsTransaction(
             enMode mode,
             int trans_ID,
             string checkoutperformer,
             string checkinperformer,
             string accountnumber,
             int book_ID,
-            string role,
+            enRole role,
             clsDate checkout_date,
             clsDate due_date,
             clsDate return_date,
-            enStatus status);
+            enTransStatus status);
 
         // Setters
         void SetTrans_ID(int trans_ID);
@@ -69,22 +77,22 @@ class clsBorrowRecord {
         void SetCheckinPerformer(string checkinperformor);
         void SetAccountNumber(string AccountNumber);
         void SetBookID(int book_ID);
-        void SetRole(string role);
+        void SetRole(enRole role);
         void SetCheckoutDate(clsDate checkout_date);
         void SetDueDate(clsDate due_date);
         void SetReturnDate(clsDate return_date);
-        void SetStatus(enStatus status);
+        void SetStatus(enTransStatus status);
         // getters
         int GetTrans_ID();
         string GetCheckoutPerformer();
         string GetCheckinPerformer();
         string GetAccountNumber();
         int GetBookID();
-        string GetRole();
+        enRole GetRole();
         clsDate GetCheckoutDate();
         clsDate GetDueDate();
         clsDate GetReturnDate();
-        enStatus GetStatus();
+        enTransStatus GetStatus();
 
         // is obj empty
         bool isEmpty();
@@ -99,23 +107,29 @@ class clsBorrowRecord {
         // is transaction (accountnumber & book_ID) exist
         static bool isTransactionExist(string accountnumber, int trans_ID);
         // find transaction by only book_ID
-        static clsBorrowRecord FindByBookID(int book_ID);
+        static clsTransaction FindByBookID(int book_ID);
         // find transaction by only accountnumber
-        static clsBorrowRecord Find(string accountnumber);
+        static clsTransaction Find(string accountnumber);
         // find transaction by only trans_ID
-        static clsBorrowRecord Find(int trans_ID);
+        static clsTransaction Find(int trans_ID);
         // find transaction by AccountNumber & book_ID
-        static clsBorrowRecord Find(string accountnumber, int book_ID);
+        static clsTransaction Find(string accountnumber, int book_ID);
         // load BorrowRecords from file
         static void LoadBorrowRecords();
         // save BorrowRecords to file
         static void SaveBorrowRecords();
-        // Get BorrowRecords from vector
-        static vector<clsBorrowRecord> &GetBorrowRecords();
+        // Get transactions list from vector
+        static vector<clsTransaction> &GetTransactionsList();
+        // Get borrowed GetBorrowedList
+        static vector<clsTransaction> GetBorrowedList();
+        // Get returned list
+        static vector<clsTransaction> GetReturnedList();
         // create BorrowRecords register
-        static void log_borrowing_transaction(string accountnumber, int book_ID, string role);
+        static void log_borrowing_transaction(string accountnumber, int book_ID, enRole role);
         // convert enum book status to string
         string BookStatusToString();
+        // convert enum enRole to string
+        string RoleToString();
         // return book
         void ReturnBook();
         // enum for saving result
@@ -126,4 +140,4 @@ class clsBorrowRecord {
         eSaveMode save();
 };
 
-#endif // !CLSBORROWRECORD_H
+#endif // !CLSTRANSACTION_H
