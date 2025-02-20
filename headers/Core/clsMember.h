@@ -1,6 +1,7 @@
 #ifndef CLSMEMBER_H
 #define CLSMEMBER_H
 
+#include "../Lib/clsDate.h"
 #include "../Lib/clsPerson.h"
 #include <string>
 #include <vector>
@@ -36,7 +37,7 @@ class clsMember : public clsPerson {
         eMemberRole _Role;
         short _TotalBorrowedBooks;
         short _LateReturns;
-
+        clsDate _AccountCreated_on;
         eAccountStatus _AccountStatus;
 
         // Get Empty member obj
@@ -54,23 +55,25 @@ class clsMember : public clsPerson {
 
     public:
         // constructor parameter
-        clsMember(eMemberMode mode,   // mode
-            string accountnumber,     // accountnumber
-            string password,          // password
-            string firstname,         // firstname
-            string lastname,          // lastname
-            string email,             // email
-            string phone,             // phone
-            eMemberRole role,         // role
-            short totalborrowedbooks, // totalborrowedbooks
-            short latereturns,        // latereturns
-            eAccountStatus status);   // status
+        clsMember(eMemberMode mode,    // mode
+            string accountnumber,      // accountnumber
+            string password,           // password
+            string firstname,          // firstname
+            string lastname,           // lastname
+            string email,              // email
+            string phone,              // phone
+            eMemberRole role,          // role
+            short totalborrowedbooks,  // totalborrowedbooks
+            short latereturns,         // latereturns
+            clsDate accountcreated_on, // accountcreated_on
+            eAccountStatus status);    // status
         // setter
         void SetPassword(string password);
         void SetRole(short role);
         void SetBorrowedBooks(short total);
         void UpdateLateReturns();
         void SetLateReturns(short value);
+        void SetAccountCreated_on(clsDate accountcreated_on);
         void SetAccountStatus(eAccountStatus status);
         // getter
         string GetAccountNumber() const;
@@ -78,6 +81,7 @@ class clsMember : public clsPerson {
         eMemberRole GetRole() const;
         short GetTotalBorrowedBooks() const;
         short GetLateReturns() const;
+        clsDate GetAccountCreated_on() const;
         eAccountStatus GetAccountStatus() const;
         // is empty
         bool isEmpty();
