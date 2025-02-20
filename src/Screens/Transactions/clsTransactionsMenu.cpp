@@ -3,6 +3,7 @@
 #include "../../../headers/Screens/Transactions/TransHistory/clsTransHistoryMenu.h"
 #include "../../../headers/Screens/Transactions/clsBorrowBook.h"
 #include "../../../headers/Screens/Transactions/clsReturnBook.h"
+#include "../../../headers/Screens/Transactions/clsTrackMembers.h"
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -85,7 +86,7 @@ void clsTransactionsMenu::_TransactionsHistory() {
 // TRACK_MEMBER
 void clsTransactionsMenu::_TrackMemberActivity() {
     system("clear");
-    cout << "sooon";
+    clsTrackMembers::TrackMembersScreen();
 }
 
 // TRACK_BOOK

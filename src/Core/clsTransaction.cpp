@@ -305,6 +305,17 @@ vector<clsTransaction> clsTransaction::GetReturnedList() {
     return vReturned;
 }
 
+// Get all transactions by specific member
+vector<clsTransaction> clsTransaction::GetTransactionsForMember(string accountnumber) {
+    vector<clsTransaction> vTrans;
+    for (clsTransaction &trans : _vTransactions) {
+        if (trans.GetAccountNumber() == accountnumber) {
+            vTrans.push_back(trans);
+        }
+    }
+    return vTrans;
+}
+
 // add Borrow Record to vector
 void clsTransaction::_AddBorrowRecord() {
     // add record to vector
