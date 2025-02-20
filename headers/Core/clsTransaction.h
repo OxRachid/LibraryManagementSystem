@@ -115,6 +115,8 @@ class clsTransaction {
         static vector<clsTransaction> GetBorrowedList();
         // Get returned list
         static vector<clsTransaction> GetReturnedList();
+        // Get all transactions by specific member
+        static vector<clsTransaction> GetTransactionsForMember(string accountnumber);
         // create BorrowRecords register
         static void log_borrowing_transaction(string accountnumber, int book_ID, enRole role);
         // convert enum book status to string
