@@ -26,7 +26,7 @@ void clsTransactionsMenu::_PrintMenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[2] Return Book" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[3] Transactions History" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Track Members" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[4] Track Books" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[5] Track Books" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[6] Exit" << endl;
     cout << Colors::GetCyan() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }

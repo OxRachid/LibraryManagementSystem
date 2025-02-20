@@ -36,14 +36,15 @@ class clsMember : public clsPerson {
         eMemberRole _Role;
         short _TotalBorrowedBooks;
         short _LateReturns;
+
         eAccountStatus _AccountStatus;
 
         // Get Empty member obj
         static clsMember _GetEmptyMemberObj();
         // Convert line to member obj
-        static clsMember _LineToMember(string line, string seperator = "#//#");
+        static clsMember _LineToMember(string line, string seperator = "|");
         // convert member obj to line
-        string _MemberToLine(string seperator = "#//#");
+        string _MemberToLine(string seperator = "|");
         // add member
         void _addMember();
         // update member
