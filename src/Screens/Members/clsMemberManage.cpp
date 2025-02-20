@@ -18,9 +18,9 @@ clsMemberManage::enMenuOptions clsMemberManage::_GetUserChoice() {
 // Print Member manage menu
 void clsMemberManage::_DisplayMenu() {
     system("clear");
-    PrintHeaderScreen("MEMBERS MANAGE MENU SCREEN", "👥", Colors::Blue);
+    PrintHeaderScreen("MEMBERS MANAGE MENU SCREEN", "👥", Colors::Magenta);
     cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
-    PrintHeaderScreen("Members Manage Menu", "👥", Colors::Blue, false);
+    PrintHeaderScreen("Members Manage Menu", "👥", Colors::Magenta, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] List Members" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[2] Add Member" << endl;
@@ -28,7 +28,7 @@ void clsMemberManage::_DisplayMenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[4] Update Member" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[5] Find Member" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[6] Main Menu" << endl;
-    cout << Colors::GetBlue() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
+    cout << Colors::GetMagenta() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 // List members screen
 void clsMemberManage::_ListMembers() {
