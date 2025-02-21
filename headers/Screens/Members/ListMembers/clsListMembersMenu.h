@@ -1,9 +1,9 @@
-#ifndef CLSLISTMEMBERS_H
-#define CLSLISTMEMBERS_H
+#ifndef CLSLISTMEMBERSMENU_H
+#define CLSLISTMEMBERSMENU_H
 
-#include "../../Core/clsMember.h"
-#include "../clsScreen.h"
-class clsListMembers : protected clsScreen {
+#include "../../../Core/clsMember.h"
+#include "../../clsScreen.h"
+class clsListMembersMenu : protected clsScreen {
     private:
         enum enListOptions {
             ALL_MEMBERS = 1,
@@ -11,8 +11,6 @@ class clsListMembers : protected clsScreen {
             ONLY_TEACHERS = 3,
             EXIT = 4,
         };
-        // Display Member data
-        static void _DisplayMemberData(clsMember member);
         // print list Menu screen
         static void _PrintMenu();
         // handle user choice
@@ -26,7 +24,7 @@ class clsListMembers : protected clsScreen {
 
     public:
         // list members screen
-        static void ListMembersScreen();
+        static void ListMembersMenuScreen();
 };
 
-#endif // !CLSLISTMEMBERS_H
+#endif // !CLSLISTMEMBERSMENU_H
