@@ -1,10 +1,10 @@
 #include "../../../headers/Screens/Members/clsMemberManage.h"
 #include "../../../headers/Core/clsMember.h"
 #include "../../../headers/Lib/clsInputValidate.h"
+#include "../../../headers/Screens/Members/ListMembers/clsListMembersMenu.h"
 #include "../../../headers/Screens/Members/clsAddNewMember.h"
 #include "../../../headers/Screens/Members/clsDeleteMember.h"
 #include "../../../headers/Screens/Members/clsFindMember.h"
-#include "../../../headers/Screens/Members/clsListMembers.h"
 #include "../../../headers/Screens/Members/clsUpdateMember.h"
 #include <iomanip>
 #include <iostream>
@@ -33,7 +33,7 @@ void clsMemberManage::_DisplayMenu() {
 // List members screen
 void clsMemberManage::_ListMembers() {
     system("clear");
-    clsListMembers::ListMembersScreen();
+    clsListMembersMenu::ListMembersMenuScreen();
 }
 // Add members screen
 void clsMemberManage::_AddNewMember() {

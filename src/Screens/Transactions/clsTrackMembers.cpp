@@ -64,7 +64,7 @@ clsMember clsTrackMembers::_GetTargetMember() {
 
 // track members screen
 void clsTrackMembers::TrackMembersScreen() {
-    PrintHeaderScreen("TRACK MEMBERS", "", Colors::Magenta);
+    PrintHeaderScreen("TRACK MEMBERS", "👓", Colors::Magenta);
     cout << "\n\n\n";
 
     // Get targetmember
