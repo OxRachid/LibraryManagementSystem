@@ -316,6 +316,17 @@ vector<clsTransaction> clsTransaction::GetTransactionsForMember(string accountnu
     return vTrans;
 }
 
+// Get all transactions by specific book
+vector<clsTransaction> clsTransaction::GetTransactionsForBook(int book_ID) {
+    vector<clsTransaction> vTrans;
+    for (clsTransaction &Trans : _vTransactions) {
+        if (Trans.GetBookID() == book_ID) {
+            vTrans.push_back(Trans);
+        }
+    }
+    return vTrans;
+}
+
 // add Borrow Record to vector
 void clsTransaction::_AddBorrowRecord() {
     // add record to vector
