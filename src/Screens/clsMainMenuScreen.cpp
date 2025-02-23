@@ -6,6 +6,7 @@
 #include "../../headers/Screens/Books/clsBooksManage.h"
 #include "../../headers/Screens/Members/clsMemberManage.h"
 #include "../../headers/Screens/Transactions/clsTransactionsMenu.h"
+#include "../../headers/Screens/Users/clsUsersManage.h"
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -24,8 +25,7 @@ clsMainMenuScreen::enMainMenuOptions clsMainMenuScreen::_GetUserChoice() {
 void clsMainMenuScreen::_PrintMainMenu() {
     system("clear");
     PrintHeaderScreen("MAIN MENU SCREEN", "📚", Colors::Yellow);
-    cout << Colors::GetGreen() << "                             ϟ\n"
-         << Colors::RESET();
+    cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
     PrintHeaderScreen("Main Menue ", "📋", Colors::Yellow, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Books Manage" << endl;
@@ -49,7 +49,7 @@ void clsMainMenuScreen::_MemberManageScreen() {
 // users Manage screen
 void clsMainMenuScreen::_UsersManageScreen() {
     system("clear");
-    cout << "soon";
+    clsUsersManage::UsersManageScreen();
 }
 // Transactions screen
 void clsMainMenuScreen::_TransactionScreen() {
