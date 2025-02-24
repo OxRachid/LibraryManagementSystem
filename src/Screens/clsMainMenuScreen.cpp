@@ -2,6 +2,7 @@
 #include "../../headers/Core/clsBook.h"
 #include "../../headers/Core/clsMember.h"
 #include "../../headers/Core/clsTransaction.h"
+#include "../../headers/Core/clsUser.h"
 #include "../../headers/Lib/clsInputValidate.h"
 #include "../../headers/Screens/Books/clsBooksManage.h"
 #include "../../headers/Screens/Members/clsMemberManage.h"
@@ -99,6 +100,8 @@ void clsMainMenuScreen::MainMenuScreen() {
         clsBook::LoadBooksFromFile();
         // load Members from file
         clsMember::LoadMembersFromFile();
+        // load Users from file
+        clsUser::LoadUsersFromFile();
         // load clsTransactions history
         clsTransaction::LoadBorrowRecords();
         dataLoaded = true;
