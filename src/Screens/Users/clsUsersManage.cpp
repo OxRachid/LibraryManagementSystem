@@ -1,6 +1,7 @@
 #include "../../../headers/Screens/Users/clsUsersManage.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include "../../../headers/Screens/Users/clsAddUsers.h"
+#include "../../../headers/Screens/Users/clsDeleteUsers.h"
 #include "../../../headers/Screens/Users/clsListUsers.h"
 #include <iomanip>
 #include <iostream>
@@ -76,7 +77,7 @@ void clsUsersManage::_AddNewUser() {
 // Delete Users screen
 void clsUsersManage::_DeleteUser() {
     system("clear");
-    cout << "sooon";
+    clsDeleteUsers::DeleteUserScreen();
 }
 // update user screen
 void clsUsersManage::_UpdateUser() {

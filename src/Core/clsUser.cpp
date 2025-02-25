@@ -189,6 +189,32 @@ void clsUser::_updateUser() {
     }
 }
 
+// Delete user
+bool clsUser::_deleteUser() {
+    auto it = find_if(vUsers.begin(), vUsers.end(), [&](clsUser &user) {
+        return (user.GetUsername() == this->GetUsername());
+    });
+
+    if (it != vUsers.end()) {
+        vUsers.erase(it);
+        return true;
+    }
+
+    return false;
+}
+
+// Delete user
+bool clsUser::Delete() {
+    if (_deleteUser()) {
+        // save update vector to file
+        SaveUsersToFile();
+        // erase the curr user obj
+        *this = _GetEmptyObj();
+        return true;
+    }
+    return false;
+}
+
 // save func
 clsUser::eSaveResult clsUser::save() {
     switch (_Mode) {
