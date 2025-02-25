@@ -9,7 +9,7 @@ using namespace std;
 // display user details
 void clsListUsers::_DisplsyUserDetails(clsUser user) {
     short width = 15;
-    cout << Colors::GetCyan() << setfill(' ') << left << setw(width - 5) << user.GetUsername() << left << setw(width) << user.GetFullName() << left << setw(width - 2) << user.GetPassword() << left << setw(width - 2) << user.GetTotalTransMade() << left << setw(width - 2) << clsDate::ConvertDateToString(user.GetAccountCreated_on()) << Colors::RESET() << endl;
+    cout << Colors::GetYellow() << setfill(' ') << left << setw(width - 5) << user.GetUsername() << left << setw(width) << user.GetFullName() << left << setw(width - 2) << user.GetPassword() << left << setw(width - 2) << user.GetTotalTransMade() << left << setw(width - 2) << clsDate::ConvertDateToString(user.GetAccountCreated_on()) << Colors::RESET() << endl;
 }
 
 // list all Users

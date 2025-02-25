@@ -3,6 +3,7 @@
 #include "../../../headers/Screens/Users/clsAddUsers.h"
 #include "../../../headers/Screens/Users/clsDeleteUsers.h"
 #include "../../../headers/Screens/Users/clsListUsers.h"
+#include "../../../headers/Screens/Users/clsUpdateUsers.h"
 #include <iomanip>
 #include <iostream>
 using namespace std;
@@ -82,7 +83,7 @@ void clsUsersManage::_DeleteUser() {
 // update user screen
 void clsUsersManage::_UpdateUser() {
     system("clear");
-    cout << "sooon";
+    clsUpdateUsers::UpdateUsersScreen();
 }
 // Find Users screen
 void clsUsersManage::_FindUser() {
