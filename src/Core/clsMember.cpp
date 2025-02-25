@@ -4,7 +4,6 @@
 #include <cctype>
 #include <fstream>
 #include <iostream>
-#include <regex>
 #include <string>
 using namespace std;
 
@@ -51,26 +50,26 @@ void clsMember::SetAccountStatus(eAccountStatus status) {
     _AccountStatus = status;
 }
 // getter
-string clsMember::GetAccountNumber() const {
+string clsMember::GetAccountNumber() {
     return _AccountNumber;
 }
-string clsMember::GetPassword() const {
+string clsMember::GetPassword() {
     return _Password;
 }
-clsMember::eMemberRole clsMember::GetRole() const {
+clsMember::eMemberRole clsMember::GetRole() {
     return _Role;
 }
 
-short clsMember::GetLateReturns() const {
+short clsMember::GetLateReturns() {
     return _LateReturns;
 }
-short clsMember::GetTotalBorrowedBooks() const {
+short clsMember::GetTotalBorrowedBooks() {
     return _TotalBorrowedBooks;
 }
-clsDate clsMember::GetAccountCreated_on() const {
+clsDate clsMember::GetAccountCreated_on() {
     return _AccountCreated_on;
 }
-clsMember::eAccountStatus clsMember::GetAccountStatus() const {
+clsMember::eAccountStatus clsMember::GetAccountStatus() {
     return _AccountStatus;
 }
 // is empty
@@ -162,7 +161,7 @@ bool clsMember::isMemberExist(string accountnumber, string password) {
 
 // Find member by accountnumber
 clsMember clsMember::Find(string accountnumber) {
-    auto it = find_if(vMembers.begin(), vMembers.end(), [&](const clsMember &member) {
+    auto it = find_if(vMembers.begin(), vMembers.end(), [&](clsMember &member) {
         return (member.GetAccountNumber() == accountnumber);
     });
     if (it != vMembers.end()) {
@@ -174,7 +173,7 @@ clsMember clsMember::Find(string accountnumber) {
 
 // Find member by accountnumber and password
 clsMember clsMember::Find(string accountnumber, string password) {
-    auto it = find_if(vMembers.begin(), vMembers.end(), [&](const clsMember &member) {
+    auto it = find_if(vMembers.begin(), vMembers.end(), [&](clsMember &member) {
         return (member.GetAccountNumber() == accountnumber && member.GetPassword() == password);
     });
     if (it != vMembers.end()) {
@@ -216,7 +215,7 @@ vector<clsMember> &clsMember::GetMembersList() {
 // Get Students or Teachers Members list from static  vector
 vector<clsMember> clsMember::GetSpecificMembersList(bool ByStudents) {
     vector<clsMember> vSpecificMembers;
-    for (const clsMember &member : vMembers) {
+    for (clsMember &member : vMembers) {
         if (ByStudents) {
             if (member.GetRole() == eMemberRole::STUDENT) {
                 vSpecificMembers.push_back(member);
@@ -241,7 +240,7 @@ void clsMember::_addMember() {
 // update member
 void clsMember::_updateMember() {
     // sesrch for TargetMember
-    auto it = find_if(vMembers.begin(), vMembers.end(), [&](const clsMember &member) {
+    auto it = find_if(vMembers.begin(), vMembers.end(), [&](clsMember &member) {
         return (member.GetAccountNumber() == this->GetAccountNumber());
     });
     if (it != vMembers.end()) {
@@ -254,7 +253,7 @@ void clsMember::_updateMember() {
 // Delete Target Members
 bool clsMember::_deleteMember() {
     // search for Targetmember by its accountnumber in vector
-    auto it = find_if(vMembers.begin(), vMembers.end(), [&](const clsMember &member) {
+    auto it = find_if(vMembers.begin(), vMembers.end(), [&](clsMember &member) {
         return (member.GetAccountNumber() == this->GetAccountNumber());
     });
     // if Targetmember found then delete it from vector

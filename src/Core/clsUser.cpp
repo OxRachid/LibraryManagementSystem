@@ -31,6 +31,7 @@ void clsUser::SetAccountCreated_on(clsDate accountcreated_on) {
 }
 void clsUser::UpdateTotalTransMade() {
     ++_TotalTransMade;
+    _updateUser();
 }
 // getters
 

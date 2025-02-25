@@ -1,6 +1,7 @@
 #include "../../../headers/Screens/Users/clsUsersManage.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include "../../../headers/Screens/Users/clsAddUsers.h"
+#include "../../../headers/Screens/Users/clsListUsers.h"
 #include <iomanip>
 #include <iostream>
 using namespace std;
@@ -65,7 +66,7 @@ void clsUsersManage::_PerformOption(enMenuOptions option) {
 // List Users screen
 void clsUsersManage::_ListUsers() {
     system("clear");
-    cout << "sooon";
+    clsListUsers::ListUsersScreen();
 }
 // Add Users screen
 void clsUsersManage::_AddNewUser() {

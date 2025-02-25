@@ -76,13 +76,13 @@ class clsMember : public clsPerson {
         void SetAccountCreated_on(clsDate accountcreated_on);
         void SetAccountStatus(eAccountStatus status);
         // getter
-        string GetAccountNumber() const;
-        string GetPassword() const;
-        eMemberRole GetRole() const;
-        short GetTotalBorrowedBooks() const;
-        short GetLateReturns() const;
-        clsDate GetAccountCreated_on() const;
-        eAccountStatus GetAccountStatus() const;
+        string GetAccountNumber();
+        string GetPassword();
+        eMemberRole GetRole();
+        short GetTotalBorrowedBooks();
+        short GetLateReturns();
+        clsDate GetAccountCreated_on();
+        eAccountStatus GetAccountStatus();
         // is empty
         bool isEmpty();
 
