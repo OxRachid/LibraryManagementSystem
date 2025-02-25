@@ -7,7 +7,7 @@
 class clsAddUser : protected clsScreen {
     private:
         // print user data
-        static void _PrintUserData(clsUser user);
+        static void _PrintUserData(clsUser &user);
         // Get Unique username of user
         static string _GetUniqueUsername();
         // Read user obj data

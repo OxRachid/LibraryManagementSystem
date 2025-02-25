@@ -1,6 +1,7 @@
 #include "../../headers/Lib/clsString.h"
 #include <__config>
 #include <cctype>
+#include <cstddef>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -27,7 +28,7 @@ string clsString::GetValue() {
 // Split string func (static)
 vector<string> clsString::Split(string text, string delim) {
     vector<string> Vstring;
-    short pos = 0;
+    size_t pos = 0;
     string Word = "";
     while ((pos = text.find(delim)) != string::npos) {
         Word = text.substr(0, pos);
@@ -65,7 +66,7 @@ void clsString::ReplaceWord(string OldWord, string NewWord) {
 // Print first letter of each word (static)
 void clsString::PrintFirstLetterOfEachWord(string text) {
     bool isFirstLetter = true;
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (text.at(i) != ' ' && isFirstLetter)
             cout << text.at(i) << endl;
         // Print first letter of each word (static)
@@ -80,7 +81,7 @@ void clsString::PrintFirstLetterOfEachWord() {
 // Upper First Letter Of Each Word (static)
 string clsString::UpperFirstLetterOfEachWord(string text) {
     bool isFirstLetter = true;
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (text.at(i) != ' ' && isFirstLetter)
             text.at(i) = toupper(text.at(i));
         isFirstLetter = (text.at(i) == ' ') ? true : false;
@@ -94,7 +95,7 @@ void clsString::UpperFirstLetterOfEachWord() {
 // Lower First Letter Of Each Word (static)
 string clsString::LowerFirstLetterOfEachWord(string text) {
     bool isFirstLetter = true;
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (text.at(i) != ' ' && isFirstLetter)
             text.at(i) = tolower(text.at(i));
         isFirstLetter = (text.at(i) == ' ') ? true : false;
@@ -108,7 +109,7 @@ void clsString::LowerFirstLetterOfEachWord() {
 
 // Upper All string (static)
 string clsString::UpperAllString(string text) {
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         text.at(i) = toupper(text.at(i));
     }
     return text;
@@ -119,7 +120,7 @@ void clsString::UpperAllString() {
 }
 // Lower All string (static)
 string clsString::LowerAllString(string text) {
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         text.at(i) = tolower(text.at(i));
     }
     return text;
@@ -136,7 +137,7 @@ char clsString::InvertLetterCase(char c) {
 
 // invert all letters case (static)
 string clsString::InvertAllLettersCase(string text) {
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         text.at(i) = clsString::InvertLetterCase(text.at(i));
     }
     return text;
@@ -149,7 +150,7 @@ void clsString::InvertAllLettersCase() {
 // Count capital letters (static)
 int clsString::CountCapitalLetters(string text) {
     int CapitalCount = 0;
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (isupper(text.at(i)))
             CapitalCount++;
     }
@@ -163,7 +164,7 @@ int clsString::CountCapitalLetters() {
 // Count small letters (static)
 int clsString::CountSmallLetters(string text) {
     int SmallCount = 0;
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (islower(text.at(i)))
             SmallCount++;
     }
@@ -177,7 +178,7 @@ int clsString::CountSmallLetters() {
 // count specific letter (sratic)
 int clsString::CountSpecificLetter(string text, char letter, bool MatchCase) {
     int Counter = 0;
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (MatchCase) {
             if (text.at(i) == letter)
                 Counter++;
@@ -202,7 +203,7 @@ bool clsString::isVowel(char c) {
 // count vowels (static)
 int clsString::CountVowels(string text) {
     int Counter = 0;
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (clsString::isVowel(text.at(i)))
             Counter++;
     }
@@ -214,7 +215,7 @@ int clsString::CountVowels() {
 }
 // print all vowels letters (static)
 void clsString::PrintAllVowels(string text) {
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (isVowel(text.at(i)))
             cout << text.at(i) << ", ";
     }
@@ -227,7 +228,7 @@ void clsString::PrintAllVowels() {
 // print each word of string (static)
 void clsString::PrintEachWordInString(string text) {
     string delim = " ";
-    short pos = 0;
+    size_t pos = 0;
     string word = "";
     while ((pos = text.find(' ')) && pos != string::npos) {
         word = text.substr(0, pos);
@@ -247,7 +248,7 @@ void clsString::PrintEachWordInString() {
 // count words (static)
 int clsString::CountWords(string text) {
     string delim = " ";
-    short pos = 0;
+    size_t pos = 0;
     string word = "";
     int Counter = 0;
     while ((pos = text.find(' ')) && pos != string::npos) {
@@ -342,7 +343,7 @@ void clsString::ReversString() {
 // remove Punctuations (static)
 string clsString::RemovePunctuations(string text) {
     string newStr = "";
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (!ispunct(text.at(i))) {
             newStr += text.at(i);
         }
@@ -357,7 +358,7 @@ void clsString::RemovePunctuations() {
 // format text For Comparison (static)
 string clsString::FormatForComparison(string text) {
     string FormatText = "";
-    for (int i = 0; i < text.length(); i++) {
+    for (size_t i = 0; i < text.length(); i++) {
         if (!ispunct(text.at(i)) && text.at(i) != ' ') {
             FormatText += text.at(i);
         }

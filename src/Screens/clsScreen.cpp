@@ -10,10 +10,10 @@ using namespace std;
 void clsScreen::PrintHeaderScreen(string HeaderTitle, string value, Colors::enColors color, bool isMainHeader, short width) {
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;
     cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << HeaderTitle << " {" << value << "}" << Colors::RESET() << endl;
-    /*if (isMainHeader) {*/
-    /*    cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "User : " << CurrUser.GetUsername() << Colors::RESET() << endl;*/
-    /*    cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "Date : " << clsDate::GetDateAndTime() << Colors::RESET() << endl;*/
-    /*}*/
+    if (isMainHeader) {
+        cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "User : " << "NON" << Colors::RESET() << endl;
+        cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "Date : " << clsDate::GetDateAndTime() << Colors::RESET() << endl;
+    }
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;
 }
 

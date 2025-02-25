@@ -1,5 +1,6 @@
 #include "../../headers/Lib/clsUtil.h"
 #include "../../headers/Lib/clsDate.h"
+#include <cstddef>
 #include <ctime>
 #include <iostream>
 using namespace std;
@@ -132,6 +133,12 @@ void clsUtil::ShuffleArray(string arr[], short ArrSize) {
         swap(arr[rand() % ArrSize], arr[rand() % ArrSize]);
     }
 }
+void clsUtil::ShuffleString(string &Text) {
+    size_t size = Text.length();
+    for (size_t i = 0; i < size; i++) {
+        swap(Text[rand() % size], Text[rand() % size]);
+    }
+}
 
 void clsUtil::FillArraywithRandomNumbers(int arr[], int ArrSize, int from, int to) {
     for (int i = 0; i < ArrSize; i++) {
@@ -151,10 +158,10 @@ void clsUtil::FillArrayWithRandomKeys(string arr[], int ArrSize, enCharType Char
 }
 
 string clsUtil::EncryptText(string text, short key) {
-    const string RandomChars = "ABC7Dno5pqrs6tuvEFGH1IJKLMN2OPQRSTUV3WXYZ9abcde4fghij8klmwxyz@?%_&-+#!";
+    const string RandomChars = "N+pyEBdHfJWLzk(Z{K<TD2gXeF!sxQct5V$v@j*q&91ua}%)6?-mUYMn:RO#4iIS8l73=rbCGwohAP;^>,[]_.|";
     string Encrypted = "";
-    for (short i = 0; i < text.length(); i++) {
-        for (short j = 0; j < RandomChars.length(); j++) {
+    for (size_t i = 0; i < text.length(); i++) {
+        for (size_t j = 0; j < RandomChars.length(); j++) {
             if (text[i] == RandomChars[j]) {
                 Encrypted += RandomChars[j + key];
                 break;
@@ -170,10 +177,10 @@ string clsUtil::EncryptText(string text, short key) {
 }
 
 string clsUtil::DecryptText(string text, short key) {
-    const string RandomChars = "ABC7Dno5pqrs6tuvEFGH1IJKLMN2OPQRSTUV3WXYZ9abcde4fghij8klmwxyz@?%_&-+#!";
+    const string RandomChars = "N+pyEBdHfJWLzk(Z{K<TD2gXeF!sxQct5V$v@j*q&91ua}%)6?-mUYMn:RO#4iIS8l73=rbCGwohAP;^>,[]_.|";
     string Decrypted;
-    for (short i = 0; i < text.length(); i += 3) {
-        for (short j = 0; j < RandomChars.length(); j++) {
+    for (size_t i = 0; i < text.length(); i += 3) {
+        for (size_t j = 0; j < RandomChars.length(); j++) {
             if (text[i] == RandomChars[j]) {
                 Decrypted += RandomChars[j - key];
                 break;

@@ -3,7 +3,6 @@
 #include "../../../headers/Lib/clsInputValidate.h"
 #include <iomanip>
 #include <iostream>
-#include <numeric>
 #include <string>
 using namespace std;
 

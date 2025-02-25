@@ -7,7 +7,7 @@
 using namespace std;
 
 // print user data
-void clsAddUser::_PrintUserData(clsUser user) {
+void clsAddUser::_PrintUserData(clsUser &user) {
     cout << endl;
     PrintHeaderScreen("[User Data]", "👤", Colors::Blue, false, 41);
     cout << Colors::GetBlue() << left << setw(20) << setfill(' ') << " Username" << " : " << user.GetUsername() << endl;
