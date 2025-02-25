@@ -33,6 +33,8 @@ class clsUser : public clsPerson {
         void _addUser();
         // update user
         void _updateUser();
+        // Delete user
+        bool _deleteUser();
 
     public:
         clsUser(enMode mode,           // Mode
@@ -80,6 +82,8 @@ class clsUser : public clsPerson {
         };
         // save func
         eSaveResult save();
+        // Delete user
+        bool Delete();
 };
 
 #endif // !CLSUSER_H
