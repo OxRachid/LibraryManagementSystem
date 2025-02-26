@@ -22,6 +22,7 @@ class clsUser : public clsPerson {
         string _Password;
         clsDate _AccountCreated_on;
         short _TotalTransMade;
+        short _Permissions;
 
         // Get EMPTY obj
         static clsUser _GetEmptyObj();
@@ -45,17 +46,30 @@ class clsUser : public clsPerson {
             string email,              // email
             string phone,              // phone
             clsDate accountCreated_on, // accountcreated_on
-            short totalTransMade);     // totalTransMade
+            short totalTransMade,      // totalTransMade
+            short permissions);        // permissions
+
+        // enum for permissions
+        enum ePermissionFunc {
+            ALL = -1,
+            BOOK_MANAGE = 1,
+            MEMBER_MANAGE = 2,
+            TRANSACTIONS = 4,
+            USERS_MANAGE = 8
+        };
 
         // setter
         void SetPassword(string password);
         void SetAccountCreated_on(clsDate accountcreated_on);
         void UpdateTotalTransMade();
+        void SetPermissions(short permissions);
+
         // getters
         string GetUsername();
         string GetPassword();
         clsDate GetAccountCreated_on();
         short GetTotalTransMade();
+        short GetPermissions();
 
         // is EMPTY
         bool isEmpty();
@@ -84,6 +98,8 @@ class clsUser : public clsPerson {
         eSaveResult save();
         // Delete user
         bool Delete();
+        // is user has access
+        bool isUserHasAccess(ePermissionFunc funcCode);
 };
 
 #endif // !CLSUSER_H

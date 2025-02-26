@@ -14,6 +14,8 @@ class clsAddUser : protected clsScreen {
         static void _ReadUserData(clsUser &user);
         // Get user obj to Add
         static clsUser _GetAddObjMode();
+        // Read permissions
+        static short _GetPermissions();
 
     public:
         // Add new User screen

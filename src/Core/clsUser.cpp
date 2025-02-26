@@ -13,13 +13,14 @@ const string USERSFILE = "data/Users.txt";
 // define static vector for users list
 vector<clsUser> clsUser::vUsers = {};
 
-clsUser::clsUser(enMode mode, string username, string password, string firstname, string lastname, string email, string phone, clsDate accountCreated_on, short totalTransMade)
+clsUser::clsUser(enMode mode, string username, string password, string firstname, string lastname, string email, string phone, clsDate accountCreated_on, short totalTransMade, short permissions)
     : clsPerson(firstname, lastname, email, phone) {
     _Mode = mode;
     _Username = username;
     _Password = password;
     _AccountCreated_on = accountCreated_on;
     _TotalTransMade = totalTransMade;
+    _Permissions = permissions;
 }
 
 // setter
@@ -32,6 +33,9 @@ void clsUser::SetAccountCreated_on(clsDate accountcreated_on) {
 void clsUser::UpdateTotalTransMade() {
     ++_TotalTransMade;
     _updateUser();
+}
+void clsUser::SetPermissions(short permissions) {
+    _Permissions = permissions;
 }
 // getters
 
@@ -47,7 +51,9 @@ clsDate clsUser::GetAccountCreated_on() {
 short clsUser::GetTotalTransMade() {
     return _TotalTransMade;
 }
-
+short clsUser::GetPermissions() {
+    return _Permissions;
+}
 // Get EMPTY obj
 clsUser clsUser::_GetEmptyObj() {
     return clsUser(enMode::EMPTY, // mode
@@ -58,7 +64,8 @@ clsUser clsUser::_GetEmptyObj() {
         EMPTY_STR,                // email
         EMPTY_STR,                // phone
         DEFAULT_DATE,             // accountcreated_on
-        DEFAULT_INT);             // totalTransMade
+        DEFAULT_INT,              // totalTransMade
+        DEFAULT_INT);             // permissions
 }
 
 // get add new user obj mode
@@ -71,7 +78,8 @@ clsUser clsUser::GetAddUserObjMode(string username) {
         EMPTY_STR,              // email
         EMPTY_STR,              // phone
         clsDate(),              // accountcreated_on
-        DEFAULT_INT);           // totalTransMade
+        DEFAULT_INT,            // totalTransMade
+        DEFAULT_INT);           // permissions
 }
 
 // convert line to user obj
@@ -85,7 +93,8 @@ clsUser clsUser::LineToUser(string line, string seperator) {
         vStr[4],                   // email
         vStr[5],                   // phone
         clsDate(vStr[6]),          // accountcreated_on
-        stoi(vStr[7]));            // totalTransMade
+        stoi(vStr[7]),             // totalTransMade
+        stoi(vStr[8]));            // permissions
 }
 
 // convert user obj to line
@@ -98,7 +107,8 @@ string clsUser::UserToLine(string seperator) {
     line += GetEmail() + seperator;
     line += GetPhone() + seperator;
     line += _AccountCreated_on.ConvertDateToString() + seperator;
-    line += to_string(_TotalTransMade);
+    line += to_string(_TotalTransMade) + seperator;
+    line += to_string(_Permissions);
     return line;
 }
 // is EMPTY
@@ -213,6 +223,11 @@ bool clsUser::Delete() {
         return true;
     }
     return false;
+}
+
+// is user has access
+bool clsUser::isUserHasAccess(ePermissionFunc permission) {
+    return (_Permissions == static_cast<short>(ePermissionFunc::ALL)) ? true : ((_Permissions & static_cast<short>(permission)) != 0) ? true : false;
 }
 
 // save func
