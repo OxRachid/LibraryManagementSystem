@@ -100,8 +100,6 @@ void clsMainMenuScreen::MainMenuScreen() {
         clsBook::LoadBooksFromFile();
         // load Members from file
         clsMember::LoadMembersFromFile();
-        // load Users from file
-        clsUser::LoadUsersFromFile();
         // load clsTransactions history
         clsTransaction::LoadBorrowRecords();
         dataLoaded = true;

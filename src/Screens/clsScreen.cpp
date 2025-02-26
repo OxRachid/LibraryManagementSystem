@@ -1,5 +1,5 @@
 #include "../../headers/Screens/clsScreen.h"
-#include "../../headers/Core/clsUser.h"
+#include "../../headers/Core/global.h"
 #include "../../headers/Lib/Colors.h"
 #include "../../headers/Lib/clsDate.h"
 #include <iomanip>
@@ -12,7 +12,7 @@ void clsScreen::PrintHeaderScreen(string HeaderTitle, string value, Colors::enCo
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;
     cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << HeaderTitle << " {" << value << "}" << Colors::RESET() << endl;
     if (isMainHeader) {
-        cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "User : " << "NON" << Colors::RESET() << endl;
+        cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "User : " << CurrUser.GetUsername() << Colors::RESET() << endl;
         cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "Date : " << clsDate::GetDateAndTime() << Colors::RESET() << endl;
     }
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;
