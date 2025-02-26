@@ -10,7 +10,7 @@ class clsScreen {
         // Print header screen
         static void PrintHeaderScreen(string HeaderTitle = "", string value = "", Colors::enColors color = Colors::White, bool isMainHeader = true, short width = 66);
         // check permissions right
-        bool CheckPermissionRights(clsUser::ePermissionFunc permission);
+        static bool CheckPermissionRights(clsUser::ePermissionFunc permission);
 };
 
 #endif // !CLSSCREEN_H
