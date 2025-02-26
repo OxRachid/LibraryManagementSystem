@@ -13,6 +13,8 @@ class clsUpdateUsers : protected clsScreen {
         static string _ReadUsername();
         // Read new data
         static void _ReadNewData(clsUser &user);
+        // Read permissions
+        static short _GetPermissions();
 
     public:
         // update user

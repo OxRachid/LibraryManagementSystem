@@ -1,4 +1,5 @@
 #include "../../headers/Screens/clsScreen.h"
+#include "../../headers/Core/clsUser.h"
 #include "../../headers/Lib/Colors.h"
 #include "../../headers/Lib/clsDate.h"
 #include <iomanip>
@@ -16,10 +17,10 @@ void clsScreen::PrintHeaderScreen(string HeaderTitle, string value, Colors::enCo
     }
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;
 }
-
+/**/
 /*// check permission rights*/
-/*bool clsScreen::CheckPermissionRights(clsUser::enPermissionAccess FunPermission) {*/
-/*    if (!CurrUser.CheckAccessPermissions(FunPermission)) {*/
+/*bool clsScreen::CheckPermissionRights(clsUser::ePermissionFunc FunPermission) {*/
+/*    if (!CurrUser(FunPermission)) {*/
 /*        cout << Colors::GetRed() << "┌─────────────────────────⚠️──────────────────────────┐" << endl;*/
 /*        cout << "├ You Don't have Permission to Access this function, ┤" << endl;*/
 /*        cout << "├ Please Contact Your Admin...                       ┤" << endl;*/

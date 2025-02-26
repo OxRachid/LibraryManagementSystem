@@ -16,6 +16,7 @@ void clsUpdateUsers::_PrintUserData(clsUser &user) {
     cout << left << setw(20) << " Email" << " : " << user.GetEmail() << endl;
     cout << left << setw(20) << " Phone" << " : " << user.GetPhone() << endl;
     cout << left << setw(20) << " Total Trans Made" << " : " << user.GetTotalTransMade() << endl;
+    cout << left << setw(20) << " Permissions" << " : " << user.GetPermissions() << endl;
     cout << left << setw(20) << " Account Created on " << " : " << clsDate::ConvertDateToString(user.GetAccountCreated_on()) << endl;
     cout << setw(41) << setfill('-') << "" << Colors::RESET() << endl;
 }
@@ -40,6 +41,34 @@ clsUser clsUpdateUsers::_GetTargetUser() {
     return clsUser::Find(username);
 }
 
+// Get permissions
+short clsUpdateUsers::_GetPermissions() {
+    PrintHeaderScreen("Read Pemissions", "🔑", Colors::Magenta, 41);
+
+    short permissions = 0;
+    if (clsInputValidate::AskUser(" * Give Access to all functions")) {
+        return static_cast<short>(clsUser::ePermissionFunc::ALL);
+    }
+
+    cout << Colors::GetBlue() << " Give Access to : " << Colors::RESET() << endl;
+
+    const vector<pair<string, clsUser::ePermissionFunc>> vPermissionOptions = {
+        {"Book Manage", clsUser::ePermissionFunc::BOOK_MANAGE},
+        {"Member Manage", clsUser::ePermissionFunc::MEMBER_MANAGE},
+        {"Transactions", clsUser::ePermissionFunc::TRANSACTIONS},
+        {"Users Manage", clsUser::ePermissionFunc::USERS_MANAGE},
+    };
+
+    for (const auto &option : vPermissionOptions) {
+        if (clsInputValidate::AskUser(" * " + option.first)) {
+            permissions |= option.second;
+            cout << Colors::GetGreen() << " Done " << Colors::RESET() << endl;
+        }
+    }
+
+    return permissions;
+}
+
 // Read new data
 void clsUpdateUsers::_ReadNewData(clsUser &user) {
     PrintHeaderScreen("Read New Data", "👤", Colors::Magenta, false, 54);
@@ -62,6 +91,10 @@ void clsUpdateUsers::_ReadNewData(clsUser &user) {
     if (clsInputValidate::AskUser("\n □ Change Password ")) {
         user.SetPassword(clsInputValidate::ReadString("\n ⊙ Enter new Password : "));
         cout << Colors::GetGreen() << " [ Password changed Succesfully ]" << endl;
+    }
+    if (clsInputValidate::AskUser("\n □ Update Permissions ")) {
+        user.SetPermissions(_GetPermissions());
+        cout << Colors::GetGreen() << " [ Permissions updated Succesfully ]" << endl;
     }
 }
 

@@ -16,6 +16,7 @@ void clsDeleteUsers::_PrintUserData(clsUser &user) {
     cout << left << setw(20) << " Email" << " : " << user.GetEmail() << endl;
     cout << left << setw(20) << " Phone" << " : " << user.GetPhone() << endl;
     cout << left << setw(20) << " Total Trans Made" << " : " << user.GetTotalTransMade() << endl;
+    cout << left << setw(20) << " Permissions" << " : " << user.GetPermissions() << endl;
     cout << left << setw(20) << " Account Created on " << " : " << clsDate::ConvertDateToString(user.GetAccountCreated_on()) << endl;
     cout << setw(41) << setfill('-') << "" << Colors::RESET() << endl;
 }

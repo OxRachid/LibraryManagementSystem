@@ -2,6 +2,7 @@
 #include "../../../headers/Lib/clsInputValidate.h"
 #include "../../../headers/Screens/Users/clsAddUsers.h"
 #include "../../../headers/Screens/Users/clsDeleteUsers.h"
+#include "../../../headers/Screens/Users/clsFindUsers.h"
 #include "../../../headers/Screens/Users/clsListUsers.h"
 #include "../../../headers/Screens/Users/clsUpdateUsers.h"
 #include <iomanip>
@@ -88,7 +89,7 @@ void clsUsersManage::_UpdateUser() {
 // Find Users screen
 void clsUsersManage::_FindUser() {
     system("clear");
-    cout << "sooon";
+    clsFindUsers::FindUsersScreen();
 }
 
 // User manage screen
