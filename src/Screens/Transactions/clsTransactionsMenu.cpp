@@ -98,6 +98,11 @@ void clsTransactionsMenu::_TrackBookActivity() {
 
 // Transactions Menu screen
 void clsTransactionsMenu::TransMenuScreen() {
+    // check permisdions
+    if (!CheckPermissionRights(clsUser::ePermissionFunc::TRANSACTIONS)) {
+        return;
+    }
+
     eTransOptions option;
     do {
         _PrintMenu();

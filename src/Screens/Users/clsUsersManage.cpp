@@ -94,6 +94,11 @@ void clsUsersManage::_FindUser() {
 
 // User manage screen
 void clsUsersManage::UsersManageScreen() {
+    // check permisdions
+    if (!CheckPermissionRights(clsUser::ePermissionFunc::USERS_MANAGE)) {
+        return;
+    }
+
     enMenuOptions option;
     do {
         _DisplayMenu();

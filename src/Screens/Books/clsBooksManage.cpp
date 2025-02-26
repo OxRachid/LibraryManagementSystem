@@ -97,6 +97,12 @@ void clsBooksManage::_FindBookScreen() {
 
 // books manage screen
 void clsBooksManage::BooksManageScreen() {
+
+    // check permisdions
+    if (!CheckPermissionRights(clsUser::ePermissionFunc::BOOK_MANAGE)) {
+        return;
+    }
+
     enBooksManageOptions Option;
     do {
         _PrintBooksManageMenu();

@@ -17,16 +17,16 @@ void clsScreen::PrintHeaderScreen(string HeaderTitle, string value, Colors::enCo
     }
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;
 }
-/**/
-/*// check permission rights*/
-/*bool clsScreen::CheckPermissionRights(clsUser::ePermissionFunc FunPermission) {*/
-/*    if (!CurrUser(FunPermission)) {*/
-/*        cout << Colors::GetRed() << "┌─────────────────────────⚠️──────────────────────────┐" << endl;*/
-/*        cout << "├ You Don't have Permission to Access this function, ┤" << endl;*/
-/*        cout << "├ Please Contact Your Admin...                       ┤" << endl;*/
-/*        cout << "└────────────────────────────────────────────────────┘" << Colors::RESET() << endl;*/
-/*        return false;*/
-/*    } else {*/
-/*        return true;*/
-/*    }*/
-/*}*/
+
+// check permission rights
+bool clsScreen::CheckPermissionRights(clsUser::ePermissionFunc FunPermission) {
+    if (!CurrUser.isUserHasAccess(FunPermission)) {
+        cout << Colors::GetRed() << "┌─────────────────────────⚠️──────────────────────────┐" << endl;
+        cout << "├ You Don't have Permission to Access this function, ┤" << endl;
+        cout << "├ Please Contact Your Admin...                       ┤" << endl;
+        cout << "└────────────────────────────────────────────────────┘" << Colors::RESET() << endl;
+        return false;
+    } else {
+        return true;
+    }
+}

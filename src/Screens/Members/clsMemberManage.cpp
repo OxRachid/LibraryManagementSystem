@@ -97,6 +97,11 @@ void clsMemberManage::_PerformMenuOption(enMenuOptions option) {
 
 // Member manage screen
 void clsMemberManage::MemberManageScreen() {
+    // check permisdions
+    if (!CheckPermissionRights(clsUser::ePermissionFunc::MEMBER_MANAGE)) {
+        return;
+    }
+
     enMenuOptions option;
     do {
         _DisplayMenu();
