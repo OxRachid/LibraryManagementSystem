@@ -3,6 +3,7 @@
 #include "../../../headers/Screens/Users/clsAddUsers.h"
 #include "../../../headers/Screens/Users/clsDeleteUsers.h"
 #include "../../../headers/Screens/Users/clsFindUsers.h"
+#include "../../../headers/Screens/Users/clsListLoginRecord.h"
 #include "../../../headers/Screens/Users/clsListUsers.h"
 #include "../../../headers/Screens/Users/clsUpdateUsers.h"
 #include <iomanip>
@@ -11,7 +12,7 @@ using namespace std;
 
 // get user choice
 clsUsersManage::enMenuOptions clsUsersManage::_GetUserChoice() {
-    return (enMenuOptions)clsInputValidate::Readnumberbetween(1, 6, "\n * select your option : ");
+    return (enMenuOptions)clsInputValidate::Readnumberbetween(1, 7, "\n * select your option : ");
 }
 // Print User manage menu
 void clsUsersManage::_DisplayMenu() {
@@ -25,7 +26,8 @@ void clsUsersManage::_DisplayMenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[3] Delete Users" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Update Users" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[5] Find Users" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[6] Exit" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[6] Login Record" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[7] Exit" << endl;
     cout << Colors::GetCyan() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 // perform member manage options
@@ -49,6 +51,10 @@ void clsUsersManage::_PerformOption(enMenuOptions option) {
         }
         case enMenuOptions::FIND_USER: {
             _FindUser();
+            break;
+        }
+        case enMenuOptions::LOGIN_RECORD: {
+            _LoginRecord();
             break;
         }
         case enMenuOptions::EXIT: {
@@ -90,6 +96,11 @@ void clsUsersManage::_UpdateUser() {
 void clsUsersManage::_FindUser() {
     system("clear");
     clsFindUsers::FindUsersScreen();
+}
+// login Record screen
+void clsUsersManage::_LoginRecord() {
+    system("clear");
+    clsListLoginRecord::ListLoginRecordScreen();
 }
 
 // User manage screen

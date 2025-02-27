@@ -43,7 +43,7 @@ clsUser clsUpdateUsers::_GetTargetUser() {
 
 // Get permissions
 short clsUpdateUsers::_GetPermissions() {
-    PrintHeaderScreen("Read Pemissions", "🔑", Colors::Magenta, 41);
+    PrintHeaderScreen("Read Pemissions", "🔑", Colors::Magenta, false, 41);
 
     short permissions = 0;
     if (clsInputValidate::AskUser(" * Give Access to all functions")) {
@@ -62,7 +62,9 @@ short clsUpdateUsers::_GetPermissions() {
     for (const auto &option : vPermissionOptions) {
         if (clsInputValidate::AskUser(" * " + option.first)) {
             permissions |= option.second;
-            cout << Colors::GetGreen() << " Done " << Colors::RESET() << endl;
+            cout << Colors::GetGreen() << " Accepted " << Colors::RESET() << endl;
+        } else {
+            cout << Colors::GetRed() << " Rejected " << Colors::RESET() << endl;
         }
     }
 
@@ -94,7 +96,7 @@ void clsUpdateUsers::_ReadNewData(clsUser &user) {
     }
     if (clsInputValidate::AskUser("\n □ Update Permissions ")) {
         user.SetPermissions(_GetPermissions());
-        cout << Colors::GetGreen() << " [ Permissions updated Succesfully ]" << endl;
+        cout << Colors::GetGreen() << "\n [ Permissions updated Succesfully ]" << endl;
     }
 }
 
