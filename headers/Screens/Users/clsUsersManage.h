@@ -11,7 +11,8 @@ class clsUsersManage : protected clsScreen {
             DELETE_USER = 3,
             UPDATE_USER = 4,
             FIND_USER = 5,
-            EXIT = 6,
+            LOGIN_RECORD = 6,
+            EXIT = 7,
         };
 
         // get user choice
@@ -30,6 +31,8 @@ class clsUsersManage : protected clsScreen {
         static void _UpdateUser();
         // Find members screen
         static void _FindUser();
+        // Login Record screen
+        static void _LoginRecord();
 
     public:
         // User manage screen

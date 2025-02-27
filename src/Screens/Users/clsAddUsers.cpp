@@ -39,7 +39,7 @@ string clsAddUser::_GetUniqueUsername() {
 
 // Read permissions
 short clsAddUser::_GetPermissions() {
-    PrintHeaderScreen("Read Pemissions", "🔑", Colors::Magenta, 41);
+    PrintHeaderScreen("Read Pemissions", "🔑", Colors::Magenta, false, 41);
 
     short permissions = 0;
     if (clsInputValidate::AskUser(" * Give Access to all functions")) {
@@ -58,7 +58,9 @@ short clsAddUser::_GetPermissions() {
     for (const auto &option : vPermissionOptions) {
         if (clsInputValidate::AskUser(" * " + option.first)) {
             permissions |= option.second;
-            cout << Colors::GetGreen() << " Done " << Colors::RESET() << endl;
+            cout << Colors::GetGreen() << " Accepted " << Colors::RESET() << endl;
+        } else {
+            cout << Colors::GetRed() << " Rejected " << Colors::RESET() << endl;
         }
     }
 

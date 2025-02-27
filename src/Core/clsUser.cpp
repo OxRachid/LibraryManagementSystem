@@ -2,16 +2,22 @@
 #include "../../headers/Lib/clsString.h"
 #include "../../headers/Lib/constants.h"
 #include <__config>
+#include <cstdio>
 #include <fstream>
 #include <iostream>
+#include <random>
 #include <string>
 using namespace std;
 
 // define path of users file
 const string USERSFILE = "data/Users.txt";
+// define path of users login file
+const string USERSLOGINFILE = "data/UsersLogin.txt";
 
 // define static vector for users list
 vector<clsUser> clsUser::vUsers = {};
+// define static vector for users login info list
+vector<clsUser::stUserLogin> clsUser::vUsersLogin = {};
 
 clsUser::clsUser(enMode mode, string username, string password, string firstname, string lastname, string email, string phone, clsDate accountCreated_on, short totalTransMade, short permissions)
     : clsPerson(firstname, lastname, email, phone) {
@@ -21,6 +27,13 @@ clsUser::clsUser(enMode mode, string username, string password, string firstname
     _AccountCreated_on = accountCreated_on;
     _TotalTransMade = totalTransMade;
     _Permissions = permissions;
+}
+
+clsUser::stUserLogin::stUserLogin(string username, string password, short permissions, string loginTime) {
+    _username = username;
+    _password = password;
+    _permissions = permissions;
+    _loginTime = loginTime;
 }
 
 // setter
@@ -111,6 +124,31 @@ string clsUser::UserToLine(string seperator) {
     line += to_string(_Permissions);
     return line;
 }
+
+// prepare user login info
+clsUser::stUserLogin clsUser::_PrepareUserLoginInfo() {
+    return stUserLogin(GetUsername(), // username
+        GetPassword(),                // password
+        GetPermissions(),             // permissions
+        clsDate::GetDateAndTime());   // loginTime
+}
+
+// Convert line to UserLogin obj
+clsUser::stUserLogin clsUser::_LineToUserLogin(string line, string seperator) {
+    vector<string> vStr = clsString::Split(line, seperator);
+    return stUserLogin(vStr[0], vStr[1], stoi(vStr[2]), vStr[3]);
+}
+
+// convert UserLogin to line
+string clsUser::_UserLoginToLine(stUserLogin log, string seperator) {
+    string dataline = "";
+    dataline += log._username + seperator;
+    dataline += log._password + seperator;
+    dataline += to_string(log._permissions) + seperator;
+    dataline += log._loginTime;
+    return dataline;
+}
+
 // is EMPTY
 bool clsUser::isEmpty() {
     return (_Mode == enMode::EMPTY);
@@ -228,6 +266,48 @@ bool clsUser::Delete() {
 // is user has access
 bool clsUser::isUserHasAccess(ePermissionFunc permission) {
     return (_Permissions == static_cast<short>(ePermissionFunc::ALL)) ? true : ((_Permissions & static_cast<short>(permission)) != 0) ? true : false;
+}
+
+// Load Users login list from file
+void clsUser::LoadUsersLogin() {
+    fstream file;
+    file.open(USERSLOGINFILE, ios::in);
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            stUserLogin UserLog = _LineToUserLogin(line);
+            vUsersLogin.push_back(UserLog);
+        }
+        file.close();
+    }
+}
+// Save Users login list to file
+void clsUser::SaveUsersLogin() {
+    fstream file;
+    file.open(USERSLOGINFILE, ios::out);
+    if (file.is_open()) {
+        string line = "";
+        for (stUserLogin &log : vUsersLogin) {
+            line = _UserLoginToLine(log);
+            file << line << "\n";
+        }
+        file.close();
+    }
+}
+
+// Get users login list
+vector<clsUser::stUserLogin> clsUser::GetUsersLogin() {
+    return vUsersLogin;
+}
+
+// create user login info
+void clsUser::LogUserLogin() {
+    // prepare user login info
+    stUserLogin log = _PrepareUserLoginInfo();
+    // add the log to vector
+    vUsersLogin.push_back(log);
+    // save the update vector to file
+    SaveUsersLogin();
 }
 
 // save func

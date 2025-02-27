@@ -7,6 +7,16 @@
 #include <string>
 #include <vector>
 class clsUser : public clsPerson {
+    public:
+        // create struct for user login register
+        struct stUserLogin {
+                string _username;
+                string _password;
+                short _permissions;
+                string _loginTime;
+                stUserLogin(string username, string password, short permissions, string loginTime);
+        };
+
     private:
         // define static vector for users list
         static vector<clsUser> vUsers;
@@ -36,6 +46,16 @@ class clsUser : public clsPerson {
         void _updateUser();
         // Delete user
         bool _deleteUser();
+
+        // ************ stUserLogin ***************
+        // define static vector to store users login info list
+        static vector<stUserLogin> vUsersLogin;
+        // Convert line to UserLogin obj
+        static stUserLogin _LineToUserLogin(string line, string seperator = "|");
+        // convert UserLogin to line
+        static string _UserLoginToLine(stUserLogin log, string seperator = "|");
+        // prepare user login info
+        stUserLogin _PrepareUserLoginInfo();
 
     public:
         clsUser(enMode mode,           // Mode
@@ -100,6 +120,15 @@ class clsUser : public clsPerson {
         bool Delete();
         // is user has access
         bool isUserHasAccess(ePermissionFunc funcCode);
+
+        // Load Users login list from file
+        static void LoadUsersLogin();
+        // Save Users login list to file
+        static void SaveUsersLogin();
+        // Get users login list
+        static vector<stUserLogin> GetUsersLogin();
+        // create user login info
+        void LogUserLogin();
 };
 
 #endif // !CLSUSER_H

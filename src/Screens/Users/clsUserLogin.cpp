@@ -16,6 +16,8 @@ void clsUserLogin::UserLogin() {
     if (!dataleaded) {
         // load Users from file
         clsUser::LoadUsersFromFile();
+        // lead UsersLogin list
+        clsUser::LoadUsersLogin();
     }
 
     string username, password;
@@ -32,6 +34,8 @@ void clsUserLogin::UserLogin() {
         CurrUser = clsUser::Find(username, password);
         CheckLogin = CurrUser.isEmpty();
     } while (CheckLogin);
+    // create log for login activity
+    CurrUser.LogUserLogin();
     // after login is succes we go to admin dashboard
     clsMainMenuScreen::MainMenuScreen();
 }
