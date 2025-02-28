@@ -1,27 +1,27 @@
-#ifndef CLSMAINMENUSCREEN_H
-#define CLSMAINMENUSCREEN_H
+#ifndef CLSUSERDASHBOARD_H
+#define CLSUSERDASHBOARD_H
 
 #include "clsScreen.h"
-class clsMainMenuScreen : protected clsScreen {
+class clsUserDashboard : protected clsScreen {
     private:
         // Declare static variable
         static bool dataLoaded;
 
         // enum for menu menu Options
-        enum enMainMenuOptions {
-            eBooksManage = 1,
-            eMemberManage = 2,
-            eTransactions = 3,
-            eUserManage = 4,
-            eLogout = 5
+        enum eUserDashboardOptions {
+            BOOKS_MANAGE = 1,
+            MEMBER_MANAGE = 2,
+            TRANSACTIONS = 3,
+            USER_MANAGE = 4,
+            LOGOUT = 5
         };
 
         // print main menu
-        static void _PrintMainMenu();
+        static void _PrintMenu();
         // Read user choice
-        static enMainMenuOptions _GetUserChoice();
+        static eUserDashboardOptions _GetUserChoice();
         // Perform main menu Options
-        static void _PerformMainMenuOptions(enMainMenuOptions Options);
+        static void _PerformOption(eUserDashboardOptions Options);
         // Books Manage screen
         static void _BooksManageScreen();
         // Member Manage screen
@@ -33,7 +33,7 @@ class clsMainMenuScreen : protected clsScreen {
 
     public:
         // Show Main Menu Screen
-        static void MainMenuScreen();
+        static void UserDashboardScreen();
 };
 
-#endif // !CLSMAINMENUSCREEN_H
+#endif // !CLSUSERDASHBOARD_H

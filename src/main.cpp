@@ -1,10 +1,6 @@
-#include "../headers/Screens/Users/clsUserLogin.h"
+#include "../headers/Screens/clsWhoAreYou.h"
 using namespace std;
 int main() {
-    while (true) {
-        if (!clsUserLogin::UserLogin()) {
-            break;
-        }
-    }
+    clsWhoAreYou::WhoAreYouScreen();
     return 0;
 }
