@@ -4,12 +4,19 @@
 #include "../clsScreen.h"
 class clsUserLogin : protected clsScreen {
     private:
-        // static bool for loading usrs list once time
+        // static bool for loading usrs list one time
         static bool dataleaded;
+
+        // func to lead data from file
+        static void _LoadData();
+        // print header Screen
+        static void _HeaderScreen();
+        // login helper
+        static bool _login();
 
     public:
         // Login
-        static void UserLogin();
+        static bool UserLogin();
 };
 
 #endif // !CLSUSERLOGIN_H
