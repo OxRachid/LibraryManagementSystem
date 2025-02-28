@@ -33,7 +33,7 @@ void clsMainMenuScreen::_PrintMainMenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[2] Member Manage" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[3] Transactions" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] User Manage" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[5] Exit" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[5] Logout" << endl;
     cout << Colors::GetYellow() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 
