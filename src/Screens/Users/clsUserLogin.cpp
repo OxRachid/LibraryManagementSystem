@@ -1,7 +1,7 @@
 #include "../../../headers/Screens/Users/clsUserLogin.h"
 #include "../../../headers/Core/global.h"
 #include "../../../headers/Lib/clsInputValidate.h"
-#include "../../../headers/Screens/clsMainMenuScreen.h"
+#include "../../../headers/Screens/clsUserDashboard.h"
 #include <cstdlib>
 #include <iostream>
 using namespace std;
@@ -69,7 +69,7 @@ bool clsUserLogin::UserLogin() {
         // create log for login activity
         CurrUser.LogUserLogin();
         // after login is succes we go to admin dashboard
-        clsMainMenuScreen::MainMenuScreen();
+        clsUserDashboard::UserDashboardScreen();
         return true;
     }
 

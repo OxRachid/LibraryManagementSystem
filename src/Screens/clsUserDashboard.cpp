@@ -1,8 +1,7 @@
-#include "../../headers/Screens/clsMainMenuScreen.h"
+#include "../../headers/Screens/clsUserDashboard.h"
 #include "../../headers/Core/clsBook.h"
 #include "../../headers/Core/clsMember.h"
 #include "../../headers/Core/clsTransaction.h"
-#include "../../headers/Core/clsUser.h"
 #include "../../headers/Lib/clsInputValidate.h"
 #include "../../headers/Screens/Books/clsBooksManage.h"
 #include "../../headers/Screens/Members/clsMemberManage.h"
@@ -15,15 +14,15 @@
 using namespace std;
 
 // Define static variable
-bool clsMainMenuScreen::dataLoaded = false;
+bool clsUserDashboard::dataLoaded = false;
 
 // Read user choice
-clsMainMenuScreen::enMainMenuOptions clsMainMenuScreen::_GetUserChoice() {
-    return (enMainMenuOptions)clsInputValidate::Readnumberbetween(1, 5, "\n * Select Your Option : ");
+clsUserDashboard::eUserDashboardOptions clsUserDashboard::_GetUserChoice() {
+    return (eUserDashboardOptions)clsInputValidate::Readnumberbetween(1, 5, "\n * Select Your Option : ");
 }
 
 // print main menu
-void clsMainMenuScreen::_PrintMainMenu() {
+void clsUserDashboard::_PrintMenu() {
     system("clear");
     PrintHeaderScreen("MAIN MENU SCREEN", "📚", Colors::Yellow);
     cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
@@ -38,52 +37,52 @@ void clsMainMenuScreen::_PrintMainMenu() {
 }
 
 // Books Manage screen
-void clsMainMenuScreen::_BooksManageScreen() {
+void clsUserDashboard::_BooksManageScreen() {
     system("clear");
     clsBooksManage::BooksManageScreen();
 }
 // Member Manage screen
-void clsMainMenuScreen::_MemberManageScreen() {
+void clsUserDashboard::_MemberManageScreen() {
     system("clear");
     clsMemberManage::MemberManageScreen();
 }
 // users Manage screen
-void clsMainMenuScreen::_UsersManageScreen() {
+void clsUserDashboard::_UsersManageScreen() {
     system("clear");
     clsUsersManage::UsersManageScreen();
 }
 // Transactions screen
-void clsMainMenuScreen::_TransactionScreen() {
+void clsUserDashboard::_TransactionScreen() {
     system("clear");
     clsTransactionsMenu::TransMenuScreen();
 }
 
 // Perform main menu Options
-void clsMainMenuScreen::_PerformMainMenuOptions(enMainMenuOptions Options) {
+void clsUserDashboard::_PerformOption(eUserDashboardOptions Options) {
     switch (Options) {
-        case enMainMenuOptions::eBooksManage: {
+        case eUserDashboardOptions::BOOKS_MANAGE: {
             _BooksManageScreen();
             break;
         }
-        case enMainMenuOptions::eMemberManage: {
+        case eUserDashboardOptions::MEMBER_MANAGE: {
             _MemberManageScreen();
             break;
         }
-        case enMainMenuOptions::eTransactions: {
+        case eUserDashboardOptions::TRANSACTIONS: {
             _TransactionScreen();
             break;
         }
-        case enMainMenuOptions::eUserManage: {
+        case eUserDashboardOptions::USER_MANAGE: {
             _UsersManageScreen();
             break;
         }
-        case enMainMenuOptions::eLogout: {
+        case eUserDashboardOptions::LOGOUT: {
             break;
         }
     }
 
     // pause screen after each func finished
-    if (Options != enMainMenuOptions::eLogout) {
+    if (Options != eUserDashboardOptions::LOGOUT) {
         // this trick just to pause termux screen until the user Contenu
         cout << " \n\n\n\n\n\nEnter any Key to Contenu ... " << endl;
         char Contenue = clsInputValidate::ReadChar();
@@ -93,7 +92,7 @@ void clsMainMenuScreen::_PerformMainMenuOptions(enMainMenuOptions Options) {
 }
 
 // Show Main Menu Screen
-void clsMainMenuScreen::MainMenuScreen() {
+void clsUserDashboard::UserDashboardScreen() {
     // ensur to lead data from file just one time
     if (!dataLoaded) {
         // load books from file
@@ -105,10 +104,10 @@ void clsMainMenuScreen::MainMenuScreen() {
         dataLoaded = true;
     }
 
-    enMainMenuOptions Option;
+    eUserDashboardOptions Option;
     do {
-        _PrintMainMenu();
+        _PrintMenu();
         Option = _GetUserChoice();
-        _PerformMainMenuOptions(Option);
-    } while (Option != enMainMenuOptions::eLogout);
+        _PerformOption(Option);
+    } while (Option != eUserDashboardOptions::LOGOUT);
 }
