@@ -2,6 +2,7 @@
 #include "../../headers/Core/clsBook.h"
 #include "../../headers/Core/clsMember.h"
 #include "../../headers/Core/clsTransaction.h"
+#include "../../headers/Core/global.h"
 #include "../../headers/Lib/clsInputValidate.h"
 #include "../../headers/Screens/Books/clsBooksManage.h"
 #include "../../headers/Screens/Members/clsMemberManage.h"
@@ -15,6 +16,22 @@ using namespace std;
 
 // Define static variable
 bool clsUserDashboard::dataLoaded = false;
+
+// func to lead data from file
+void clsUserDashboard::_LoadData() {
+    // ensur to lead data from file just one time
+    if (!dataLoaded) {
+        // load books from file
+        clsBook::LoadBooksFromFile();
+        // load Members from file
+        clsMember::LoadMembersFromFile();
+        // load clsTransactions history
+        clsTransaction::LoadBorrowRecords();
+        // lead UsersLogin list
+        clsUser::LoadUsersLogin();
+        dataLoaded = true;
+    }
+}
 
 // Read user choice
 clsUserDashboard::eUserDashboardOptions clsUserDashboard::_GetUserChoice() {
@@ -93,16 +110,10 @@ void clsUserDashboard::_PerformOption(eUserDashboardOptions Options) {
 
 // Show Main Menu Screen
 void clsUserDashboard::UserDashboardScreen() {
-    // ensur to lead data from file just one time
-    if (!dataLoaded) {
-        // load books from file
-        clsBook::LoadBooksFromFile();
-        // load Members from file
-        clsMember::LoadMembersFromFile();
-        // load clsTransactions history
-        clsTransaction::LoadBorrowRecords();
-        dataLoaded = true;
-    }
+    // load data from file
+    _LoadData();
+    // create log for login activity
+    CurrUser.LogUserLogin();
 
     eUserDashboardOptions Option;
     do {

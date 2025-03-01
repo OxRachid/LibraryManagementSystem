@@ -11,7 +11,7 @@ bool clsUserLogin::dataleaded = false;
 // print header Screen
 void clsUserLogin::_HeaderScreen() {
     system("clear");
-    PrintHeaderScreen("USER LOGIN", "🔏", Colors::Blue);
+    PrintHeaderScreen("USER LOGIN", "🔏", Colors::Blue, false, 66);
     cout << "\n\n\n";
 }
 
@@ -21,8 +21,6 @@ void clsUserLogin::_LoadData() {
     if (!dataleaded) {
         // load Users from file
         clsUser::LoadUsersFromFile();
-        // lead UsersLogin list
-        clsUser::LoadUsersLogin();
     }
 }
 
@@ -45,7 +43,7 @@ bool clsUserLogin::_login() {
 
         // Check Failed login limit
         if (TryLimit == 0) {
-            cout << Colors::GetRed() << " ⊗ Failed to login ☹️" << endl;
+            cout << Colors::GetRed() << " ⊗ Failed to login ☹️" << Colors::RESET() << endl;
             return false;
         }
 
@@ -66,8 +64,6 @@ bool clsUserLogin::UserLogin() {
     _HeaderScreen();
 
     if (_login()) {
-        // create log for login activity
-        CurrUser.LogUserLogin();
         // after login is succes we go to admin dashboard
         clsUserDashboard::UserDashboardScreen();
         return true;

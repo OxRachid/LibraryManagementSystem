@@ -9,10 +9,19 @@ using namespace std;
 
 // Print header screen
 void clsScreen::PrintHeaderScreen(string HeaderTitle, string value, Colors::enColors color, bool isMainHeader, short width) {
+    string username, Role;
+    if (CurrUser.isEmpty()) {
+        username = CurrMember.GetAccountNumber();
+        Role = "Member : ";
+    } else {
+        username = CurrUser.GetUsername();
+        Role = "User : ";
+    }
+
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;
     cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << HeaderTitle << " {" << value << "}" << Colors::RESET() << endl;
     if (isMainHeader) {
-        cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "User : " << CurrUser.GetUsername() << Colors::RESET() << endl;
+        cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << Role << username << Colors::RESET() << endl;
         cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "Date : " << clsDate::GetDateAndTime() << Colors::RESET() << endl;
     }
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;

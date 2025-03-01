@@ -1,5 +1,6 @@
 #include "../../headers/Screens/clsWhoAreYou.h"
 #include "../../headers/Lib/clsInputValidate.h"
+#include "../../headers/Screens/Members/clsMemberLogin.h"
 #include "../../headers/Screens/Users/clsUserLogin.h"
 #include <cstdlib>
 #include <iomanip>
@@ -56,6 +57,7 @@ void clsWhoAreYou::_UserLogin() {
 // member login screen
 void clsWhoAreYou::_MemberLogin() {
     system("clear");
+    clsMemberLogin::MemberLogin();
 }
 
 // Who are you screen
