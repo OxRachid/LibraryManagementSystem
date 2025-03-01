@@ -3,6 +3,7 @@
 #include "../../headers/Core/clsMember.h"
 #include "../../headers/Core/clsTransaction.h"
 #include "../../headers/Lib/clsInputValidate.h"
+#include "../../headers/Screens/MemberDashboard/clsProfile.h"
 #include <asm-generic/errno.h>
 #include <cstdlib>
 #include <iomanip>
@@ -77,7 +78,7 @@ void clsMemberDashboard::_PerformOption(eMenuOptions option) {
 // PROFILE screen
 void clsMemberDashboard::_Profile() {
     system("clear");
-    cout << "soon";
+    clsProfile::ProfileScreen();
 }
 // LIST_BOOKS screen
 void clsMemberDashboard::_ListBooks() {
