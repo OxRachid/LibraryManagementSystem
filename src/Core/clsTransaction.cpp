@@ -252,7 +252,7 @@ clsTransaction clsTransaction::_LineToRecord(string line, string seperator) {
 }
 
 // load BorrowRecords from file
-void clsTransaction::LoadBorrowRecords() {
+void clsTransaction::LoadTransactions() {
     fstream file;
     file.open(TransactionsFile, ios::in);
     if (file.is_open()) {
@@ -265,7 +265,7 @@ void clsTransaction::LoadBorrowRecords() {
     }
 }
 // save BorrowRecords to file
-void clsTransaction::SaveBorrowRecords() {
+void clsTransaction::SaveTransactions() {
     fstream file;
     file.open(TransactionsFile, ios::out);
     if (file.is_open()) {
@@ -332,7 +332,7 @@ void clsTransaction::_AddBorrowRecord() {
     // add record to vector
     _vTransactions.push_back(*this);
     // save vector to file
-    SaveBorrowRecords();
+    SaveTransactions();
 }
 // update Borrow Record in vector
 void clsTransaction::_updateBorrowRecord() {
@@ -342,7 +342,7 @@ void clsTransaction::_updateBorrowRecord() {
     if (it != _vTransactions.end()) {
         *it = *this;
         // save update vector to file
-        SaveBorrowRecords();
+        SaveTransactions();
     }
 }
 

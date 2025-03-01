@@ -21,7 +21,7 @@ void clsAllBooksList::AllBooksListScreen() {
     cout << Colors::GetYellow() << setfill(' ') << left << setw(width - 16) << "ID" << left << setw(width) << "Title" << left << setw(width) << "Author" << left << setw(width) << "ISBN" << left << setw(width - 13) << "P-Date" << left << setw(width - 15) << "Edition" << left << setw(width - 17) << "To-cpy" << left << setw(width - 17) << "Av-cpy" << left << setw(width - 17) << "Bo-cpy" << Colors::RESET() << endl;
     cout << Colors::GetYellow() << setw(130) << setfill('-') << "" << Colors::RESET() << endl;
     if (vBooksList.empty()) {
-        cout << Colors::GetRed() << "          No Data Found" << Colors::RESET() << endl;
+        cout << Colors::GetRed() << "                                   No Data Found" << Colors::RESET() << endl;
     } else {
         for (const clsBook &B : vBooksList) {
             _PrintBook(B);
