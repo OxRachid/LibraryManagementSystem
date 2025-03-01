@@ -102,7 +102,7 @@ void clsMemberDashboard::_ListBooks() {
 // FIND_BOOKS screen
 void clsMemberDashboard::_FindBooks() {
     system("clear");
-    cout << "soon";
+    clsFindBook::FindBookScreen();
 }
 // BORROW_BOOK screen
 void clsMemberDashboard::_BorrowBook() {
