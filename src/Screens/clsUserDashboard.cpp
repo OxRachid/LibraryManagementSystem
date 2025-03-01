@@ -24,9 +24,9 @@ clsUserDashboard::eUserDashboardOptions clsUserDashboard::_GetUserChoice() {
 // print main menu
 void clsUserDashboard::_PrintMenu() {
     system("clear");
-    PrintHeaderScreen("MAIN MENU SCREEN", "📚", Colors::Yellow);
+    PrintHeaderScreen("USER DASHBOARD", "📚", Colors::Yellow);
     cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
-    PrintHeaderScreen("Main Menue ", "📋", Colors::Yellow, false);
+    PrintHeaderScreen("Menu", "📋", Colors::Yellow, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Books Manage" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[2] Member Manage" << endl;
