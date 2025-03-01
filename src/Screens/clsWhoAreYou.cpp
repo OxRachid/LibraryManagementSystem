@@ -57,7 +57,11 @@ void clsWhoAreYou::_UserLogin() {
 // member login screen
 void clsWhoAreYou::_MemberLogin() {
     system("clear");
-    clsMemberLogin::MemberLogin();
+    while (true) {
+        if (!clsMemberLogin::MemberLogin()) {
+            break;
+        }
+    }
 }
 
 // Who are you screen
