@@ -16,6 +16,8 @@ class clsUserDashboard : protected clsScreen {
             LOGOUT = 5
         };
 
+        // func to lead data from file
+        static void _LoadData();
         // print main menu
         static void _PrintMenu();
         // Read user choice
