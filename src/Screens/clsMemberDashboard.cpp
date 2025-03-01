@@ -3,6 +3,8 @@
 #include "../../headers/Core/clsMember.h"
 #include "../../headers/Core/clsTransaction.h"
 #include "../../headers/Lib/clsInputValidate.h"
+#include "../../headers/Screens/Books/ListBooks/clsListMenu.h"
+#include "../../headers/Screens/Books/clsFindBook.h"
 #include "../../headers/Screens/MemberDashboard/clsProfile.h"
 #include <asm-generic/errno.h>
 #include <cstdlib>
@@ -14,6 +16,18 @@ using namespace std;
 
 // Define static variable
 bool clsMemberDashboard::dataLoaded = false;
+
+// func to lead data from file
+void clsMemberDashboard::_LoadData() {
+    // ensur to lead data from file just one time
+    if (!dataLoaded) {
+        // load books from file
+        clsBook::LoadBooksFromFile();
+        // load clsTransactions history
+        clsTransaction::LoadTransactions();
+        dataLoaded = true;
+    }
+}
 
 // print main menu
 void clsMemberDashboard::_PrintMenu() {
@@ -82,13 +96,11 @@ void clsMemberDashboard::_Profile() {
 }
 // LIST_BOOKS screen
 void clsMemberDashboard::_ListBooks() {
-
     system("clear");
-    cout << "soon";
+    clsListMenu::ListMenuScreen();
 }
 // FIND_BOOKS screen
 void clsMemberDashboard::_FindBooks() {
-
     system("clear");
     cout << "soon";
 }
@@ -113,6 +125,9 @@ void clsMemberDashboard::_MemberHistory() {
 
 // member dashboard Screen
 void clsMemberDashboard::MemberDashboardScreen() {
+    // func to lead data from file
+    _LoadData();
+
     eMenuOptions option;
     do {
         _PrintMenu();

@@ -26,7 +26,7 @@ void clsUserDashboard::_LoadData() {
         // load Members from file
         clsMember::LoadMembersFromFile();
         // load clsTransactions history
-        clsTransaction::LoadBorrowRecords();
+        clsTransaction::LoadTransactions();
         // lead UsersLogin list
         clsUser::LoadUsersLogin();
         dataLoaded = true;

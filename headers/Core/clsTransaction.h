@@ -105,10 +105,10 @@ class clsTransaction {
         static clsTransaction Find(int trans_ID);
         // find transaction by AccountNumber & book_ID
         static clsTransaction Find(string accountnumber, int book_ID);
-        // load BorrowRecords from file
-        static void LoadBorrowRecords();
-        // save BorrowRecords to file
-        static void SaveBorrowRecords();
+        // load transactions from file
+        static void LoadTransactions();
+        // save transactions to file
+        static void SaveTransactions();
         // Get transactions list from vector
         static vector<clsTransaction> &GetTransactionsList();
         // Get borrowed GetBorrowedList
