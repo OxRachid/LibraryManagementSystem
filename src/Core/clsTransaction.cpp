@@ -199,7 +199,7 @@ clsTransaction clsTransaction::_GetEmptyRecord() {
     );
 }
 // Get Add BorrowRecord obj
-clsTransaction clsTransaction::_GetAddModeRecord(string accountnumber, int book_ID, enRole role) {
+clsTransaction clsTransaction::_GetAddModeRecord(string checkoutperformer, string accountnumber, int book_ID, enRole role) {
     int transID;
     do {
         transID = clsUtil::GenerateNumber(5);
@@ -207,7 +207,7 @@ clsTransaction clsTransaction::_GetAddModeRecord(string accountnumber, int book_
 
     return clsTransaction(enMode::ADD_MODE, // _Mode
         transID,                            // _TransactionID
-        DEFAULT_STR,                        // _CheckoutPerformer
+        checkoutperformer,                  // _CheckoutPerformer
         DEFAULT_STR,                        // _CheckinPerformer
         accountnumber,                      // _AccountNumber
         book_ID,                            // _BookID
@@ -347,8 +347,8 @@ void clsTransaction::_updateBorrowRecord() {
 }
 
 // create BorrowRecords register
-void clsTransaction::log_borrowing_transaction(string accountnumber, int book_ID, enRole role) {
-    clsTransaction record = _GetAddModeRecord(accountnumber, book_ID, role);
+void clsTransaction::log_borrowing_transaction(string checkoutperformer, string accountnumber, int book_ID, enRole role) {
+    clsTransaction record = _GetAddModeRecord(checkoutperformer, accountnumber, book_ID, role);
     if (role == enRole::STUDENT) {
         record._DueDate.AddxDays(15);
     } else if (role == enRole::TEACHER) {
@@ -370,8 +370,10 @@ string clsTransaction::RoleToString() {
 }
 
 // return book
-void clsTransaction::ReturnBook() {
-    // Initialize when the time book is returned
+void clsTransaction::ReturnBook(string checkinperformer) {
+    // Assign the check-in performer
+    _CheckinPerformer = checkinperformer;
+    // Assign the time book is returned
     _ReturnDate = clsDate();
     // change status to returned mode
     _Status = enTransStatus::RETURNED;

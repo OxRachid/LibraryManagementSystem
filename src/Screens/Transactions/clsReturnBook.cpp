@@ -2,6 +2,7 @@
 #include "../../../headers/Core/clsBook.h"
 #include "../../../headers/Core/clsMember.h"
 #include "../../../headers/Core/clsTransaction.h"
+#include "../../../headers/Core/global.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include <iomanip>
 #include <iostream>
@@ -99,7 +100,7 @@ void clsReturnBook::ReturnBookScreen() {
 
     if (clsInputValidate::AskUser("\n ⊕ Are u sure wanna return this book")) {
         // update Transaction record
-        TargetTrans.ReturnBook();
+        TargetTrans.ReturnBook(CurrUser.GetUsername());
         // Check if the returned time is late
         bool isLate = clsDate::isDate1AfterDate2(TargetTrans.GetReturnDate(), TargetTrans.GetDueDate());
         // update member data

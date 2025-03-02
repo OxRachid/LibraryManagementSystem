@@ -2,6 +2,7 @@
 #include "../../../headers/Core/clsBook.h"
 #include "../../../headers/Core/clsMember.h"
 #include "../../../headers/Core/clsTransaction.h"
+#include "../../../headers/Core/global.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include <iomanip>
 #include <iostream>
@@ -104,7 +105,7 @@ void clsBorrowBook::BorrowBookScreen() {
             _PrintBookData(TargetBook);
             cout << Colors::GetGreen() << " [ Book Info After Operation ]" << Colors::RESET() << endl;
             // create log borrowing record
-            clsTransaction::log_borrowing_transaction(TargetMember.GetAccountNumber(), TargetBook.GetID(), (clsTransaction::enRole)(short)TargetMember.GetRole());
+            clsTransaction::log_borrowing_transaction(CurrUser.GetUsername(), TargetMember.GetAccountNumber(), TargetBook.GetID(), (clsTransaction::enRole)(short)TargetMember.GetRole());
         } else {
             cout << Colors::GetRed() << " [ Borrowing Failed ]" << Colors::RESET() << endl;
         }
