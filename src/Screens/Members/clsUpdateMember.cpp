@@ -77,7 +77,7 @@ void clsUpdateMember::_ReadNewData(clsMember &member) {
         cout << Colors::GetGreen() << " [ Password updated Succesfully ]" << endl;
     }
     if (clsInputValidate::AskUser("\n □ Update TotalBorrowedBooks ")) {
-        member.SetPhone(clsInputValidate::ReadString("\n * Enter New TotalBorrowedBooks : "));
+        member.SetTotalBorrowedBooks(clsInputValidate::ReadNumber<short>("\n * Enter New TotalBorrowedBooks : "));
         cout << Colors::GetGreen() << " [ TotalBorrowedBooks updated Succesfully ]" << endl;
     }
     if (clsInputValidate::AskUser("\n □ Update Late Returns ")) {

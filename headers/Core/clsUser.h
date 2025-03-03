@@ -28,8 +28,8 @@ class clsUser : public clsPerson {
             ADD
         };
         enMode _Mode;
-        string _Username;
-        string _Password;
+        string _Username = "-";
+        string _Password = "";
         clsDate _AccountCreated_on;
         short _TotalTransMade;
         short _Permissions;

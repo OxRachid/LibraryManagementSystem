@@ -183,8 +183,6 @@ clsTransaction clsTransaction::Find(string accountnumber, int book_ID) {
 
 // get empty obj
 clsTransaction clsTransaction::_GetEmptyRecord() {
-    return clsTransaction(enMode::EMPTY_MODE, DEFAULT_INT, DEFAULT_STR, DEFAULT_STR, EMPTY_STR, DEFAULT_INT, enRole::NON, DEFAULT_DATE, DEFAULT_DATE, DEFAULT_DATE, enTransStatus::RETURNED);
-
     return clsTransaction(enMode::EMPTY_MODE, // _Mode
         DEFAULT_INT,                          // _TransactionID
         DEFAULT_STR,                          // _CheckoutPerformer
@@ -253,6 +251,9 @@ clsTransaction clsTransaction::_LineToRecord(string line, string seperator) {
 
 // load BorrowRecords from file
 void clsTransaction::LoadTransactions() {
+    // clear vector befor load data
+    _vTransactions.clear();
+
     fstream file;
     file.open(TransactionsFile, ios::in);
     if (file.is_open()) {

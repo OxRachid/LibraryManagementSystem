@@ -76,12 +76,17 @@ void clsBorrowBook::BorrowBookScreen() {
     PrintHeaderScreen("BORROW BOOK SCREEN", "📘→👤", Colors::Magenta);
     cout << "\n\n\n";
 
-    // Get TargetMember
-    clsMember TargetMember = _GetTargetMember();
-    _PrintMemberData(TargetMember);
+    // handle user and member dashboard and  Get TargetMember
+    clsMember &TargetMember = CurrMember;
+    if (TargetMember.isEmpty()) {
+        TargetMember = _GetTargetMember();
+        // print TargetMember data
+        _PrintMemberData(TargetMember);
+    }
     // Check borrowing book limit
     if (TargetMember.isBorrowLimitExceeded()) {
         cout << Colors::GetRed() << " [ You have exceeded the allowed borrowing limit ]" << Colors::RESET() << endl;
+        cout << Colors::GetRed() << " [ You Borrowed " << TargetMember.GetTotalBorrowedBooks() << " Books ]" << Colors::RESET() << endl;
         return;
     }
 
@@ -104,8 +109,14 @@ void clsBorrowBook::BorrowBookScreen() {
             cout << Colors::GetGreen() << " [ Member Info After Operation ]" << Colors::RESET() << endl;
             _PrintBookData(TargetBook);
             cout << Colors::GetGreen() << " [ Book Info After Operation ]" << Colors::RESET() << endl;
+
+            // asign the Performer
+            string Performer = "Member";
+            if (!CurrUser.isEmpty()) {
+                Performer = CurrUser.GetUsername();
+            }
             // create log borrowing record
-            clsTransaction::log_borrowing_transaction(CurrUser.GetUsername(), TargetMember.GetAccountNumber(), TargetBook.GetID(), (clsTransaction::enRole)(short)TargetMember.GetRole());
+            clsTransaction::log_borrowing_transaction(Performer, TargetMember.GetAccountNumber(), TargetBook.GetID(), (clsTransaction::enRole)(short)TargetMember.GetRole());
         } else {
             cout << Colors::GetRed() << " [ Borrowing Failed ]" << Colors::RESET() << endl;
         }
