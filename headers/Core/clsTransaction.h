@@ -46,7 +46,7 @@ class clsTransaction {
         // get empty obj
         static clsTransaction _GetEmptyRecord();
         // Get Add BorrowRecord obj
-        static clsTransaction _GetAddModeRecord(string AccountNumber, int book_ID, enRole role);
+        static clsTransaction _GetAddModeRecord(string checkoutperformer, string AccountNumber, int book_ID, enRole role);
         // convert BorrowRecords to line
         static clsTransaction _LineToRecord(string line, string seperator = "|");
         // convert line to BorrowRecord
@@ -120,13 +120,13 @@ class clsTransaction {
         // Get all transactions by specific book
         static vector<clsTransaction> GetTransactionsForBook(int book_ID);
         // create BorrowRecords register
-        static void log_borrowing_transaction(string accountnumber, int book_ID, enRole role);
+        static void log_borrowing_transaction(string checkoutperformor, string accountnumber, int book_ID, enRole role);
         // convert enum book status to string
         string BookStatusToString();
         // convert enum enRole to string
         string RoleToString();
         // return book
-        void ReturnBook();
+        void ReturnBook(string checkinperformer);
         // enum for saving result
         enum eSaveMode {
             SAVE_FAILED = 1,

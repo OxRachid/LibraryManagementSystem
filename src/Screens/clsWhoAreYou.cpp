@@ -26,10 +26,12 @@ void clsWhoAreYou::_PerformOption(eLoginOptions option) {
     switch (option) {
         case eLoginOptions::USER_LOGIN: {
             _UserLogin();
+            exit(0);
             break;
         }
         case eLoginOptions::MEMBER_LOGIN: {
             _MemberLogin();
+            exit(0);
             break;
         }
         case eLoginOptions::EXIT: {

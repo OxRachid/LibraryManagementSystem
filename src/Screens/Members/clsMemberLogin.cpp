@@ -55,6 +55,8 @@ bool clsMemberLogin::_login() {
         // check if its found
         checklogin = CurrMember.isEmpty();
     } while (checklogin);
+    // Reset CurrUser
+    CurrUser = clsUser::Find("");
     return true;
 }
 
@@ -64,6 +66,7 @@ bool clsMemberLogin::MemberLogin() {
     _HeaderScreen();
 
     if (_login()) {
+
         clsMemberDashboard::MemberDashboardScreen();
         return true;
     }

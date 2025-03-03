@@ -70,7 +70,7 @@ class clsMember : public clsPerson {
         // setter
         void SetPassword(string password);
         void SetRole(short role);
-        void SetBorrowedBooks(short total);
+        void SetTotalBorrowedBooks(short total);
         void UpdateLateReturns();
         void SetLateReturns(short value);
         void SetAccountCreated_on(clsDate accountcreated_on);

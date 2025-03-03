@@ -1,17 +1,18 @@
 #include "../../headers/Screens/clsMemberDashboard.h"
 #include "../../headers/Core/clsBook.h"
-#include "../../headers/Core/clsMember.h"
 #include "../../headers/Core/clsTransaction.h"
 #include "../../headers/Lib/clsInputValidate.h"
 #include "../../headers/Screens/Books/ListBooks/clsListMenu.h"
 #include "../../headers/Screens/Books/clsFindBook.h"
 #include "../../headers/Screens/MemberDashboard/clsProfile.h"
+#include "../../headers/Screens/Transactions/clsBorrowBook.h"
+#include "../../headers/Screens/Transactions/clsReturnBook.h"
+#include "../../headers/Screens/Transactions/clsTrackMembers.h"
 #include <asm-generic/errno.h>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <string>
-#include <system_error>
 using namespace std;
 
 // Define static variable
@@ -106,21 +107,18 @@ void clsMemberDashboard::_FindBooks() {
 }
 // BORROW_BOOK screen
 void clsMemberDashboard::_BorrowBook() {
-
     system("clear");
-    cout << "soon";
+    clsBorrowBook::BorrowBookScreen();
 }
 // RETURN_BOOK screen
 void clsMemberDashboard::_ReturnBook() {
-
     system("clear");
-    cout << "soon";
+    clsReturnBook::ReturnBookScreen();
 }
 // HISTORY
 void clsMemberDashboard::_MemberHistory() {
-
     system("clear");
-    cout << "soon";
+    clsTrackMembers::TrackMembersScreen();
 }
 
 // member dashboard Screen

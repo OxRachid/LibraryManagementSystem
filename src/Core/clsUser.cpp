@@ -2,10 +2,8 @@
 #include "../../headers/Lib/clsString.h"
 #include "../../headers/Lib/constants.h"
 #include <__config>
-#include <cstdio>
 #include <fstream>
 #include <iostream>
-#include <random>
 #include <string>
 using namespace std;
 
@@ -70,7 +68,7 @@ short clsUser::GetPermissions() {
 // Get EMPTY obj
 clsUser clsUser::_GetEmptyObj() {
     return clsUser(enMode::EMPTY, // mode
-        EMPTY_STR,                // username
+        DEFAULT_STR,              // username
         EMPTY_STR,                // password
         EMPTY_STR,                // firstname
         EMPTY_STR,                // lastname
@@ -190,6 +188,9 @@ clsUser clsUser::Find(string username, string password) {
 }
 // Load users list from file
 void clsUser::LoadUsersFromFile() {
+    // clear static vector befor loading data
+    vUsers.clear();
+
     fstream file;
     file.open(USERSFILE, ios::in);
     if (file.is_open()) {
@@ -270,6 +271,9 @@ bool clsUser::isUserHasAccess(ePermissionFunc permission) {
 
 // Load Users login list from file
 void clsUser::LoadUsersLogin() {
+    // clear static vector befor loading data
+    vUsersLogin.clear();
+
     fstream file;
     file.open(USERSLOGINFILE, ios::in);
     if (file.is_open()) {

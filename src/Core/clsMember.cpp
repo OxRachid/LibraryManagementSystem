@@ -33,7 +33,7 @@ void clsMember::SetPassword(string password) {
 void clsMember::SetRole(short role) {
     _Role = (eMemberRole)role;
 }
-void clsMember::SetBorrowedBooks(short total) {
+void clsMember::SetTotalBorrowedBooks(short total) {
     _TotalBorrowedBooks = total;
 }
 void clsMember::SetLateReturns(short value) {
@@ -184,6 +184,9 @@ clsMember clsMember::Find(string accountnumber, string password) {
 }
 // Load Memebrs from file
 void clsMember::LoadMembersFromFile() {
+    // clear vector befor Load data
+    vMembers.clear();
+
     fstream file;
     file.open(MembersFile, ios::in);
     if (file.is_open()) {
