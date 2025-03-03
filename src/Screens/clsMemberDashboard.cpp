@@ -7,6 +7,7 @@
 #include "../../headers/Screens/MemberDashboard/clsProfile.h"
 #include "../../headers/Screens/Transactions/clsBorrowBook.h"
 #include "../../headers/Screens/Transactions/clsReturnBook.h"
+#include "../../headers/Screens/Transactions/clsTrackMembers.h"
 #include <asm-generic/errno.h>
 #include <cstdlib>
 #include <iomanip>
@@ -116,9 +117,8 @@ void clsMemberDashboard::_ReturnBook() {
 }
 // HISTORY
 void clsMemberDashboard::_MemberHistory() {
-
     system("clear");
-    cout << "soon";
+    clsTrackMembers::TrackMembersScreen();
 }
 
 // member dashboard Screen
