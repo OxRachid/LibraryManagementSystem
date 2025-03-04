@@ -106,7 +106,7 @@ bool clsTransaction::isBookReturned() {
 // checks if a member has already borrowed the same book and has not returned it yet
 bool clsTransaction::isBookStillBorrowedByMember(string accountnumber, int book_ID) {
     clsTransaction trans = Find(accountnumber, book_ID);
-    return (!trans.isBookReturned());
+    return !(trans.isBookReturned() || trans.isEmpty() || (trans.GetStatus() == enTransStatus::CANCELED));
 }
 
 // is member exist
@@ -181,6 +181,19 @@ clsTransaction clsTransaction::Find(string accountnumber, int book_ID) {
     return _GetEmptyRecord();
 }
 
+// find transaction by AccountNumber & book_ID in specific vector
+clsTransaction clsTransaction::Find(vector<clsTransaction> &vSpecific, string accountnumber, int book_ID) {
+    auto it = find_if(vSpecific.begin(), vSpecific.end(), [&](clsTransaction &record) {
+        return (record.GetAccountNumber() == accountnumber && record.GetBookID() == book_ID);
+    });
+
+    if (it != vSpecific.end()) {
+        return *it;
+    }
+    // if record not found then return empty record
+    return _GetEmptyRecord();
+}
+
 // get empty obj
 clsTransaction clsTransaction::_GetEmptyRecord() {
     return clsTransaction(enMode::EMPTY_MODE, // _Mode
@@ -193,7 +206,7 @@ clsTransaction clsTransaction::_GetEmptyRecord() {
         DEFAULT_DATE,                         // _CheckoutDate
         DEFAULT_DATE,                         // _DueDate
         DEFAULT_DATE,                         // _ReturnDate
-        enTransStatus::RETURNED               // _Status
+        enTransStatus::CANCELED               // _Status
     );
 }
 // Get Add BorrowRecord obj
@@ -213,7 +226,7 @@ clsTransaction clsTransaction::_GetAddModeRecord(string checkoutperformer, strin
         clsDate(),                          // _CheckoutDate
         clsDate(),                          // _DueDate
         DEFAULT_DATE,                       // _ReturnDate
-        enTransStatus::BORROWED             // _Status
+        enTransStatus::PENDDING             // _Status
     );
 }
 
@@ -362,7 +375,7 @@ void clsTransaction::log_borrowing_transaction(string checkoutperformer, string 
 
 // convert enum book status to string
 string clsTransaction::BookStatusToString() {
-    return (_Status == enTransStatus::RETURNED) ? "RETURNED" : "BORROWED";
+    return (_Status == enTransStatus::RETURNED) ? "RETURNED" : (_Status == enTransStatus::BORROWED) ? "BORROWED" : (_Status == enTransStatus::PENDDING) ? "PENDDING" : "CANCELED";
 }
 
 // convert enum eMemberRole to string

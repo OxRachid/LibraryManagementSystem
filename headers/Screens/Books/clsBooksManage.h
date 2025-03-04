@@ -5,20 +5,21 @@
 class clsBooksManage : protected clsScreen {
     private:
         // enum for books manage options
-        enum enBooksManageOptions {
-            eListBooks = 1,
-            eAddBook = 2,
-            eRemoveBook = 3,
-            eUpdateBook = 4,
-            eFindBook = 5,
-            eMainMenu = 6
+        enum eMenuOptions {
+            LIST_BOOKS = 1,
+            ADD_BOOK = 2,
+            REMOVE_BOOK = 3,
+            UPDATE_BOOK = 4,
+            FIND_BOOK = 5,
+            RESET = 6,
+            MAINMENU = 7
         };
         // get user choice
-        static enBooksManageOptions _GetUserChoice();
+        static eMenuOptions _GetUserChoice();
         // print books menu
         static void _PrintBooksManageMenu();
         // Perform Books manage options
-        static void _PerformBooksManageOptions(enBooksManageOptions options);
+        static void _PerformBooksManageOptions(eMenuOptions options);
         // list all Books
         static void _ListBooksScreen();
         // Add book screen
@@ -29,6 +30,8 @@ class clsBooksManage : protected clsScreen {
         static void _UpdateBookScreen();
         // find book
         static void _FindBookScreen();
+        // RESET
+        static void _ResetBookScreen();
 
     public:
         // books manage screen

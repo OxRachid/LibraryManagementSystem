@@ -4,6 +4,7 @@
 #include <cctype>
 #include <fstream>
 #include <iostream>
+#include <regex>
 #include <string>
 using namespace std;
 
@@ -294,7 +295,7 @@ void clsMember::ReturnBook(bool isLate) {
     if (isLate) {
         _LateReturns++;
     }
-    if (_LateReturns > 10) {
+    if (_LateReturns > 1) {
         _AccountStatus = eAccountStatus::BLOCKED;
     }
     // decrease totalborrowedbooks
@@ -319,6 +320,20 @@ bool clsMember::isBorrowLimitExceeded() {
         return (_TotalBorrowedBooks > 2);
     }
     return (_TotalBorrowedBooks > 5);
+}
+
+// reset members
+bool clsMember::ResetMembers() {
+    if (!vMembers.empty()) {
+        for (clsMember &member : vMembers) {
+            member.SetTotalBorrowedBooks(0);
+            member.SetLateReturns(0);
+        }
+        // save update vector to file
+        SaveMembersToFile();
+        return true;
+    }
+    return false;
 }
 
 // save

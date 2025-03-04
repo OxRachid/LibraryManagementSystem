@@ -55,6 +55,13 @@ bool clsMemberLogin::_login() {
         // check if its found
         checklogin = CurrMember.isEmpty();
     } while (checklogin);
+
+    // Check if Account is Blocked
+    if (CurrMember.GetAccountStatus() == clsMember::eAccountStatus::BLOCKED) {
+        cout << Colors::GetRed() << " ⊗ Your Account was Blocked, please contact your admin ..." << Colors::RESET() << endl;
+        return false;
+    }
+
     // Reset CurrUser
     CurrUser = clsUser::Find("");
     return true;

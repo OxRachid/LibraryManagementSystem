@@ -7,6 +7,14 @@
 #include <vector>
 
 class clsMember : public clsPerson {
+    public:
+        // enum for account status
+        enum eAccountStatus {
+            ACTIVE = 0,
+            BLOCKED = 1,
+            CLOSED = 2
+        };
+
     private:
         // define static vector
         static vector<clsMember> vMembers;
@@ -16,13 +24,6 @@ class clsMember : public clsPerson {
             EmptyMode = 0,
             UpdateMode = 1,
             AddNewMode = 2
-        };
-
-        // enum for account status
-        enum eAccountStatus {
-            ACTIVE = 0,
-            BLOCKED = 1,
-            CLOSED = 2
         };
         // enum for member Role
         enum eMemberRole {
@@ -123,6 +124,8 @@ class clsMember : public clsPerson {
         string MemberRoleToString();
         // check if member exceeded the BorrowBook limit
         bool isBorrowLimitExceeded();
+        // reset members
+        static bool ResetMembers();
 };
 
 #endif // !CLSMEMBER_H

@@ -2,6 +2,7 @@
 #define CLSTRANSACTION_H
 
 #include "../Lib/clsDate.h"
+#include <cwchar>
 #include <string>
 #include <vector>
 
@@ -28,7 +29,9 @@ class clsTransaction {
         // enum for transaction status
         enum enTransStatus {
             BORROWED = 0,
-            RETURNED = 1
+            RETURNED = 1,
+            PENDDING = 2,
+            CANCELED = 3
         };
 
         enMode _Mode;
@@ -105,6 +108,8 @@ class clsTransaction {
         static clsTransaction Find(int trans_ID);
         // find transaction by AccountNumber & book_ID
         static clsTransaction Find(string accountnumber, int book_ID);
+        // find transaction by AccountNumber & book_ID in specific vector
+        static clsTransaction Find(vector<clsTransaction> &vSpecific, string accountnumber, int book_ID);
         // load transactions from file
         static void LoadTransactions();
         // save transactions to file

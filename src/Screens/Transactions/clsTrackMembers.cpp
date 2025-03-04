@@ -70,7 +70,7 @@ void clsTrackMembers::TrackMembersScreen() {
 
     // Get targetmember
     clsMember TargetMember = CurrMember;
-    if (CurrMember.isEmpty()) {
+    if (!CurrUser.isEmpty()) {
         TargetMember = _GetTargetMember();
         // Show member detailes
         cout << "\n [ PROFILE ]" << endl;
