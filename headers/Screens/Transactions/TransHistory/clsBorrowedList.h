@@ -9,7 +9,7 @@ class clsBorrowedList : protected clsScreen {
         static void _DisplayTransDetails(clsTransaction trans);
 
     public:
-        // list all transactions
+        // list borrowed transactions
         static void BorrowedListScreen();
 };
 

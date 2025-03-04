@@ -319,6 +319,18 @@ vector<clsTransaction> clsTransaction::GetReturnedList() {
     return vReturned;
 }
 
+// Get pendding list
+vector<clsTransaction> clsTransaction::GetPenddingList() {
+    vector<clsTransaction> vPendding;
+    for (clsTransaction &trans : _vTransactions) {
+        if (trans.GetStatus() == enTransStatus::PENDDING) {
+            vPendding.push_back(trans);
+        }
+    }
+
+    return vPendding;
+}
+
 // Get all transactions by specific member
 vector<clsTransaction> clsTransaction::GetTransactionsForMember(string accountnumber) {
     vector<clsTransaction> vTrans;
@@ -393,6 +405,11 @@ void clsTransaction::ReturnBook(string checkinperformer) {
     _Status = enTransStatus::RETURNED;
     // update in vector and save to file
     _updateBorrowRecord();
+}
+
+// is pick up book on time
+bool clsTransaction::isPickupOnTime() {
+    return (_CheckoutDate.DifferenceInDays(clsDate()) <= 1);
 }
 
 clsTransaction::eSaveMode clsTransaction::save() {

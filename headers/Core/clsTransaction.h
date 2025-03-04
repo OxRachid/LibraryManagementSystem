@@ -120,6 +120,8 @@ class clsTransaction {
         static vector<clsTransaction> GetBorrowedList();
         // Get returned list
         static vector<clsTransaction> GetReturnedList();
+        // Get pendding list
+        static vector<clsTransaction> GetPenddingList();
         // Get all transactions by specific member
         static vector<clsTransaction> GetTransactionsForMember(string accountnumber);
         // Get all transactions by specific book
@@ -130,6 +132,8 @@ class clsTransaction {
         string BookStatusToString();
         // convert enum enRole to string
         string RoleToString();
+        // is pick up book on time
+        bool isPickupOnTime();
         // return book
         void ReturnBook(string checkinperformer);
         // enum for saving result
