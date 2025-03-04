@@ -404,6 +404,20 @@ bool clsBook::ReturnBook() {
     return true;
 }
 
+// Reset books
+bool clsBook::ResetBooks() {
+    if (!_vBooksList.empty()) {
+        for (clsBook &book : _vBooksList) {
+            book.SetAvailableCopies(book.GetTotalCopies());
+            book.SetBorrowedCopies(0);
+        }
+        // save updated vector to file
+        SaveBooksToFile();
+        return true;
+    }
+    return false;
+}
+
 // save
 clsBook::enSaveMode clsBook::save() {
     switch (_Mode) {

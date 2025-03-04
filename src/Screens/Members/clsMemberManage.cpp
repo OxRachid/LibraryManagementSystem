@@ -5,6 +5,7 @@
 #include "../../../headers/Screens/Members/clsAddNewMember.h"
 #include "../../../headers/Screens/Members/clsDeleteMember.h"
 #include "../../../headers/Screens/Members/clsFindMember.h"
+#include "../../../headers/Screens/Members/clsResetMembers.h"
 #include "../../../headers/Screens/Members/clsUpdateMember.h"
 #include <iomanip>
 #include <iostream>
@@ -13,7 +14,7 @@ using namespace std;
 
 // get user choice
 clsMemberManage::enMenuOptions clsMemberManage::_GetUserChoice() {
-    return (enMenuOptions)clsInputValidate::Readnumberbetween(1, 6, "\n * Select Your Option : ");
+    return (enMenuOptions)clsInputValidate::Readnumberbetween(1, 7, "\n * Select Your Option : ");
 }
 // Print Member manage menu
 void clsMemberManage::_DisplayMenu() {
@@ -27,7 +28,8 @@ void clsMemberManage::_DisplayMenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[3] Delete Member" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Update Member" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[5] Find Member" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[6] Main Menu" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[6] Reset" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[7] Main Menu" << endl;
     cout << Colors::GetMagenta() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 // List members screen
@@ -55,6 +57,11 @@ void clsMemberManage::_FindMember() {
     system("clear");
     clsFindMember::FindMemberScreen();
 }
+// Reset members screen
+void clsMemberManage::_Reset() {
+    system("clear");
+    clsReset::ResetScreen();
+}
 
 // perform member manage options
 void clsMemberManage::_PerformMenuOption(enMenuOptions option) {
@@ -77,6 +84,10 @@ void clsMemberManage::_PerformMenuOption(enMenuOptions option) {
         }
         case enMenuOptions::FIND_MEMBER: {
             _FindMember();
+            break;
+        }
+        case enMenuOptions::RESET: {
+            _Reset();
             break;
         }
         case enMenuOptions::EXIT: {

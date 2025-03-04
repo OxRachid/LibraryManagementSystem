@@ -11,7 +11,8 @@ class clsMemberManage : protected clsScreen {
             DELETE_MEMBER = 3,
             UPDATE_MEMBER = 4,
             FIND_MEMBER = 5,
-            EXIT = 6,
+            RESET = 6,
+            EXIT = 7,
         };
 
         // get user choice
@@ -30,6 +31,8 @@ class clsMemberManage : protected clsScreen {
         static void _UpdateMember();
         // Find members screen
         static void _FindMember();
+        // Reset
+        static void _Reset();
 
     public:
         // Member manage screen

@@ -114,6 +114,8 @@ class clsBook : protected clsScreen {
         bool Borrow();
         // Return book to member
         bool ReturnBook();
+        // Reset books
+        static bool ResetBooks();
 };
 
 #endif // !CLSBOOK_H

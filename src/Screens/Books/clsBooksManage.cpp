@@ -4,6 +4,7 @@
 #include "../../../headers/Screens/Books/clsAddNewBook.h"
 #include "../../../headers/Screens/Books/clsDeleteBook.h"
 #include "../../../headers/Screens/Books/clsFindBook.h"
+#include "../../../headers/Screens/Books/clsResetBooks.h"
 #include "../../../headers/Screens/Books/clsUpdateBook.h"
 #include <iomanip>
 #include <iostream>
@@ -11,56 +12,61 @@
 using namespace std;
 
 // get user choice
-clsBooksManage::enBooksManageOptions clsBooksManage::_GetUserChoice() {
-    return (enBooksManageOptions)clsInputValidate::Readnumberbetween(1, 6, "\n * Select Your Option : ");
+clsBooksManage::eMenuOptions clsBooksManage::_GetUserChoice() {
+    return (eMenuOptions)clsInputValidate::Readnumberbetween(1, 7, "\n * Select Your Option : ");
 }
 
 // print books menu
 void clsBooksManage::_PrintBooksManageMenu() {
     system("clear");
-    PrintHeaderScreen("BOOK MANAGE MENU SCREEN", "📖", Colors::Blue);
+    PrintHeaderScreen("BOOK MANAGE SCREEN", "📖", Colors::Blue);
     cout << Colors::GetGreen() << "                             ϟ\n" << Colors::RESET();
-    PrintHeaderScreen("Book Manage Menu", "📋", Colors::Blue, false);
+    PrintHeaderScreen("Menu", "📋", Colors::Blue, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] List Books" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[2] Add Book" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[3] Remove Book" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Update Book" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[5] Find Book" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[6] Main Menu" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[6] Reset" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[7] Main Menu" << endl;
     cout << Colors::GetBlue() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 
 // Perform Books manage options
-void clsBooksManage::_PerformBooksManageOptions(enBooksManageOptions options) {
+void clsBooksManage::_PerformBooksManageOptions(eMenuOptions options) {
     switch (options) {
-        case enBooksManageOptions::eListBooks: {
+        case eMenuOptions::LIST_BOOKS: {
             _ListBooksScreen();
             break;
         }
-        case enBooksManageOptions::eAddBook: {
+        case eMenuOptions::ADD_BOOK: {
             _AddBookScreen();
             break;
         }
-        case enBooksManageOptions::eRemoveBook: {
+        case eMenuOptions::REMOVE_BOOK: {
             _RemoveBookScreen();
             break;
         }
-        case enBooksManageOptions::eUpdateBook: {
+        case eMenuOptions::UPDATE_BOOK: {
             _UpdateBookScreen();
             break;
         }
-        case enBooksManageOptions::eFindBook: {
+        case eMenuOptions::FIND_BOOK: {
             _FindBookScreen();
             break;
         }
-        case enBooksManageOptions::eMainMenu: {
+        case eMenuOptions::RESET: {
+            _ResetBookScreen();
+            break;
+        }
+        case eMenuOptions::MAINMENU: {
             break;
         }
     }
 
     // pause screen after each func finished
-    if (options != enBooksManageOptions::eMainMenu) {
+    if (options != eMenuOptions::MAINMENU) {
         // this trick just to pause termux screen until the user Contenu
         cout << " \n\n\n\n\n\nEnter any Key to Contenu ... " << endl;
         char Contenue = clsInputValidate::ReadChar();
@@ -95,6 +101,12 @@ void clsBooksManage::_FindBookScreen() {
     clsFindBook::FindBookScreen();
 }
 
+// RESET
+void clsBooksManage::_ResetBookScreen() {
+    system("clear");
+    clsResetBooks::ResetBooksScreen();
+}
+
 // books manage screen
 void clsBooksManage::BooksManageScreen() {
 
@@ -103,10 +115,10 @@ void clsBooksManage::BooksManageScreen() {
         return;
     }
 
-    enBooksManageOptions Option;
+    eMenuOptions Option;
     do {
         _PrintBooksManageMenu();
         Option = _GetUserChoice();
         _PerformBooksManageOptions(Option);
-    } while (Option != enBooksManageOptions::eMainMenu);
+    } while (Option != eMenuOptions::MAINMENU);
 }

@@ -76,13 +76,17 @@ void clsBorrowBook::BorrowBookScreen() {
     PrintHeaderScreen("BORROW BOOK SCREEN", "📘→👤", Colors::Magenta);
     cout << "\n\n\n";
 
-    // handle user and member dashboard and  Get TargetMember
-    clsMember &TargetMember = CurrMember;
-    if (TargetMember.isEmpty()) {
-        TargetMember = _GetTargetMember();
-        // print TargetMember data
-        _PrintMemberData(TargetMember);
+    // Get Target member
+    clsMember TargetMember = _GetTargetMember();
+    // print TargetMember data
+    _PrintMemberData(TargetMember);
+
+    // check if account is Blocked
+    if (TargetMember.GetAccountStatus() == clsMember::eAccountStatus::BLOCKED) {
+        cout << Colors::GetRed() << " [ this Account is Blocked , you can't make any transaction ]" << Colors::RESET() << endl;
+        return;
     }
+
     // Check borrowing book limit
     if (TargetMember.isBorrowLimitExceeded()) {
         cout << Colors::GetRed() << " [ You have exceeded the allowed borrowing limit ]" << Colors::RESET() << endl;
@@ -96,7 +100,7 @@ void clsBorrowBook::BorrowBookScreen() {
 
     // checks if a member has already borrowed the same book and has not returned it yet
     if (clsTransaction::isBookStillBorrowedByMember(TargetMember.GetAccountNumber(), TargetBook.GetID())) {
-        cout << Colors::GetRed() << " [ You borrowed this book and hasn't returned it yet ]" << Colors::RESET() << endl;
+        cout << Colors::GetRed() << " [ This book was Borrowed and not returned or accepted yet  ]" << Colors::RESET() << endl;
         return;
     }
 

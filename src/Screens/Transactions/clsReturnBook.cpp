@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 // Print member data
@@ -62,12 +63,11 @@ void clsReturnBook::_PrintTransData(clsTransaction record) {
 
 // Get target Transaction
 clsTransaction clsReturnBook::_GetTargetTransaction(string &accountnumber, int &bookID) {
-    accountnumber = CurrMember.GetAccountNumber();
-    if (CurrMember.isEmpty()) {
-        accountnumber = clsInputValidate::ReadString("\n * Enter AccountNumber : ");
-    }
+    accountnumber = clsInputValidate::ReadString("\n * Enter AccountNumber : ");
     bookID = clsInputValidate::ReadNumber<int>(" * Enter Book ID : ");
-    return clsTransaction::Find(accountnumber, bookID);
+    // Search in vector of Borrowed books
+    vector<clsTransaction> vBorrowed = clsTransaction::GetBorrowedList();
+    return clsTransaction::Find(vBorrowed, accountnumber, bookID);
 }
 
 // Borrow Book Screen
@@ -84,32 +84,18 @@ void clsReturnBook::ReturnBookScreen() {
         return;
     }
 
-    // print target Transaction
-    _PrintTransData(TargetTrans);
-    // check if book was already returnd
-    if (TargetTrans.isBookReturned()) {
-        cout << Colors::GetRed() << " [ This book is already returned ]" << Colors::RESET() << endl;
-        return;
-    }
-
     // Get targetbook and TargetMember after the Transaction is found
-    clsMember &TargetMember = CurrMember;
-    if (TargetMember.isEmpty()) {
-        TargetMember = clsMember::Find(accountnumber);
-    }
+    clsMember TargetMember = clsMember::Find(accountnumber);
     clsBook TargetBook = clsBook::Find(bookID);
 
+    // print target Transaction and member and book detailes
+    _PrintTransData(TargetTrans);
     _PrintMemberData(TargetMember);
     _PrintBookData(TargetBook);
 
     if (clsInputValidate::AskUser("\n ⊕ Are u sure wanna return this book")) {
-        // asign the Performer
-        string Performer = "Member";
-        if (!CurrUser.isEmpty()) {
-            Performer = CurrUser.GetUsername();
-        }
         // update Transaction record
-        TargetTrans.ReturnBook(Performer);
+        TargetTrans.ReturnBook(CurrUser.GetUsername());
         // Check if the returned time is late
         bool isLate = clsDate::isDate1AfterDate2(TargetTrans.GetReturnDate(), TargetTrans.GetDueDate());
         // update member data
