@@ -10,10 +10,11 @@ class clsUserDashboard : protected clsScreen {
         // enum for menu menu Options
         enum eUserDashboardOptions {
             BOOKS_MANAGE = 1,
-            MEMBER_MANAGE = 2,
-            TRANSACTIONS = 3,
-            USER_MANAGE = 4,
-            LOGOUT = 5
+            MEMBER_MANAGE,
+            TRANSACTIONS,
+            USER_MANAGE,
+            SYSYEM_MANAGE,
+            LOGOUT
         };
 
         // func to lead data from file
@@ -32,6 +33,8 @@ class clsUserDashboard : protected clsScreen {
         static void _UsersManageScreen();
         // Transactions screen
         static void _TransactionScreen();
+        // system Manage screen
+        static void _SystemManageScreen();
 
     public:
         // Show Main Menu Screen
