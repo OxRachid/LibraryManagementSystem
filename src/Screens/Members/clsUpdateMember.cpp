@@ -18,7 +18,7 @@ void clsUpdateMember::_PrintMemberData(clsMember member) {
     cout << left << setw(20) << " Role" << " : " << member.MemberRoleToString() << endl;
     cout << left << setw(20) << " Password" << " : " << member.GetPassword() << endl;
     cout << left << setw(20) << " Borrowed Books" << " : " << member.GetTotalBorrowedBooks() << endl;
-    cout << left << setw(20) << " Late Returns" << " : " << member.GetLateReturns() << endl;
+    cout << left << setw(20) << " Violations" << " : " << member.GetViolations() << endl;
     cout << left << setw(20) << " Account Created on" << " : " << clsDate::ConvertDateToString(member.GetAccountCreated_on()) << endl;
     cout << left << setw(20) << " Account Status" << " : " << member.AccountStatusToString() << endl;
     cout << setw(41) << setfill('-') << "" << Colors::RESET() << endl;
@@ -80,9 +80,9 @@ void clsUpdateMember::_ReadNewData(clsMember &member) {
         member.SetTotalBorrowedBooks(clsInputValidate::ReadNumber<short>("\n * Enter New TotalBorrowedBooks : "));
         cout << Colors::GetGreen() << " [ TotalBorrowedBooks updated Succesfully ]" << endl;
     }
-    if (clsInputValidate::AskUser("\n □ Update Late Returns ")) {
-        member.SetLateReturns(clsInputValidate::ReadNumber<short>("\n * Enter New Value : "));
-        cout << Colors::GetGreen() << " [ Late Returns updated Succesfully ]" << endl;
+    if (clsInputValidate::AskUser("\n □ Update Violations ")) {
+        member.SetViolations(clsInputValidate::ReadNumber<short>("\n * Enter New Value : "));
+        cout << Colors::GetGreen() << " [ Violations updated Succesfully ]" << endl;
     }
 }
 

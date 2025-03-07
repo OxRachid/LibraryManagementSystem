@@ -20,7 +20,7 @@ void clsBorrowBook::_PrintMemberData(clsMember member) {
     cout << left << setw(20) << " Phone" << " : " << member.GetPhone() << endl;
     cout << left << setw(20) << " Role" << " : " << member.MemberRoleToString() << endl;
     cout << left << setw(20) << " Borrowed Books" << " : " << member.GetTotalBorrowedBooks() << endl;
-    cout << left << setw(20) << " Late Returns" << " : " << member.GetLateReturns() << endl;
+    cout << left << setw(20) << " Violations" << " : " << member.GetViolations() << endl;
     cout << left << setw(20) << " Account Created on" << " : " << clsDate::ConvertDateToString(member.GetAccountCreated_on()) << endl;
     cout << left << setw(20) << " Account Status" << " : " << member.AccountStatusToString() << endl;
     cout << setw(41) << setfill('-') << "" << Colors::RESET() << endl;
@@ -114,13 +114,8 @@ void clsBorrowBook::BorrowBookScreen() {
             _PrintBookData(TargetBook);
             cout << Colors::GetGreen() << " [ Book Info After Operation ]" << Colors::RESET() << endl;
 
-            // asign the Performer
-            string Performer = "Member";
-            if (!CurrUser.isEmpty()) {
-                Performer = CurrUser.GetUsername();
-            }
             // create log borrowing record
-            clsTransaction::log_borrowing_transaction(Performer, TargetMember.GetAccountNumber(), TargetBook.GetID(), (clsTransaction::enRole)(short)TargetMember.GetRole());
+            clsTransaction::log_borrowing_transaction(TargetMember.GetAccountNumber(), TargetBook.GetID(), (clsTransaction::enRole)(short)TargetMember.GetRole());
         } else {
             cout << Colors::GetRed() << " [ Borrowing Failed ]" << Colors::RESET() << endl;
         }

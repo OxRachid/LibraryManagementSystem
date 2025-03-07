@@ -2,6 +2,7 @@
 #include "../../../headers/Lib/clsInputValidate.h"
 #include "../../../headers/Screens/Transactions/TransHistory/clsTransHistoryMenu.h"
 #include "../../../headers/Screens/Transactions/clsBorrowBook.h"
+#include "../../../headers/Screens/Transactions/clsCheckRequests.h"
 #include "../../../headers/Screens/Transactions/clsReturnBook.h"
 #include "../../../headers/Screens/Transactions/clsTrackBooks.h"
 #include "../../../headers/Screens/Transactions/clsTrackMembers.h"
@@ -13,7 +14,7 @@ using namespace std;
 
 // Read user choice
 clsTransactionsMenu::eTransOptions clsTransactionsMenu::_GetUserChoice() {
-    return (eTransOptions)clsInputValidate::Readnumberbetween(1, 6, "\n * Select Your Option : ");
+    return (eTransOptions)clsInputValidate::Readnumberbetween(1, 7, "\n * Select Your Option : ");
 }
 
 // Print menu
@@ -24,11 +25,12 @@ void clsTransactionsMenu::_PrintMenu() {
     PrintHeaderScreen("Transactions Menu", "📋", Colors::Cyan, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Borrow Book" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[2] Return Book" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[3] Transactions History" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[4] Track Members" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[5] Track Books" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[6] Exit" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[2] Check requests" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[3] Return Book" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[4] Transactions History" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[5] Track Members" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[6] Track Books" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[7] Exit" << endl;
     cout << Colors::GetCyan() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 // Perform Transactions options
@@ -36,6 +38,10 @@ void clsTransactionsMenu::_PerformOption(eTransOptions option) {
     switch (option) {
         case eTransOptions::BORROW_BOOK: {
             _BorrowBook();
+            break;
+        }
+        case eTransOptions::CHECK_REQUESTS: {
+            _CheckRequests();
             break;
         }
         case eTransOptions::RETURN_BOOK: {
@@ -74,6 +80,13 @@ void clsTransactionsMenu::_BorrowBook() {
     system("clear");
     clsBorrowBook::BorrowBookScreen();
 }
+
+// CHECK_REQUESTS
+void clsTransactionsMenu::_CheckRequests() {
+    system("clear");
+    clsCheckRequests::CheckRequestsScreen();
+}
+
 // RETURN_BOOK
 void clsTransactionsMenu::_ReturnBook() {
     system("clear");

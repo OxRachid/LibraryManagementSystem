@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <variant>
 #include <vector>
 using namespace std;
 
@@ -23,9 +24,28 @@ clsDate::clsDate() {
 // constructor parameter (string)
 clsDate::clsDate(string strDate) {
     vector<string> vStr = clsString::Split(strDate, "/");
-    _Year = stoi(vStr[0]);
-    _Mon = stoi(vStr[1]);
-    _Day = stoi(vStr[2]);
+
+    short vSize = vStr.size();
+    // check vector validate
+    if (vSize != 3 && vSize != 6) {
+        _Year = 1;
+        _Mon = 1;
+        _Day = 1;
+        _Hour = 1;
+        _Min = 1;
+        _Sec = 1;
+    } else {
+        _Year = stoi(vStr[0]);
+        _Mon = stoi(vStr[1]);
+        _Day = stoi(vStr[2]);
+
+        // check if date has time as well
+        if (vSize == 6) {
+            _Hour = stoi(vStr[3]);
+            _Min = stoi(vStr[4]);
+            _Sec = stoi(vStr[5]);
+        }
+    }
 }
 // constructor parameter (shortiger)
 clsDate::clsDate(short year, short mon, short day) {
@@ -66,6 +86,16 @@ void clsDate::SetDay(short day) {
     _Day = day;
 }
 
+void clsDate::SetHours(short hours) {
+    _Hour = hours;
+}
+void clsDate::SetMinutes(short minutes) {
+    _Min = minutes;
+}
+void clsDate::SetSeconds(short seconds) {
+    _Sec = seconds;
+}
+
 // getter
 short clsDate::GetYear() {
     return _Year;
@@ -76,23 +106,66 @@ short clsDate::GetMonth() {
 short clsDate::GetDay() {
     return _Day;
 }
+short clsDate::GetHours() {
+    return _Hour;
+}
+short clsDate::GetMinutes() {
+    return _Min;
+}
+short clsDate::GetSeconds() {
+    return _Sec;
+}
+
+int clsDate::HoursToMin(int hours) {
+    return hours * 60;
+}
+int clsDate::HoursToSec(int hours) {
+    return MinToSec((HoursToMin(hours)));
+}
+
+int clsDate::MinToHours(int minutes) {
+    return minutes / 60;
+}
+int clsDate::MinToSec(int minutes) {
+    return minutes * 60;
+}
+int clsDate::SecToMin(int seconds) {
+    return seconds / 60;
+}
+int clsDate::SecToHours(int seconds) {
+    return MinToHours(SecToMin(seconds));
+}
+
+// convert seconds to time
+int clsDate::TimeToSeconds(clsDate date) {
+    return HoursToSec(date._Hour) + MinToSec(date._Min) + date._Sec;
+}
 
 // convert date to string (static)
 string clsDate::ConvertDateToString(clsDate date) {
     return (to_string(date._Year) + "/" + to_string(date._Mon) + "/" + to_string(date._Day));
+}
+// convert date to string (obj)
+string clsDate::ConvertDateToString() {
+    return clsDate::ConvertDateToString(*this);
 }
 
 // convert date to string (static)
 string clsDate::ConvertDateToString(short Year, short Month, short Day) {
     return (to_string(Year) + "/" + to_string(Month) + "/" + to_string(Day));
 }
-// convert date to string (obj)
-string clsDate::ConvertDateToString() {
-    return clsDate::ConvertDateToString(_Year, _Mon, _Day);
+// convert date and time of specific date to string
+string clsDate::ConvertDateAndTimeToString(clsDate date) {
+    return ConvertDateToString(date._Year, date._Mon, date._Day) + "/" + to_string(date._Hour) + "/" + to_string(date._Min) + "/" + to_string(date._Sec);
+}
+
+// Get Date And Time For Print in screen
+string clsDate::GetDateAndTimeForPrint(clsDate date) {
+    return ConvertDateToString(date._Year, date._Mon, date._Day) + " " + to_string(date._Hour) + ":" + to_string(date._Min) + ":" + to_string(date._Sec);
 }
 
 // get system date
-clsDate clsDate::GetSystemDate() {
+clsDate clsDate::GetSystemDateObj() {
     clsDate date;
     time_t t = time(0);
     tm *now = localtime(&t);
@@ -104,11 +177,10 @@ clsDate clsDate::GetSystemDate() {
 }
 
 // get system date in string
-string clsDate::GetDateAndTime() {
+string clsDate::GetSystemDateAndTime() {
     clsDate date;
-    return ConvertDateToString(date._Year, date._Mon, date._Day) + ", " + to_string(date._Hour) + ":" + to_string(date._Min) + ":" + to_string(date._Sec);
+    return ConvertDateToString(date._Year, date._Mon, date._Day) + " " + to_string(date._Hour) + ":" + to_string(date._Min) + ":" + to_string(date._Sec);
 }
-
 // check is validate date (static)
 bool clsDate::isValid(short year, short mon, short day) {
     return !(year < 1 || day < 1 || day > clsDate::NumberOfDaysInMonth(year, mon));
@@ -361,6 +433,33 @@ short clsDate::DifferenceInDays(clsDate date1, clsDate date2, bool IncludeEndDay
 // Get deffirence in days (obj)
 short clsDate::DifferenceInDays(clsDate date2, bool IncludeEndDay) {
     return DifferenceInDays(*this, date2, IncludeEndDay);
+}
+
+// Get deffirence in hours (static)
+int clsDate::DifferenceInSeconds(clsDate date1, clsDate date2) {
+    // Ensure date1 is always earlier than date2
+    if (isDate1AfterDate2(date1, date2)) {
+        clsDate::SwapDates(date1, date2);
+    }
+
+    // Convert time components to seconds
+    int startTimeInSeconds = TimeToSeconds(date1);
+    int endTimeInSeconds = TimeToSeconds(date2);
+
+    // Check if the dates are both at the same day
+    if (date1.isDate1EqualDate2(date2)) {
+        return abs(endTimeInSeconds - startTimeInSeconds);
+    }
+
+    // Compute the number of full days between the two dates (excluding the first and last)
+    int fullDaysBetween = (DifferenceInDays(date1, date2) - 1);
+    int fullDaysInSeconds = HoursToSec(fullDaysBetween) * 24;
+
+    // Calculate the remaining seconds from startDate until midnight
+    int remainingSecondsInStartDay = HoursToSec(24) - startTimeInSeconds;
+
+    // Final calculation: full days in seconds + remaining time in startDate + time passed in endDate
+    return (endTimeInSeconds + fullDaysInSeconds + remainingSecondsInStartDay);
 }
 
 // increase date by one day (static)

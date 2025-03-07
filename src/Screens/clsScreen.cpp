@@ -22,7 +22,7 @@ void clsScreen::PrintHeaderScreen(string HeaderTitle, string value, Colors::enCo
     cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << HeaderTitle << " {" << value << "}" << Colors::RESET() << endl;
     if (isMainHeader) {
         cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << Role << username << Colors::RESET() << endl;
-        cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "Date : " << clsDate::GetDateAndTime() << Colors::RESET() << endl;
+        cout << Colors::GetColor(color) << setw((width / 2) - 9) << setfill(' ') << " " << left << "Date : " << clsDate::GetSystemDateAndTime() << Colors::RESET() << endl;
     }
     cout << Colors::GetColor(color) << setw(width) << setfill('-') << "" << Colors::RESET() << endl;
 }

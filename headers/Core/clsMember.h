@@ -37,7 +37,7 @@ class clsMember : public clsPerson {
         string _Password;
         eMemberRole _Role;
         short _TotalBorrowedBooks;
-        short _LateReturns;
+        short _Violations;
         clsDate _AccountCreated_on;
         eAccountStatus _AccountStatus;
 
@@ -65,7 +65,7 @@ class clsMember : public clsPerson {
             string phone,              // phone
             eMemberRole role,          // role
             short totalborrowedbooks,  // totalborrowedbooks
-            short latereturns,         // latereturns
+            short violations,          // violations
             clsDate accountcreated_on, // accountcreated_on
             eAccountStatus status);    // status
         // setter
@@ -73,7 +73,7 @@ class clsMember : public clsPerson {
         void SetRole(short role);
         void SetTotalBorrowedBooks(short total);
         void UpdateLateReturns();
-        void SetLateReturns(short value);
+        void SetViolations(short value);
         void SetAccountCreated_on(clsDate accountcreated_on);
         void SetAccountStatus(eAccountStatus status);
         // getter
@@ -81,7 +81,7 @@ class clsMember : public clsPerson {
         string GetPassword();
         eMemberRole GetRole();
         short GetTotalBorrowedBooks();
-        short GetLateReturns();
+        short GetViolations();
         clsDate GetAccountCreated_on();
         eAccountStatus GetAccountStatus();
         // is empty

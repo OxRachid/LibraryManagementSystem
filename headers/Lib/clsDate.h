@@ -26,14 +26,27 @@ class clsDate {
         void SetYear(short year);
         void SetMonth(short mon);
         void SetDay(short day);
+        void SetHours(short hours);
+        void SetMinutes(short minutes);
+        void SetSeconds(short seconds);
         // getter
         short GetYear();
         short GetMonth();
         short GetDay();
+        short GetHours();
+        short GetMinutes();
+        short GetSeconds();
+        static int HoursToMin(int hours);
+        static int HoursToSec(int hours);
+        static int MinToHours(int minutes);
+        static int MinToSec(int minutes);
+        static int SecToMin(int seconds);
+        static int SecToHours(int seconds);
+        static int TimeToSeconds(clsDate date);
         // get system date
-        static clsDate GetSystemDate();
+        static clsDate GetSystemDateObj();
         // get system date in string
-        static string GetDateAndTime();
+        static string GetSystemDateAndTime();
         // check is validate date (static)
         static bool isValid(short year, short mon, short day);
         // check is validate date (object)
@@ -83,6 +96,10 @@ class clsDate {
         static string ConvertDateToString(short Year, short Month, short Day);
         // convert date to string (obj)
         string ConvertDateToString();
+        // convert  date and time of specific date to string
+        static string ConvertDateAndTimeToString(clsDate date);
+        // Get Date And Time For Print in screen
+        static string GetDateAndTimeForPrint(clsDate date);
         // Print month calander (static)
         static void MonthCalander(short Year, short Month);
         // Print month calander (obj)
@@ -123,6 +140,8 @@ class clsDate {
         static short DifferenceInDays(clsDate date1, clsDate date2, bool IncludeEndDay = false);
         // Get deffirence in days (obj)
         short DifferenceInDays(clsDate date2, bool IncludeEndDay = false);
+        // Get deffirence in hours (static)
+        static int DifferenceInSeconds(clsDate date1, clsDate date2);
         // Add one day (static)
         static clsDate AddOneDay(clsDate date);
         // Add one day (obj)

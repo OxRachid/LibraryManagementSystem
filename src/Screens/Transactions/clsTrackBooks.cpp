@@ -45,7 +45,7 @@ clsBook clsTrackBooks::_GetTargetBook() {
 void clsTrackBooks::_ShowTransHistory(int bookID) {
     // Get All transactions list from static vector
     const vector<clsTransaction> &vBookTrans = clsTransaction::GetTransactionsForBook(bookID);
-    PrintHeaderScreen("BOOK HISTORY", to_string(vBookTrans.size()), Colors::Cyan);
+    PrintHeaderScreen("BOOK HISTORY", to_string(vBookTrans.size()), Colors::Cyan, false);
     short width = 24;
     cout << Colors::GetCyan() << setfill(' ') << left << setw(width - 17) << "TrsID" << left << setw(width - 17) << "Ac-N" << left << setw(width - 16) << "BookID" << left << setw(width - 13) << "OUT-Date" << left << setw(width - 13) << "Due-Date" << left << setw(width - 13) << "ReturnDate" << left << setw(width - 13) << "Status" << Colors::RESET() << endl;
     cout << Colors::GetCyan() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
