@@ -1,6 +1,7 @@
 #include "../../../../headers/Screens/Transactions/TransHistory/clsTransHistoryMenu.h"
 #include "../../../../headers/Lib/clsInputValidate.h"
 #include "../../../../headers/Screens/Transactions/TransHistory/clsBorrowedList.h"
+#include "../../../../headers/Screens/Transactions/TransHistory/clsCanceledList.h"
 #include "../../../../headers/Screens/Transactions/TransHistory/clsListAllTrans.h"
 #include "../../../../headers/Screens/Transactions/TransHistory/clsPenddingList.h"
 #include "../../../../headers/Screens/Transactions/TransHistory/clsReturnedList.h"
@@ -21,13 +22,14 @@ void clsTransHistoryMenu::_PrintNenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[2] Borrowed" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[3] Returned" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] Pendding" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[5] Exit" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[5] Canceled" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[6] Exit" << endl;
     cout << Colors::GetMagenta() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 
 // Get User Choice
 clsTransHistoryMenu::enTransMenuOptions clsTransHistoryMenu::_GetUserChoice() {
-    return (enTransMenuOptions)clsInputValidate::Readnumberbetween(1, 5, "\n * Select your option : ");
+    return (enTransMenuOptions)clsInputValidate::Readnumberbetween(1, 6, "\n * Select your option : ");
 }
 
 // perform options
@@ -47,6 +49,10 @@ void clsTransHistoryMenu::_PerformOption(enTransMenuOptions option) {
         }
         case enTransMenuOptions::LIST_PENDDING: {
             _ListPendding();
+            break;
+        }
+        case enTransMenuOptions::LIST_CANCELED: {
+            _ListCanceled();
             break;
         }
         case enTransMenuOptions::EXIT: {
@@ -81,6 +87,11 @@ void clsTransHistoryMenu::_ListReturned() {
 void clsTransHistoryMenu::_ListPendding() {
     system("clear");
     clsPenddingList::PenddingListScreen();
+}
+//  LIST_CANCELED
+void clsTransHistoryMenu::_ListCanceled() {
+    system("clear");
+    clsCanceledList::CanceledListScreen();
 }
 
 // trans hustory screen
