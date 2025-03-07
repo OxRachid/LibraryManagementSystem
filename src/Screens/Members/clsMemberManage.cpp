@@ -1,5 +1,4 @@
 #include "../../../headers/Screens/Members/clsMemberManage.h"
-#include "../../../headers/Core/clsMember.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include "../../../headers/Screens/Members/ListMembers/clsListMembersMenu.h"
 #include "../../../headers/Screens/Members/clsAddNewMember.h"

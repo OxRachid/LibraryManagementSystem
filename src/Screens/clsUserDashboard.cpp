@@ -6,6 +6,7 @@
 #include "../../headers/Lib/clsInputValidate.h"
 #include "../../headers/Screens/Books/clsBooksManage.h"
 #include "../../headers/Screens/Members/clsMemberManage.h"
+#include "../../headers/Screens/System/clsSystemManage.h"
 #include "../../headers/Screens/Transactions/clsTransactionsMenu.h"
 #include "../../headers/Screens/Users/clsUsersManage.h"
 #include <cstdlib>
@@ -35,7 +36,7 @@ void clsUserDashboard::_LoadData() {
 
 // Read user choice
 clsUserDashboard::eUserDashboardOptions clsUserDashboard::_GetUserChoice() {
-    return (eUserDashboardOptions)clsInputValidate::Readnumberbetween(1, 5, "\n * Select Your Option : ");
+    return (eUserDashboardOptions)clsInputValidate::Readnumberbetween(1, 6, "\n * Select Your Option : ");
 }
 
 // print main menu
@@ -49,7 +50,8 @@ void clsUserDashboard::_PrintMenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[2] Member Manage" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[3] Transactions" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[4] User Manage" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[5] Logout" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[5] System Manage" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[6] Logout" << endl;
     cout << Colors::GetYellow() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 
@@ -74,6 +76,12 @@ void clsUserDashboard::_TransactionScreen() {
     clsTransactionsMenu::TransMenuScreen();
 }
 
+// system Manage screen
+void clsUserDashboard::_SystemManageScreen() {
+    system("clear");
+    clsSystemManage::SystemManageScreen();
+}
+
 // Perform main menu Options
 void clsUserDashboard::_PerformOption(eUserDashboardOptions Options) {
     switch (Options) {
@@ -91,6 +99,10 @@ void clsUserDashboard::_PerformOption(eUserDashboardOptions Options) {
         }
         case eUserDashboardOptions::USER_MANAGE: {
             _UsersManageScreen();
+            break;
+        }
+        case eUserDashboardOptions::SYSYEM_MANAGE: {
+            _SystemManageScreen();
             break;
         }
         case eUserDashboardOptions::LOGOUT: {

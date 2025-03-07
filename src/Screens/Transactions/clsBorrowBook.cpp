@@ -2,7 +2,6 @@
 #include "../../../headers/Core/clsBook.h"
 #include "../../../headers/Core/clsMember.h"
 #include "../../../headers/Core/clsTransaction.h"
-#include "../../../headers/Core/global.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include <iomanip>
 #include <iostream>
