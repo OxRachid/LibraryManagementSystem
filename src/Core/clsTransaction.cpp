@@ -93,6 +93,74 @@ clsTransaction::enTransStatus clsTransaction::GetStatus() {
     return _Status;
 }
 
+// get empty obj
+clsTransaction clsTransaction::_GetEmptyRecord() {
+    return clsTransaction(enMode::EMPTY_MODE, // _Mode
+        DEFAULT_INT,                          // _TransactionID
+        DEFAULT_STR,                          // _CheckoutPerformer
+        DEFAULT_STR,                          // _CheckinPerformer
+        EMPTY_STR,                            // _AccountNumber
+        DEFAULT_INT,                          // _BookID
+        enRole::NON,                          // _Role
+        DEFAULT_DATE,                         // _CheckoutDate
+        DEFAULT_DATE,                         // _DueDate
+        DEFAULT_DATE,                         // _ReturnDate
+        enTransStatus::CANCELED               // _Status
+    );
+}
+// Get Add BorrowRecord obj
+clsTransaction clsTransaction::_GetAddModeRecord(string accountnumber, int book_ID, enRole role) {
+    int transID;
+    do {
+        transID = clsUtil::GenerateNumber(5);
+    } while (isTransactionExist(transID));
+
+    return clsTransaction(enMode::ADD_MODE, // _Mode
+        transID,                            // _TransactionID
+        DEFAULT_STR,                        // _CheckoutPerformer
+        DEFAULT_STR,                        // _CheckinPerformer
+        accountnumber,                      // _AccountNumber
+        book_ID,                            // _BookID
+        role,                               // _Role
+        clsDate(),                          // _CheckoutDate
+        clsDate(),                          // _DueDate
+        DEFAULT_DATE,                       // _ReturnDate
+        enTransStatus::PENDDING             // _Status
+    );
+}
+
+// convert line to BorrowRecord
+string clsTransaction::_RecordToLine(string seperator) {
+    string line = "";
+    line += to_string(_TransactionID) + seperator;
+    line += _CheckoutPerformer + seperator;
+    line += _CheckinPerformer + seperator;
+    line += _AccountNumber + seperator;
+    line += to_string(_BookID) + seperator;
+    line += to_string((short)_Role) + seperator;
+    line += clsDate::ConvertDateAndTimeToString(_CheckoutDate) + seperator;
+    line += clsDate::ConvertDateAndTimeToString(_DueDate) + seperator;
+    line += clsDate::ConvertDateAndTimeToString(_ReturnDate) + seperator;
+    line += to_string((short)_Status);
+    return line;
+}
+
+// convert BorrowRecords to line
+clsTransaction clsTransaction::_LineToRecord(string line, string seperator) {
+    vector<string> vStr = clsString::Split(line, seperator);
+    return clsTransaction(enMode::UPDATE_MODE, // _Mode
+        stoi(vStr[0]),                         // _TransactionID
+        vStr[1],                               // _CheckoutPerformer
+        vStr[2],                               // _CheckinPerformer
+        vStr[3],                               // _AccountNumber
+        stoi(vStr[4]),                         // _BookID
+        (enRole)stoi(vStr[5]),                 // _Role
+        clsDate(vStr[6]),                      // _CheckoutDate
+        clsDate(vStr[7]),                      // _DueDate
+        clsDate(vStr[8]),                      // _ReturnDate
+        (enTransStatus)stoi(vStr[9]));         // _Status
+}
+
 // is obj empty
 bool clsTransaction::isEmpty() {
     return (_Mode == enMode::EMPTY_MODE);
@@ -194,74 +262,6 @@ clsTransaction clsTransaction::Find(vector<clsTransaction> &vSpecific, string ac
     return _GetEmptyRecord();
 }
 
-// get empty obj
-clsTransaction clsTransaction::_GetEmptyRecord() {
-    return clsTransaction(enMode::EMPTY_MODE, // _Mode
-        DEFAULT_INT,                          // _TransactionID
-        DEFAULT_STR,                          // _CheckoutPerformer
-        DEFAULT_STR,                          // _CheckinPerformer
-        EMPTY_STR,                            // _AccountNumber
-        DEFAULT_INT,                          // _BookID
-        enRole::NON,                          // _Role
-        DEFAULT_DATE,                         // _CheckoutDate
-        DEFAULT_DATE,                         // _DueDate
-        DEFAULT_DATE,                         // _ReturnDate
-        enTransStatus::CANCELED               // _Status
-    );
-}
-// Get Add BorrowRecord obj
-clsTransaction clsTransaction::_GetAddModeRecord(string checkoutperformer, string accountnumber, int book_ID, enRole role) {
-    int transID;
-    do {
-        transID = clsUtil::GenerateNumber(5);
-    } while (isTransactionExist(transID));
-
-    return clsTransaction(enMode::ADD_MODE, // _Mode
-        transID,                            // _TransactionID
-        checkoutperformer,                  // _CheckoutPerformer
-        DEFAULT_STR,                        // _CheckinPerformer
-        accountnumber,                      // _AccountNumber
-        book_ID,                            // _BookID
-        role,                               // _Role
-        clsDate(),                          // _CheckoutDate
-        clsDate(),                          // _DueDate
-        DEFAULT_DATE,                       // _ReturnDate
-        enTransStatus::PENDDING             // _Status
-    );
-}
-
-// convert line to BorrowRecord
-string clsTransaction::_RecordToLine(string seperator) {
-    string line = "";
-    line += to_string(_TransactionID) + seperator;
-    line += _CheckoutPerformer + seperator;
-    line += _CheckinPerformer + seperator;
-    line += _AccountNumber + seperator;
-    line += to_string(_BookID) + seperator;
-    line += to_string((short)_Role) + seperator;
-    line += clsDate::ConvertDateToString(_CheckoutDate) + seperator;
-    line += clsDate::ConvertDateToString(_DueDate) + seperator;
-    line += clsDate::ConvertDateToString(_ReturnDate) + seperator;
-    line += to_string((short)_Status);
-    return line;
-}
-
-// convert BorrowRecords to line
-clsTransaction clsTransaction::_LineToRecord(string line, string seperator) {
-    vector<string> vStr = clsString::Split(line, seperator);
-    return clsTransaction(enMode::UPDATE_MODE, // _Mode
-        stoi(vStr[0]),                         // _TransactionID
-        vStr[1],                               // _CheckoutPerformer
-        vStr[2],                               // _CheckinPerformer
-        vStr[3],                               // _AccountNumber
-        stoi(vStr[4]),                         // _BookID
-        (enRole)stoi(vStr[5]),                 // _Role
-        clsDate(vStr[6]),                      // _CheckoutDate
-        clsDate(vStr[7]),                      // _DueDate
-        clsDate(vStr[8]),                      // _ReturnDate
-        (enTransStatus)stoi(vStr[9]));         // _Status
-}
-
 // load BorrowRecords from file
 void clsTransaction::LoadTransactions() {
     // clear vector befor load data
@@ -331,6 +331,18 @@ vector<clsTransaction> clsTransaction::GetPenddingList() {
     return vPendding;
 }
 
+// Get canceled list
+vector<clsTransaction> clsTransaction::GetCanceledList() {
+    vector<clsTransaction> vCanceled;
+    for (clsTransaction &trans : _vTransactions) {
+        if (trans.GetStatus() == enTransStatus::CANCELED) {
+            vCanceled.push_back(trans);
+        }
+    }
+
+    return vCanceled;
+}
+
 // Get all transactions by specific member
 vector<clsTransaction> clsTransaction::GetTransactionsForMember(string accountnumber) {
     vector<clsTransaction> vTrans;
@@ -361,7 +373,7 @@ void clsTransaction::_AddBorrowRecord() {
     SaveTransactions();
 }
 // update Borrow Record in vector
-void clsTransaction::_updateBorrowRecord() {
+void clsTransaction::_updateTransaction() {
     auto it = find_if(_vTransactions.begin(), _vTransactions.end(), [&](clsTransaction &record) {
         return (record.GetTrans_ID() == _TransactionID);
     });
@@ -373,8 +385,8 @@ void clsTransaction::_updateBorrowRecord() {
 }
 
 // create BorrowRecords register
-void clsTransaction::log_borrowing_transaction(string checkoutperformer, string accountnumber, int book_ID, enRole role) {
-    clsTransaction record = _GetAddModeRecord(checkoutperformer, accountnumber, book_ID, role);
+void clsTransaction::log_borrowing_transaction(string accountnumber, int book_ID, enRole role) {
+    clsTransaction record = _GetAddModeRecord(accountnumber, book_ID, role);
     if (role == enRole::STUDENT) {
         record._DueDate.AddxDays(15);
     } else if (role == enRole::TEACHER) {
@@ -404,12 +416,30 @@ void clsTransaction::ReturnBook(string checkinperformer) {
     // change status to returned mode
     _Status = enTransStatus::RETURNED;
     // update in vector and save to file
-    _updateBorrowRecord();
+    _updateTransaction();
 }
 
 // is pick up book on time
 bool clsTransaction::isPickupOnTime() {
-    return (_CheckoutDate.DifferenceInDays(clsDate()) <= 1);
+    return (clsDate::DifferenceInSeconds(_CheckoutDate, clsDate()) < clsDate::HoursToSec(24));
+}
+
+// accept requests
+void clsTransaction::ConfirmRequest(string performer) {
+    _Status = enTransStatus::BORROWED;
+    _CheckoutPerformer = performer;
+    _updateTransaction();
+}
+
+// cancel the trans requests
+void clsTransaction::RequestCanceled() {
+    _Status = enTransStatus::CANCELED;
+    _updateTransaction();
+}
+
+// expected date to recieve book
+clsDate clsTransaction::ExpectedDateToRecieveBook() {
+    return clsDate::AddOneDay(_CheckoutDate);
 }
 
 clsTransaction::eSaveMode clsTransaction::save() {
@@ -425,7 +455,7 @@ clsTransaction::eSaveMode clsTransaction::save() {
             break;
         }
         case enMode::UPDATE_MODE: {
-            _updateBorrowRecord();
+            _updateTransaction();
             return eSaveMode::SAVE_SUCCESS;
             break;
         }

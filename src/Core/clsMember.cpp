@@ -4,7 +4,6 @@
 #include <cctype>
 #include <fstream>
 #include <iostream>
-#include <regex>
 #include <string>
 using namespace std;
 
@@ -15,14 +14,14 @@ const string MembersFile = "data/Members.txt";
 vector<clsMember> clsMember::vMembers = {};
 
 // constructor parameter
-clsMember::clsMember(eMemberMode mode, string accountnumber, string password, string firstname, string lastname, string email, string phone, eMemberRole role, short totalborrowedbooks, short latereturns, clsDate accountcreated_on, eAccountStatus status)
+clsMember::clsMember(eMemberMode mode, string accountnumber, string password, string firstname, string lastname, string email, string phone, eMemberRole role, short totalborrowedbooks, short violations, clsDate accountcreated_on, eAccountStatus status)
     : clsPerson(firstname, lastname, email, phone) {
     _Mode = mode;
     _AccountNumber = accountnumber;
     _Password = password;
     _Role = role;
     _TotalBorrowedBooks = totalborrowedbooks;
-    _LateReturns = latereturns;
+    _Violations = violations;
     _AccountCreated_on = accountcreated_on;
     _AccountStatus = status;
 }
@@ -37,11 +36,11 @@ void clsMember::SetRole(short role) {
 void clsMember::SetTotalBorrowedBooks(short total) {
     _TotalBorrowedBooks = total;
 }
-void clsMember::SetLateReturns(short value) {
-    _LateReturns = value;
+void clsMember::SetViolations(short value) {
+    _Violations = value;
 }
 void clsMember::UpdateLateReturns() {
-    ++_LateReturns;
+    ++_Violations;
     _updateMember();
 }
 void clsMember::SetAccountCreated_on(clsDate accountcreated_on) {
@@ -61,8 +60,8 @@ clsMember::eMemberRole clsMember::GetRole() {
     return _Role;
 }
 
-short clsMember::GetLateReturns() {
-    return _LateReturns;
+short clsMember::GetViolations() {
+    return _Violations;
 }
 short clsMember::GetTotalBorrowedBooks() {
     return _TotalBorrowedBooks;
@@ -90,7 +89,7 @@ clsMember clsMember::_GetEmptyMemberObj() {
         EMPTY_STR,                           // Phone (empty)
         eMemberRole::NON,                    // Member role (none)
         DEFAULT_INT,                         // Total borrowed books (default integer value)
-        DEFAULT_INT,                         // latereturns (default integer value)
+        DEFAULT_INT,                         //  violations (default integer value)
         DEFAULT_DATE,                        // accountcreated_on
         eAccountStatus::BLOCKED              // Account status (blocked)
     );
@@ -106,7 +105,7 @@ clsMember clsMember::GetAddNewMemberObj(string accountnumber) {
         EMPTY_STR,                            // Phone
         eMemberRole::NON,                     // Member role
         DEFAULT_INT,                          // Total borrowed books
-        DEFAULT_INT,                          // latereturns (default integer value)
+        DEFAULT_INT,                          // violations (default integer value)
         clsDate(),                            // accountcreated_on
         eAccountStatus::ACTIVE                // Account status
     );
@@ -125,7 +124,7 @@ clsMember clsMember::_LineToMember(string line, string seperator) {
         vStr[5],                              // Phone
         (eMemberRole)stoi(vStr[6]),           // Member role (converted from string to enum)
         stoi(vStr[7]),                        // Total borrowed books (converted from string to integer)
-        stoi(vStr[8]),                        // latereturns
+        stoi(vStr[8]),                        // violations
         clsDate(vStr[9]),                     // accountcreated_on
         (eAccountStatus)stoi(vStr[10])        // Account status (converted from string to enum)
     );
@@ -141,7 +140,7 @@ string clsMember::_MemberToLine(string seperator) {
     line += GetPhone() + seperator;
     line += to_string((short)_Role) + seperator;
     line += to_string(_TotalBorrowedBooks) + seperator;
-    line += to_string(_LateReturns) + seperator;
+    line += to_string(_Violations) + seperator;
     line += _AccountCreated_on.ConvertDateToString() + seperator;
     line += to_string((short)_AccountStatus);
 
@@ -293,9 +292,9 @@ void clsMember::BorrowBook() {
 // Return book
 void clsMember::ReturnBook(bool isLate) {
     if (isLate) {
-        _LateReturns++;
+        _Violations++;
     }
-    if (_LateReturns > 1) {
+    if (_Violations > 10) {
         _AccountStatus = eAccountStatus::BLOCKED;
     }
     // decrease totalborrowedbooks
@@ -319,7 +318,7 @@ bool clsMember::isBorrowLimitExceeded() {
     if (_Role == eMemberRole::STUDENT) {
         return (_TotalBorrowedBooks > 2);
     }
-    return (_TotalBorrowedBooks > 5);
+    return (_TotalBorrowedBooks > 4);
 }
 
 // reset members
@@ -327,7 +326,7 @@ bool clsMember::ResetMembers() {
     if (!vMembers.empty()) {
         for (clsMember &member : vMembers) {
             member.SetTotalBorrowedBooks(0);
-            member.SetLateReturns(0);
+            member.SetViolations(0);
         }
         // save update vector to file
         SaveMembersToFile();

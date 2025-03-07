@@ -49,7 +49,7 @@ class clsTransaction {
         // get empty obj
         static clsTransaction _GetEmptyRecord();
         // Get Add BorrowRecord obj
-        static clsTransaction _GetAddModeRecord(string checkoutperformer, string AccountNumber, int book_ID, enRole role);
+        static clsTransaction _GetAddModeRecord(string AccountNumber, int book_ID, enRole role);
         // convert BorrowRecords to line
         static clsTransaction _LineToRecord(string line, string seperator = "|");
         // convert line to BorrowRecord
@@ -57,7 +57,7 @@ class clsTransaction {
         // add Borrow Record to vector
         void _AddBorrowRecord();
         // update Borrow Record in vector
-        void _updateBorrowRecord();
+        void _updateTransaction();
 
     public:
         // constructor parameter
@@ -122,12 +122,14 @@ class clsTransaction {
         static vector<clsTransaction> GetReturnedList();
         // Get pendding list
         static vector<clsTransaction> GetPenddingList();
+        // Get canceled list
+        static vector<clsTransaction> GetCanceledList();
         // Get all transactions by specific member
         static vector<clsTransaction> GetTransactionsForMember(string accountnumber);
         // Get all transactions by specific book
         static vector<clsTransaction> GetTransactionsForBook(int book_ID);
         // create BorrowRecords register
-        static void log_borrowing_transaction(string checkoutperformor, string accountnumber, int book_ID, enRole role);
+        static void log_borrowing_transaction(string accountnumber, int book_ID, enRole role);
         // convert enum book status to string
         string BookStatusToString();
         // convert enum enRole to string
@@ -136,6 +138,12 @@ class clsTransaction {
         bool isPickupOnTime();
         // return book
         void ReturnBook(string checkinperformer);
+        // accept requests
+        void ConfirmRequest(string performer);
+        // cancel the trans requests
+        void RequestCanceled();
+        // expected date to recieve book
+        clsDate ExpectedDateToRecieveBook();
         // enum for saving result
         enum eSaveMode {
             SAVE_FAILED = 1,

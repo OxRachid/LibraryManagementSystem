@@ -17,7 +17,7 @@ void clsProfile::ProfileScreen() {
     cout << left << setw(20) << " Role" << " : " << CurrMember.MemberRoleToString() << endl;
     cout << left << setw(20) << " Password" << " : " << CurrMember.GetPassword() << endl;
     cout << left << setw(20) << " Borrowed Books" << " : " << CurrMember.GetTotalBorrowedBooks() << endl;
-    cout << left << setw(20) << " Late Returns" << " : " << CurrMember.GetLateReturns() << endl;
+    cout << left << setw(20) << " Violations" << " : " << CurrMember.GetViolations() << endl;
     cout << left << setw(20) << " Account Created on" << " : " << clsDate::ConvertDateToString(CurrMember.GetAccountCreated_on()) << endl;
     cout << left << setw(20) << " Account Status" << " : " << CurrMember.AccountStatusToString() << endl;
     cout << setw(41) << setfill('-') << "" << Colors::RESET() << endl;

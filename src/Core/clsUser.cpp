@@ -125,10 +125,10 @@ string clsUser::UserToLine(string seperator) {
 
 // prepare user login info
 clsUser::stUserLogin clsUser::_PrepareUserLoginInfo() {
-    return stUserLogin(GetUsername(), // username
-        GetPassword(),                // password
-        GetPermissions(),             // permissions
-        clsDate::GetDateAndTime());   // loginTime
+    return stUserLogin(GetUsername(),     // username
+        GetPassword(),                    // password
+        GetPermissions(),                 // permissions
+        clsDate::GetSystemDateAndTime()); // loginTime
 }
 
 // Convert line to UserLogin obj
