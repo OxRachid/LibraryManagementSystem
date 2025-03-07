@@ -3,4 +3,4 @@
 47925|The Alchemist|Paulo Coelho|978-0062315007|1|Fiction|2015/7/22|5|5|0
 15151|The Hobbit|J.R.R. Tolkien|978-0547928227|1|Fantasy|2012/9/5|2|2|0
 43425|1984|George Orwell|978-0451524935|1|Dystopian Fiction|2021/6/18|5|5|0
-69355|1984|George Orwell|978-0451524936|2|Dystopian Fiction|2022/2/1|3|3|0
+69355|1984|George Orwell|978-0451524936|2|Dystopian Fiction|2022/2/1|3|2|1

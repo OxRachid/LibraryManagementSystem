@@ -10,6 +10,7 @@ class clsTransHistoryMenu : protected clsScreen {
             LIST_BORROWED,
             LIST_RETURNED,
             LIST_PENDDING,
+            LIST_CANCELED,
             EXIT
         };
         // print main menu
@@ -26,6 +27,8 @@ class clsTransHistoryMenu : protected clsScreen {
         static void _ListReturned();
         // list Pendding
         static void _ListPendding();
+        //  LIST_CANCELED
+        static void _ListCanceled();
 
     public:
         // trans hustory screen

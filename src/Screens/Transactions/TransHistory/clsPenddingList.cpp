@@ -14,7 +14,7 @@ void clsPenddingList::_DisplayTransDetails(clsTransaction trans) {
 void clsPenddingList::PenddingListScreen() {
     // Get All transactions list from static vector
     const vector<clsTransaction> &vPendding = clsTransaction::GetPenddingList();
-    PrintHeaderScreen("PENDDING LIST", to_string(vPendding.size()), Colors::Cyan, false, 130);
+    PrintHeaderScreen("PENDDING LIST", to_string(vPendding.size()), Colors::Blue, false, 130);
     short width = 25;
     cout << Colors::GetBlue() << setfill(' ') << left << setw(width - 16) << "TransID" << left << setw(width - 10) << "OUT-Performer" << left << setw(width - 10) << "IN-Performer" << left << setw(width - 14) << "Ac-Number" << left << setw(width - 15) << "BookID" << left << setw(width - 14) << "Role" << left << setw(width - 12) << "OUT-Date" << left << setw(width - 12) << "Due-Date" << left << setw(width - 12) << "ReturnDate" << left << setw(width - 13) << "Status" << Colors::RESET() << endl;
     cout << Colors::GetBlue() << setw(130) << setfill('-') << "" << Colors::RESET() << endl;
