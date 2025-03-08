@@ -85,6 +85,11 @@ class clsTransaction {
         clsDate GetDueDate();
         clsDate GetReturnDate();
         enTransStatus GetStatus();
+        static int TransList_size();
+        static int BorrowedList_size();
+        static int ReturnedList_size();
+        static int PenddingList_size();
+        static int CanceledList_size();
 
         // is obj empty
         bool isEmpty();

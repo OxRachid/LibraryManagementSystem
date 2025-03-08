@@ -17,4 +17,4 @@ class clsUpdateSystem : protected clsScreen {
         static void UpdateSystemScreen();
 };
 
-#endif // !clsUpdateSystem_h
+#endif // !CLSUPDATESYSTEM_H
