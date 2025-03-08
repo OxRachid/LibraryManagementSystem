@@ -1,5 +1,6 @@
 #include "../../../headers/Screens/System/clsSystemManage.h"
 #include "../../../headers/Lib/clsInputValidate.h"
+#include "../../../headers/Screens/System/clsUpdateSystem.h"
 #include <asm-generic/errno.h>
 #include <iomanip>
 #include <iostream>
@@ -46,6 +47,7 @@ void clsSystemManage::_PerformOption(eMenuOptions option) {
 // UPDATE_SYSTEM
 void clsSystemManage::_UpdateSystem() {
     system("clear");
+    clsUpdateSystem::UpdateSystemScreen();
 }
 
 // system manage

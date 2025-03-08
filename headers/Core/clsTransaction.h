@@ -15,6 +15,14 @@ class clsTransaction {
             NON = 2
         };
 
+        // enum for transaction status
+        enum enTransStatus {
+            BORROWED = 0,
+            RETURNED = 1,
+            PENDDING = 2,
+            CANCELED = 3
+        };
+
     private:
         // static vector hold all Borrow books Records
         static vector<clsTransaction> _vTransactions;
@@ -24,14 +32,6 @@ class clsTransaction {
             EMPTY_MODE = 1,
             UPDATE_MODE = 2,
             ADD_MODE = 3
-        };
-
-        // enum for transaction status
-        enum enTransStatus {
-            BORROWED = 0,
-            RETURNED = 1,
-            PENDDING = 2,
-            CANCELED = 3
         };
 
         enMode _Mode;
