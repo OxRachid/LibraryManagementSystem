@@ -92,6 +92,25 @@ clsDate clsTransaction::GetReturnDate() {
 clsTransaction::enTransStatus clsTransaction::GetStatus() {
     return _Status;
 }
+int clsTransaction::TransList_size() {
+    return _vTransactions.size();
+}
+int clsTransaction::BorrowedList_size() {
+    vector<clsTransaction> vBorrowed = GetBorrowedList();
+    return vBorrowed.size();
+}
+int clsTransaction::ReturnedList_size() {
+    vector<clsTransaction> vReturned = GetReturnedList();
+    return vReturned.size();
+}
+int clsTransaction::PenddingList_size() {
+    vector<clsTransaction> vPendding = GetPenddingList();
+    return vPendding.size();
+}
+int clsTransaction::CanceledList_size() {
+    vector<clsTransaction> vCanceled = GetCanceledList();
+    return vCanceled.size();
+}
 
 // get empty obj
 clsTransaction clsTransaction::_GetEmptyRecord() {

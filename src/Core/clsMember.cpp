@@ -72,6 +72,19 @@ clsDate clsMember::GetAccountCreated_on() {
 clsMember::eAccountStatus clsMember::GetAccountStatus() {
     return _AccountStatus;
 }
+
+int clsMember::TotalMembers_Size() {
+    return vMembers.size();
+}
+int clsMember::Students_Size() {
+    vector<clsMember> vStudents = GetSpecificMembersList();
+    return vStudents.size();
+}
+int clsMember::Teachers_Size() {
+    vector<clsMember> vTeachers = GetSpecificMembersList(false);
+    return vTeachers.size();
+}
+
 // is empty
 bool clsMember::isEmpty() {
     return (_Mode == eMemberMode::EmptyMode);

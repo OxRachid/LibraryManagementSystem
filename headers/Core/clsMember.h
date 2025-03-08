@@ -84,6 +84,10 @@ class clsMember : public clsPerson {
         short GetViolations();
         clsDate GetAccountCreated_on();
         eAccountStatus GetAccountStatus();
+        static int TotalMembers_Size();
+        static int Students_Size();
+        static int Teachers_Size();
+
         // is empty
         bool isEmpty();
 

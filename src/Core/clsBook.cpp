@@ -120,6 +120,15 @@ short clsBook::GetAvailableCopies() const {
 short clsBook::GetBorrowedCopies() const {
     return _BorrowedCopies;
 }
+
+int clsBook::TotalBooks_Size() {
+    return _vBooksList.size();
+}
+int clsBook::AvailableBooks_Size() {
+    vector<clsBook> vAvailables = GetAvailableBooks();
+    return vAvailables.size();
+}
+
 // is empty
 bool clsBook::isEmpty() {
     return (_Mode == enMode::EmptyMode);

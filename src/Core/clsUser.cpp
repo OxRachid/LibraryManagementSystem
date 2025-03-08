@@ -17,6 +17,7 @@ vector<clsUser> clsUser::vUsers = {};
 // define static vector for users login info list
 vector<clsUser::stUserLogin> clsUser::vUsersLogin = {};
 
+// construcor parameter
 clsUser::clsUser(enMode mode, string username, string password, string firstname, string lastname, string email, string phone, clsDate accountCreated_on, short totalTransMade, short permissions)
     : clsPerson(firstname, lastname, email, phone) {
     _Mode = mode;
@@ -65,6 +66,11 @@ short clsUser::GetTotalTransMade() {
 short clsUser::GetPermissions() {
     return _Permissions;
 }
+
+int clsUser::UsersList_size() {
+    return vUsers.size();
+}
+
 // Get EMPTY obj
 clsUser clsUser::_GetEmptyObj() {
     return clsUser(enMode::EMPTY, // mode

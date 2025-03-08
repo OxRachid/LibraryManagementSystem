@@ -58,6 +58,7 @@ class clsUser : public clsPerson {
         stUserLogin _PrepareUserLoginInfo();
 
     public:
+        // construcor parameter
         clsUser(enMode mode,           // Mode
             string username,           // Username
             string password,           // password
@@ -90,6 +91,7 @@ class clsUser : public clsPerson {
         clsDate GetAccountCreated_on();
         short GetTotalTransMade();
         short GetPermissions();
+        static int UsersList_size();
 
         // is EMPTY
         bool isEmpty();

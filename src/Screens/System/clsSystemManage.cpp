@@ -1,5 +1,6 @@
 #include "../../../headers/Screens/System/clsSystemManage.h"
 #include "../../../headers/Lib/clsInputValidate.h"
+#include "../../../headers/Screens/System/clsStatistics.h"
 #include "../../../headers/Screens/System/clsUpdateSystem.h"
 #include <asm-generic/errno.h>
 #include <iomanip>
@@ -15,18 +16,23 @@ void clsSystemManage::_PrintMenu() {
     PrintHeaderScreen("Menu", "🔦", Colors::Cyan, false);
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Update system" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[2] Exit" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[2] Statistics" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[3] Exit" << endl;
     cout << Colors::GetCyan() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 // get user choice
 clsSystemManage::eMenuOptions clsSystemManage::_GetUserChoice() {
-    return static_cast<eMenuOptions>(clsInputValidate::Readnumberbetween(1, 2, "\n * select your option : "));
+    return static_cast<eMenuOptions>(clsInputValidate::Readnumberbetween(1, 3, "\n * select your option : "));
 }
 // Perform option
 void clsSystemManage::_PerformOption(eMenuOptions option) {
     switch (option) {
         case eMenuOptions::UPDATE_SYSTEM: {
             _UpdateSystem();
+            break;
+        }
+        case eMenuOptions::STATISTICS: {
+            _Statistics();
             break;
         }
         case eMenuOptions::EXIT: {
@@ -48,6 +54,12 @@ void clsSystemManage::_PerformOption(eMenuOptions option) {
 void clsSystemManage::_UpdateSystem() {
     system("clear");
     clsUpdateSystem::UpdateSystemScreen();
+}
+
+// STATISTICS
+void clsSystemManage::_Statistics() {
+    system("clear");
+    clsStatistics::StatisticsScreen();
 }
 
 // system manage

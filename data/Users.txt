@@ -1,9 +1,3 @@
 Admin|123|Rach|Ell|Rach@gmail.com|0689767890|2025/2/24|0|-1
 user1|555|Stev|fermin|fermin@gmail.com|0623215688|2025/2/24|0|7
 user2|888|John|kindy|john@gmail.com|0678569788|2025/2/27|0|-1
-Admin|123|Rach|Ell|Rach@gmail.com|0689767890|2025/2/24|0|-1
-user1|555|Stev|fermin|fermin@gmail.com|0623215688|2025/2/24|0|7
-user2|888|John|kindy|john@gmail.com|0678569788|2025/2/27|0|11
-Admin|123|Rach|Ell|Rach@gmail.com|0689767890|2025/2/24|0|-1
-user1|555|Stev|fermin|fermin@gmail.com|0623215688|2025/2/24|0|7
-user2|888|John|kindy|john@gmail.com|0678569788|2025/2/27|0|11

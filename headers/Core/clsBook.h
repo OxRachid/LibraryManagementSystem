@@ -70,6 +70,8 @@ class clsBook : protected clsScreen {
         short GetTotalCopies() const;
         short GetAvailableCopies() const;
         short GetBorrowedCopies() const;
+        static int TotalBooks_Size();
+        static int AvailableBooks_Size();
         // is empty
         bool isEmpty();
 

@@ -7,6 +7,7 @@ class clsSystemManage : protected clsScreen {
         // enum for menu options
         enum eMenuOptions {
             UPDATE_SYSTEM = 1,
+            STATISTICS,
             EXIT,
         };
         // print menu
@@ -17,6 +18,8 @@ class clsSystemManage : protected clsScreen {
         static void _PerformOption(eMenuOptions option);
         // UPDATE_SYSTEM
         static void _UpdateSystem();
+        // STATISTICS
+        static void _Statistics();
 
     public:
         // system manage

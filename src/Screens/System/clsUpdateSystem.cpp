@@ -13,23 +13,23 @@ using namespace std;
 // reupload data from file
 void clsUpdateSystem::_RuploadData() {
     cout << "\n Process start ..." << endl;
-    this_thread::sleep_for(chrono::seconds(2));
+    this_thread::sleep_for(chrono::milliseconds(400));
     // reupload books
     clsBook::LoadBooksFromFile();
     cout << Colors::GetGreen() << "\n  Books is up to date " << Colors::RESET() << endl;
-    this_thread::sleep_for(chrono::seconds(1));
+    this_thread::sleep_for(chrono::milliseconds(400));
     // reupload members
     clsMember::LoadMembersFromFile();
     cout << Colors::GetGreen() << "  Members is up to date " << Colors::RESET() << endl;
-    this_thread::sleep_for(chrono::seconds(1));
+    this_thread::sleep_for(chrono::milliseconds(400));
     // reupload Transactions
     clsTransaction::LoadTransactions();
     cout << Colors::GetGreen() << "  Transactions is up to date " << Colors::RESET() << endl;
-    this_thread::sleep_for(chrono::seconds(1));
+    this_thread::sleep_for(chrono::milliseconds(400));
     // reupload users
     clsUser::LoadUsersFromFile();
     cout << Colors::GetGreen() << "  Users is up to date " << Colors::RESET() << endl;
-    this_thread::sleep_for(chrono::seconds(1));
+    this_thread::sleep_for(chrono::milliseconds(400));
 }
 
 // request denied
