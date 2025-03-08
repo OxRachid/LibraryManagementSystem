@@ -35,8 +35,8 @@ clsTransaction clsCheckRequests::_GetTargetTrans() {
     return clsTransaction::Find(vPendding, AccountNumber, BookID);
 }
 
-// update transaction data
-void clsCheckRequests::_updateTransData(clsTransaction &TargetTrans) {
+// request denied
+void clsCheckRequests::_RequestDenied(clsTransaction &TargetTrans) {
     // Get TargetMember and TargetBook to update thier data
     clsMember TargetMember = clsMember::Find(TargetTrans.GetAccountNumber());
     clsBook TargetBook = clsBook::Find(TargetTrans.GetBookID());
@@ -72,7 +72,7 @@ void clsCheckRequests::CheckRequestsScreen() {
 
     // check if pick up on time
     if (!TargetTrans.isPickupOnTime()) {
-        _updateTransData(TargetTrans);
+        _RequestDenied(TargetTrans);
         return;
     }
 

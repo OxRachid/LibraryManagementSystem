@@ -11,8 +11,8 @@ class clsCheckRequests : protected clsScreen {
         static clsTransaction _GetTargetTrans();
         // Print targetTrans data
         static void _PrintTransData(clsTransaction &record);
-        // update transaction data
-        static void _updateTransData(clsTransaction &TargetTrans);
+        // request denied
+        static void _RequestDenied(clsTransaction &TargetTrans);
 
     public:
         // check requests
