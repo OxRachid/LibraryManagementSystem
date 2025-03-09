@@ -8,6 +8,7 @@ class clsSystemManage : protected clsScreen {
         enum eMenuOptions {
             UPDATE_SYSTEM = 1,
             STATISTICS,
+            CHANGE_PASSWORD,
             EXIT,
         };
         // print menu
@@ -20,6 +21,8 @@ class clsSystemManage : protected clsScreen {
         static void _UpdateSystem();
         // STATISTICS
         static void _Statistics();
+        // CHANGE_PASSWORD
+        static void _ChangePassword();
 
     public:
         // system manage

@@ -30,9 +30,9 @@ clsTransaction clsCheckRequests::_GetTargetTrans() {
     // Read AccountNumber and BookID
     string AccountNumber = clsInputValidate::ReadString(" * Enter Target Member AccountNumber : ");
     int BookID = clsInputValidate::ReadNumber<int>("\n * Enter Target Book ID : ");
-    // Get Pendding list and search for targetTrans within it and return the result of searching
-    vector<clsTransaction> vPendding = clsTransaction::GetPenddingList();
-    return clsTransaction::Find(vPendding, AccountNumber, BookID);
+    // Get Pending list and search for targetTrans within it and return the result of searching
+    vector<clsTransaction> vPending = clsTransaction::GetPendingList();
+    return clsTransaction::Find(vPending, AccountNumber, BookID);
 }
 
 // request denied
@@ -63,7 +63,7 @@ void clsCheckRequests::CheckRequestsScreen() {
 
     // check if targetTrans is empty
     if (TargetTrans.isEmpty()) {
-        cout << Colors::GetRed() << " [ There is no Pendding request ]" << Colors::RESET() << endl;
+        cout << Colors::GetRed() << " [ There is no Pending request ]" << Colors::RESET() << endl;
         return;
     }
 
@@ -82,7 +82,7 @@ void clsCheckRequests::CheckRequestsScreen() {
         TargetTrans.ConfirmRequest(CurrUser.GetUsername());
         // print trans after updating data
         _PrintTransData(TargetTrans);
-        cout << Colors::GetGreen() << " [  the request is accepted ]" << Colors::RESET() << endl;
+        cout << Colors::GetGreen() << " [  the request is confirmed  ]" << Colors::RESET() << endl;
     } else {
         cout << Colors::GetRed() << " [ the process is canceled ]" << Colors::RESET() << endl;
     }

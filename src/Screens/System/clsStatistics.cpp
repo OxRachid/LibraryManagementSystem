@@ -44,8 +44,8 @@ void clsStatistics::_TransactionsReport() {
     int TotalTrans = clsTransaction::TransList_size();
     cout << "   • Total Transactions ";
     _PrintLinePercentage(TotalTrans, TotalTrans);
-    cout << "   • Pendding ";
-    _PrintLinePercentage(TotalTrans, clsTransaction::PenddingList_size());
+    cout << "   • Pending ";
+    _PrintLinePercentage(TotalTrans, clsTransaction::PendingList_size());
     cout << "   • Borrowed ";
     _PrintLinePercentage(TotalTrans, clsTransaction::BorrowedList_size());
     cout << "   • Returned ";
