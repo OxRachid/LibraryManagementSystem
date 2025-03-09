@@ -4,6 +4,7 @@
 #include "../../headers/Lib/clsInputValidate.h"
 #include "../../headers/Screens/Books/ListBooks/clsListMenu.h"
 #include "../../headers/Screens/Books/clsFindBook.h"
+#include "../../headers/Screens/MemberDashboard/clsBorrowRequest.h"
 #include "../../headers/Screens/MemberDashboard/clsProfile.h"
 #include "../../headers/Screens/Transactions/clsTrackMembers.h"
 #include <asm-generic/errno.h>
@@ -38,8 +39,8 @@ void clsMemberDashboard::_PrintMenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[1] Profile" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[2] List Books" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[3] Find Book" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[4] Borrow Book" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[5] Return Book" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[4] Borrow Request" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[5] Cancel Request" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[6] History" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[7] Logout" << endl;
     cout << Colors::GetCyan() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
@@ -63,12 +64,12 @@ void clsMemberDashboard::_PerformOption(eMenuOptions option) {
             _FindBooks();
             break;
         }
-        case eMenuOptions::BORROW_BOOK: {
-            _BorrowBook();
+        case eMenuOptions::BORROW_REQUEST: {
+            _BorrowRequest();
             break;
         }
-        case eMenuOptions::RETURN_BOOK: {
-            _ReturnBook();
+        case eMenuOptions::CANCEL_REQUEST: {
+            _CancelRequest();
             break;
         }
         case eMenuOptions::MEMBER_HISTORY: {
@@ -104,11 +105,12 @@ void clsMemberDashboard::_FindBooks() {
     clsFindBook::FindBookScreen();
 }
 // BORROW_BOOK screen
-void clsMemberDashboard::_BorrowBook() {
+void clsMemberDashboard::_BorrowRequest() {
     system("clear");
+    clsBorrowRequest::BorrowRequestScreen();
 }
 // RETURN_BOOK screen
-void clsMemberDashboard::_ReturnBook() {
+void clsMemberDashboard::_CancelRequest() {
     system("clear");
 }
 // HISTORY

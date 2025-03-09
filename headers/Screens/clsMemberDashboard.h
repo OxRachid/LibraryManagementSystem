@@ -10,12 +10,12 @@ class clsMemberDashboard : protected clsScreen {
         // enum for menu menu Options
         enum eMenuOptions {
             PROFILE = 1,
-            LIST_BOOKS = 2,
-            FIND_BOOKS = 3,
-            BORROW_BOOK = 4,
-            RETURN_BOOK = 5,
-            MEMBER_HISTORY = 6,
-            LOGOUT = 7
+            LIST_BOOKS,
+            FIND_BOOKS,
+            BORROW_REQUEST,
+            CANCEL_REQUEST,
+            MEMBER_HISTORY,
+            LOGOUT
         };
 
         // func to lead data from file
@@ -33,9 +33,9 @@ class clsMemberDashboard : protected clsScreen {
         // FIND_BOOKS screen
         static void _FindBooks();
         // BORROW_BOOK screen
-        static void _BorrowBook();
-        // RETURN_BOOK screen
-        static void _ReturnBook();
+        static void _BorrowRequest();
+        // CANCEL_REQUEST screen
+        static void _CancelRequest();
         // HISTORY
         static void _MemberHistory();
 

@@ -1,6 +1,6 @@
 98169|The Silent Patient|Alex Michaelides|978-1250301697|1|Psychological Thriller|2020/5/15|4|4|0
-31382|Atomic Habits|James Clear|978-0735211292|1|Self-Help|2018/3/10|3|3|0
+31382|Atomic Habits|James Clear|978-0735211292|1|Self-Help|2018/3/10|3|2|1
 47925|The Alchemist|Paulo Coelho|978-0062315007|1|Fiction|2015/7/22|5|5|0
-15151|The Hobbit|J.R.R. Tolkien|978-0547928227|1|Fantasy|2012/9/5|2|2|0
-43425|1984|George Orwell|978-0451524935|1|Dystopian Fiction|2021/6/18|5|5|0
-69355|1984|George Orwell|978-0451524936|2|Dystopian Fiction|2022/2/1|3|2|1
+15151|The Hobbit|J.R.R. Tolkien|978-0547928227|1|Fantasy|2012/9/5|2|1|1
+43425|1984|George Orwell|978-0451524935|1|Dystopian Fiction|2021/6/18|5|4|1
+69355|1984|George Orwell|978-0451524936|2|Dystopian Fiction|2022/2/1|3|1|2
