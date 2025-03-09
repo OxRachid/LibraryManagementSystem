@@ -25,8 +25,8 @@ class clsTransHistoryMenu : protected clsScreen {
         static void _ListBorrowed();
         // list returned
         static void _ListReturned();
-        // list Pendding
-        static void _ListPendding();
+        // list Pending
+        static void _ListPending();
         //  LIST_CANCELED
         static void _ListCanceled();
 

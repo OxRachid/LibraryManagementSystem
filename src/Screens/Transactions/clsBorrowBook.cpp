@@ -99,7 +99,7 @@ void clsBorrowBook::BorrowBookScreen() {
 
     // checks if a member has already borrowed the same book and has not returned it yet
     if (clsTransaction::isBookStillBorrowedByMember(TargetMember.GetAccountNumber(), TargetBook.GetID())) {
-        cout << Colors::GetRed() << " [ This book was Borrowed and not returned or accepted yet  ]" << Colors::RESET() << endl;
+        cout << Colors::GetRed() << " [ This book is in Pending or Borrowed mode  ]" << Colors::RESET() << endl;
         return;
     }
 

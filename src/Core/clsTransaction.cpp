@@ -103,9 +103,9 @@ int clsTransaction::ReturnedList_size() {
     vector<clsTransaction> vReturned = GetReturnedList();
     return vReturned.size();
 }
-int clsTransaction::PenddingList_size() {
-    vector<clsTransaction> vPendding = GetPenddingList();
-    return vPendding.size();
+int clsTransaction::PendingList_size() {
+    vector<clsTransaction> vPending = GetPendingList();
+    return vPending.size();
 }
 int clsTransaction::CanceledList_size() {
     vector<clsTransaction> vCanceled = GetCanceledList();
@@ -144,7 +144,7 @@ clsTransaction clsTransaction::_GetAddModeRecord(string accountnumber, int book_
         clsDate(),                          // _CheckoutDate
         clsDate(),                          // _DueDate
         DEFAULT_DATE,                       // _ReturnDate
-        enTransStatus::PENDDING             // _Status
+        enTransStatus::PENDING              // _Status
     );
 }
 
@@ -338,16 +338,16 @@ vector<clsTransaction> clsTransaction::GetReturnedList() {
     return vReturned;
 }
 
-// Get pendding list
-vector<clsTransaction> clsTransaction::GetPenddingList() {
-    vector<clsTransaction> vPendding;
+// Get pending list
+vector<clsTransaction> clsTransaction::GetPendingList() {
+    vector<clsTransaction> vPending;
     for (clsTransaction &trans : _vTransactions) {
-        if (trans.GetStatus() == enTransStatus::PENDDING) {
-            vPendding.push_back(trans);
+        if (trans.GetStatus() == enTransStatus::PENDING) {
+            vPending.push_back(trans);
         }
     }
 
-    return vPendding;
+    return vPending;
 }
 
 // Get canceled list
@@ -418,7 +418,7 @@ void clsTransaction::log_borrowing_transaction(string accountnumber, int book_ID
 
 // convert enum book status to string
 string clsTransaction::BookStatusToString() {
-    return (_Status == enTransStatus::RETURNED) ? "RETURNED" : (_Status == enTransStatus::BORROWED) ? "BORROWED" : (_Status == enTransStatus::PENDDING) ? "PENDDING" : "CANCELED";
+    return (_Status == enTransStatus::RETURNED) ? "RETURNED" : (_Status == enTransStatus::BORROWED) ? "BORROWED" : (_Status == enTransStatus::PENDING) ? "PENDING" : "CANCELED";
 }
 
 // convert enum eMemberRole to string

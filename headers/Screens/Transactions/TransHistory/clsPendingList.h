@@ -3,14 +3,14 @@
 
 #include "../../../Core/clsTransaction.h"
 #include "../../clsScreen.h"
-class clsPenddingList : protected clsScreen {
+class clsPendingList : protected clsScreen {
     private:
         // display trans details
         static void _DisplayTransDetails(clsTransaction trans);
 
     public:
         // list pendding transactions
-        static void PenddingListScreen();
+        static void PendingListScreen();
 };
 
 #endif // !CLSPENDDINGLIST_H

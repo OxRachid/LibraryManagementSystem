@@ -19,7 +19,7 @@ class clsTransaction {
         enum enTransStatus {
             BORROWED = 0,
             RETURNED = 1,
-            PENDDING = 2,
+            PENDING = 2,
             CANCELED = 3
         };
 
@@ -88,7 +88,7 @@ class clsTransaction {
         static int TransList_size();
         static int BorrowedList_size();
         static int ReturnedList_size();
-        static int PenddingList_size();
+        static int PendingList_size();
         static int CanceledList_size();
 
         // is obj empty
@@ -126,7 +126,7 @@ class clsTransaction {
         // Get returned list
         static vector<clsTransaction> GetReturnedList();
         // Get pendding list
-        static vector<clsTransaction> GetPenddingList();
+        static vector<clsTransaction> GetPendingList();
         // Get canceled list
         static vector<clsTransaction> GetCanceledList();
         // Get all transactions by specific member

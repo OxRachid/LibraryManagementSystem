@@ -1,5 +1,6 @@
 #include "../../../headers/Screens/System/clsSystemManage.h"
 #include "../../../headers/Lib/clsInputValidate.h"
+#include "../../../headers/Screens/System/clsChangePassword.h"
 #include "../../../headers/Screens/System/clsStatistics.h"
 #include "../../../headers/Screens/System/clsUpdateSystem.h"
 #include <asm-generic/errno.h>
@@ -17,12 +18,13 @@ void clsSystemManage::_PrintMenu() {
     const short width = 24;
     cout << setw(width) << setfill(' ') << " " << left << "[1] Update system" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[2] Statistics" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[3] Exit" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[3] Change Password" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[4] Exit" << endl;
     cout << Colors::GetCyan() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 // get user choice
 clsSystemManage::eMenuOptions clsSystemManage::_GetUserChoice() {
-    return static_cast<eMenuOptions>(clsInputValidate::Readnumberbetween(1, 3, "\n * select your option : "));
+    return static_cast<eMenuOptions>(clsInputValidate::Readnumberbetween(1, 4, "\n * select your option : "));
 }
 // Perform option
 void clsSystemManage::_PerformOption(eMenuOptions option) {
@@ -33,6 +35,10 @@ void clsSystemManage::_PerformOption(eMenuOptions option) {
         }
         case eMenuOptions::STATISTICS: {
             _Statistics();
+            break;
+        }
+        case eMenuOptions::CHANGE_PASSWORD: {
+            _ChangePassword();
             break;
         }
         case eMenuOptions::EXIT: {
@@ -60,6 +66,11 @@ void clsSystemManage::_UpdateSystem() {
 void clsSystemManage::_Statistics() {
     system("clear");
     clsStatistics::StatisticsScreen();
+}
+// CHANGE_PASSWORD
+void clsSystemManage::_ChangePassword() {
+    system("clear");
+    clsChangePassword::ChangePasswordScreen();
 }
 
 // system manage

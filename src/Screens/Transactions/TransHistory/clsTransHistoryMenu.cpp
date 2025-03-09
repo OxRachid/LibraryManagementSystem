@@ -3,7 +3,7 @@
 #include "../../../../headers/Screens/Transactions/TransHistory/clsBorrowedList.h"
 #include "../../../../headers/Screens/Transactions/TransHistory/clsCanceledList.h"
 #include "../../../../headers/Screens/Transactions/TransHistory/clsListAllTrans.h"
-#include "../../../../headers/Screens/Transactions/TransHistory/clsPenddingList.h"
+#include "../../../../headers/Screens/Transactions/TransHistory/clsPendingList.h"
 #include "../../../../headers/Screens/Transactions/TransHistory/clsReturnedList.h"
 #include <cstdlib>
 #include <iomanip>
@@ -21,7 +21,7 @@ void clsTransHistoryMenu::_PrintNenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[1] All" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[2] Borrowed" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[3] Returned" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[4] Pendding" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[4] Pending" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[5] Canceled" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[6] Exit" << endl;
     cout << Colors::GetMagenta() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
@@ -48,7 +48,7 @@ void clsTransHistoryMenu::_PerformOption(enTransMenuOptions option) {
             break;
         }
         case enTransMenuOptions::LIST_PENDDING: {
-            _ListPendding();
+            _ListPending();
             break;
         }
         case enTransMenuOptions::LIST_CANCELED: {
@@ -83,10 +83,10 @@ void clsTransHistoryMenu::_ListReturned() {
     system("clear");
     clsReturnedList::ReturnedListScreen();
 }
-// list Pendding
-void clsTransHistoryMenu::_ListPendding() {
+// list Pending
+void clsTransHistoryMenu::_ListPending() {
     system("clear");
-    clsPenddingList::PenddingListScreen();
+    clsPendingList::PendingListScreen();
 }
 //  LIST_CANCELED
 void clsTransHistoryMenu::_ListCanceled() {
