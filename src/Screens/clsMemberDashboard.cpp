@@ -5,6 +5,7 @@
 #include "../../headers/Screens/Books/ListBooks/clsListMenu.h"
 #include "../../headers/Screens/Books/clsFindBook.h"
 #include "../../headers/Screens/MemberDashboard/clsBorrowRequest.h"
+#include "../../headers/Screens/MemberDashboard/clsCancelRequest.h"
 #include "../../headers/Screens/MemberDashboard/clsProfile.h"
 #include "../../headers/Screens/Transactions/clsTrackMembers.h"
 #include <asm-generic/errno.h>
@@ -112,6 +113,7 @@ void clsMemberDashboard::_BorrowRequest() {
 // RETURN_BOOK screen
 void clsMemberDashboard::_CancelRequest() {
     system("clear");
+    clsCancelRequest::CancelRequestScreen();
 }
 // HISTORY
 void clsMemberDashboard::_MemberHistory() {

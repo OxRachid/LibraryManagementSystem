@@ -1,11 +1,10 @@
-#ifndef CLSCHECKREQUESTS_H
-#define CLSCHECKREQUESTS_H
+#ifndef CLSCANCELREQUEST_H
+#define CLSCANCELREQUEST_H
 
-#include "../../Core/clsBook.h"
-#include "../../Core/clsMember.h"
 #include "../../Core/clsTransaction.h"
 #include "../clsScreen.h"
-class clsCheckRequests : protected clsScreen {
+#include <type_traits>
+class clsCancelRequest : protected clsScreen {
     private:
         // get target trans
         static clsTransaction _GetTargetTrans();
@@ -15,8 +14,8 @@ class clsCheckRequests : protected clsScreen {
         static void _RequestCanceled(clsTransaction &TargetTrans);
 
     public:
-        // check requests
-        static void CheckRequestsScreen();
+        // Cancel Request
+        static void CancelRequestScreen();
 };
 
-#endif // !clsCheckRequests_h
+#endif // !clsCancelRequest_h
