@@ -1,15 +1,16 @@
-#include "../../../headers/Screens/Transactions/clsCheckRequests.h"
+#include "../../../headers/Screens/MemberDashboard/clsCancelRequest.h"
+#include "../../../headers/Core/clsBook.h"
+#include "../../../headers/Core/clsMember.h"
 #include "../../../headers/Core/clsTransaction.h"
 #include "../../../headers/Core/global.h"
 #include "../../../headers/Lib/clsInputValidate.h"
 #include <iomanip>
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
 
 // Print targetTrans data
-void clsCheckRequests::_PrintTransData(clsTransaction &record) {
+void clsCancelRequest::_PrintTransData(clsTransaction &record) {
     cout << endl;
     PrintHeaderScreen("[Transaction Data]", "💡", Colors::Blue, false, 41);
     cout << Colors::GetBlue() << left << setw(20) << setfill(' ') << " Transaction ID" << " : " << record.GetTrans_ID() << endl;
@@ -26,42 +27,36 @@ void clsCheckRequests::_PrintTransData(clsTransaction &record) {
 }
 
 // get target trans
-clsTransaction clsCheckRequests::_GetTargetTrans() {
-    // Read AccountNumber and BookID
-    string AccountNumber = clsInputValidate::ReadString(" * Enter Target Member AccountNumber : ");
+clsTransaction clsCancelRequest::_GetTargetTrans() {
+    // Read BookID
     int BookID = clsInputValidate::ReadNumber<int>("\n * Enter Target Book ID : ");
     // Get Pending list and search for targetTrans within it and return the result of searching
     vector<clsTransaction> vPending = clsTransaction::GetPendingList();
-    return clsTransaction::Find(vPending, AccountNumber, BookID);
+    return clsTransaction::Find(vPending, CurrMember.GetAccountNumber(), BookID);
 }
 
 // request denied
-void clsCheckRequests::_RequestCanceled(clsTransaction &TargetTrans) {
-    // Get TargetMember and TargetBook to update thier data
-    clsMember TargetMember = clsMember::Find(TargetTrans.GetAccountNumber());
+void clsCancelRequest::_RequestCanceled(clsTransaction &TargetTrans) {
+    // Get TargetBook to update data
     clsBook TargetBook = clsBook::Find(TargetTrans.GetBookID());
     // update TargetMember and TargetBook and targetTrans after the request is canceled
     // update member data
-    TargetMember.ReturnBook(true);
+    CurrMember.ReturnBook();
     // update book data
     TargetBook.ReturnBook();
     // update Transaction data
     TargetTrans.RequestCanceled();
-
-    cout << Colors::GetRed() << "\n [ the request is canceled, the ticket date is expired ]" << Colors::RESET() << endl;
-    cout << Colors::GetRed() << " > the expected time to recieve the book is between : \n ( " << clsDate::GetDateAndTimeForPrint(TargetTrans.GetCheckoutDate()) << " - " << clsDate::GetDateAndTimeForPrint(TargetTrans.ExpectedDateToRecieveBook()) << " )" << Colors::RESET() << endl;
-    _PrintTransData(TargetTrans);
 }
 
-// check requests
-void clsCheckRequests::CheckRequestsScreen() {
-    PrintHeaderScreen("CHECK REQUESTS", "📥", Colors::Yellow);
+// Cancel Request
+void clsCancelRequest::CancelRequestScreen() {
+    PrintHeaderScreen("CANCEL REQUEST", "❌", Colors::Magenta);
     cout << "\n\n";
 
     // Get TargetTrans
     clsTransaction TargetTrans = _GetTargetTrans();
-
     // check if targetTrans is empty
+
     if (TargetTrans.isEmpty()) {
         cout << Colors::GetRed() << " [ There is no Pending request ]" << Colors::RESET() << endl;
         return;
@@ -70,19 +65,12 @@ void clsCheckRequests::CheckRequestsScreen() {
     //  if targetTrans is exist then  print TargetTrans data
     _PrintTransData(TargetTrans);
 
-    // check if pick up on time
-    if (!TargetTrans.isPickupOnTime()) {
+    if (clsInputValidate::AskUser("\n ⊙ are u sure wanna cancel this request")) {
+        // cancel the request
         _RequestCanceled(TargetTrans);
-        return;
-    }
-
-    // perform the action
-    if (clsInputValidate::AskUser("\n ⊕ are you sure wanna confirm this request")) {
-        // confirm request
-        TargetTrans.ConfirmRequest(CurrUser.GetUsername());
-        // print trans after updating data
+        // print trans data after canceled
         _PrintTransData(TargetTrans);
-        cout << Colors::GetGreen() << " [  the request is confirmed  ]" << Colors::RESET() << endl;
+        cout << Colors::GetGreen() << " the request is canceled  " << Colors::RESET() << endl;
     } else {
         cout << Colors::GetRed() << " [ the process is canceled ]" << Colors::RESET() << endl;
     }
