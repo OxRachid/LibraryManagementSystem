@@ -6,10 +6,25 @@
 using namespace std;
 
 // Read string from a user
-string clsInputValidate::ReadString(string text) {
+string clsInputValidate::ReadString(string prompt) {
     string input;
-    cout << Colors::GetMagenta() << text << Colors::RESET();
+    cout << Colors::GetMagenta() << prompt << Colors::RESET();
     getline(cin >> ws, input);
+    return input;
+}
+
+// Read string that is greater than specific length
+string clsInputValidate::ReadStringGreaterThan(short length, string prompt) {
+    string input = "";
+    bool isValid = false;
+    do {
+        if (isValid) {
+            cout << Colors::GetRed() << " the key must be greater than " << length << " charachters." << Colors::RESET() << endl;
+        }
+        input = ReadString(prompt);
+        isValid = (input.length() < 5);
+    } while (isValid);
+
     return input;
 }
 

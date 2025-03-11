@@ -111,8 +111,8 @@ class clsMember : public clsPerson {
         static vector<clsMember> GetSpecificMembersList(bool ByStudents = true);
         // enum for save result mode
         enum enSaveMode {
-            SaveFailed = 1,
-            SaveSuccess = 2
+            SAVE_SUCCESS = 1,
+            SAVE_FAILED,
         };
         // save
         enSaveMode save();

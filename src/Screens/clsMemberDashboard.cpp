@@ -6,6 +6,7 @@
 #include "../../headers/Screens/Books/clsFindBook.h"
 #include "../../headers/Screens/MemberDashboard/clsBorrowRequest.h"
 #include "../../headers/Screens/MemberDashboard/clsCancelRequest.h"
+#include "../../headers/Screens/MemberDashboard/clsMemberChangePass.h"
 #include "../../headers/Screens/MemberDashboard/clsProfile.h"
 #include "../../headers/Screens/Transactions/clsTrackMembers.h"
 #include <asm-generic/errno.h>
@@ -43,12 +44,13 @@ void clsMemberDashboard::_PrintMenu() {
     cout << setw(width) << setfill(' ') << " " << left << "[4] Borrow Request" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[5] Cancel Request" << endl;
     cout << setw(width) << setfill(' ') << " " << left << "[6] History" << endl;
-    cout << setw(width) << setfill(' ') << " " << left << "[7] Logout" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[7] Change Password" << endl;
+    cout << setw(width) << setfill(' ') << " " << left << "[8] Logout" << endl;
     cout << Colors::GetCyan() << setw(66) << setfill('-') << "" << Colors::RESET() << endl;
 }
 // Read user choice
 clsMemberDashboard::eMenuOptions clsMemberDashboard::_GetUserChoice() {
-    return static_cast<eMenuOptions>(clsInputValidate::Readnumberbetween(1, 7, "\n * select your option : "));
+    return static_cast<eMenuOptions>(clsInputValidate::Readnumberbetween(1, 8, "\n * select your option : "));
 }
 // Perform main menu Options
 void clsMemberDashboard::_PerformOption(eMenuOptions option) {
@@ -75,6 +77,10 @@ void clsMemberDashboard::_PerformOption(eMenuOptions option) {
         }
         case eMenuOptions::MEMBER_HISTORY: {
             _MemberHistory();
+            break;
+        }
+        case eMenuOptions::CHANGE_PASSWORD: {
+            _ChangePassword();
             break;
         }
         case eMenuOptions::LOGOUT: {
@@ -119,6 +125,11 @@ void clsMemberDashboard::_CancelRequest() {
 void clsMemberDashboard::_MemberHistory() {
     system("clear");
     clsTrackMembers::TrackMembersScreen();
+}
+// CHANGE_PASSWORD
+void clsMemberDashboard::_ChangePassword() {
+    system("clear");
+    clsMemberChangePass::MemberChangePassScreen();
 }
 
 // member dashboard Screen

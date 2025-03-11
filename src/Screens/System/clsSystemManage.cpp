@@ -1,8 +1,8 @@
 #include "../../../headers/Screens/System/clsSystemManage.h"
 #include "../../../headers/Lib/clsInputValidate.h"
-#include "../../../headers/Screens/System/clsChangePassword.h"
 #include "../../../headers/Screens/System/clsStatistics.h"
 #include "../../../headers/Screens/System/clsUpdateSystem.h"
+#include "../../../headers/Screens/System/clsUserChangePass.h"
 #include <asm-generic/errno.h>
 #include <iomanip>
 #include <iostream>
@@ -70,7 +70,7 @@ void clsSystemManage::_Statistics() {
 // CHANGE_PASSWORD
 void clsSystemManage::_ChangePassword() {
     system("clear");
-    clsChangePassword::ChangePasswordScreen();
+    clsUserChangePass::UserChangePassScreen();
 }
 
 // system manage

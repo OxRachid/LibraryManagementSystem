@@ -52,7 +52,7 @@ void clsAddNewMember::_ReadMemberData(clsMember &member) {
     member.SetEmail(clsInputValidate::ReadString(" ⊙ Enter Email : "));
     member.SetPhone(clsInputValidate::ReadString(" ⊙ Enter Phone : "));
     member.SetRole(_GetRoleChoice());
-    member.SetPassword(clsInputValidate::ReadString(" ⊙ Enter Password : "));
+    member.SetPassword(clsInputValidate::ReadStringGreaterThan(5, " ⊙ Enter Password : "));
 }
 
 // Get member obj to Add
@@ -73,12 +73,12 @@ void clsAddNewMember::AddNewMemberScreen() {
     // Save the new member to file
     clsMember::enSaveMode Result = member.save();
     switch (Result) {
-        case clsMember::enSaveMode::SaveSuccess: {
+        case clsMember::enSaveMode::SAVE_SUCCESS: {
             _PrintMemberData(member);
             cout << Colors::GetGreen() << " [ Member Added Succesfully ]" << Colors::RESET() << endl;
             break;
         }
-        case clsMember::enSaveMode::SaveFailed: {
+        case clsMember::enSaveMode::SAVE_FAILED: {
             cout << Colors::GetRed() << " [ The Proccess Failed ]" << Colors::RESET() << endl;
             break;
         }

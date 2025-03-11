@@ -73,7 +73,7 @@ void clsAddUser::_ReadUserData(clsUser &user) {
     user.SetLastName(clsInputValidate::ReadString(" ⊙ Enter lastname : "));
     user.SetEmail(clsInputValidate::ReadString(" ⊙ Enter Email : "));
     user.SetPhone(clsInputValidate::ReadString(" ⊙ Enter Phone : "));
-    user.SetPassword(clsInputValidate::ReadString(" ⊙ Enter Password : "));
+    user.SetPassword(clsInputValidate::ReadStringGreaterThan(5, " ⊙ Enter Password : "));
     user.SetPermissions(_GetPermissions());
 }
 // Get user obj to Add

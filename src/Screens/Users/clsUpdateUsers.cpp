@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <utility>
+#include <vector>
 using namespace std;
 
 // Print member data
@@ -74,6 +76,7 @@ short clsUpdateUsers::_GetPermissions() {
 // Read new data
 void clsUpdateUsers::_ReadNewData(clsUser &user) {
     PrintHeaderScreen("Read New Data", "👤", Colors::Magenta, false, 54);
+
     if (clsInputValidate::AskUser("\n □ Rename firstname ")) {
         user.SetFirstName(clsInputValidate::ReadString("\n ⊙ Enter new firstname : "));
         cout << Colors::GetGreen() << " [ firstname Renamed Succesfully ]" << endl;
@@ -91,7 +94,7 @@ void clsUpdateUsers::_ReadNewData(clsUser &user) {
         cout << Colors::GetGreen() << " [ Phone updated Succesfully ]" << endl;
     }
     if (clsInputValidate::AskUser("\n □ Change Password ")) {
-        user.SetPassword(clsInputValidate::ReadString("\n ⊙ Enter new Password : "));
+        user.SetPassword(clsInputValidate::ReadStringGreaterThan(5, "\n ⊙ Enter new Password : "));
         cout << Colors::GetGreen() << " [ Password changed Succesfully ]" << endl;
     }
     if (clsInputValidate::AskUser("\n □ Update Permissions ")) {
