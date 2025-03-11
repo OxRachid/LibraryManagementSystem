@@ -1,5 +1,6 @@
 #include "../../headers/Core/clsMember.h"
 #include "../../headers/Lib/clsString.h"
+#include "../../headers/Lib/clsUtil.h"
 #include "../../headers/Lib/constants.h"
 #include <cctype>
 #include <fstream>
@@ -130,7 +131,7 @@ clsMember clsMember::_LineToMember(string line, string seperator) {
 
     return clsMember(eMemberMode::UpdateMode, // Member mode (update existing member)
         vStr[0],                              // Account number
-        vStr[1],                              // Password
+        clsUtil::DecryptText(vStr[1]),        // Password
         vStr[2],                              // First name
         vStr[3],                              // Last name
         vStr[4],                              // Email
@@ -146,7 +147,7 @@ clsMember clsMember::_LineToMember(string line, string seperator) {
 string clsMember::_MemberToLine(string seperator) {
     string line = "";
     line += _AccountNumber + seperator;
-    line += _Password + seperator;
+    line += clsUtil::EncryptText(_Password) + seperator;
     line += GetFirstName() + seperator;
     line += GetLastName() + seperator;
     line += GetEmail() + seperator;
@@ -352,19 +353,19 @@ bool clsMember::ResetMembers() {
 clsMember::enSaveMode clsMember::save() {
     switch (_Mode) {
         case eMemberMode::EmptyMode: {
-            return enSaveMode::SaveFailed;
+            return enSaveMode::SAVE_FAILED;
             break;
         }
         case eMemberMode::AddNewMode: {
             // change _mode befor add it to vector
             _Mode = eMemberMode::UpdateMode;
             _addMember();
-            return enSaveMode::SaveSuccess;
+            return enSaveMode::SAVE_SUCCESS;
             break;
         }
         case eMemberMode::UpdateMode: {
             _updateMember();
-            return enSaveMode::SaveSuccess;
+            return enSaveMode::SAVE_SUCCESS;
             break;
         }
         default:

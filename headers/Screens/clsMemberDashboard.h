@@ -15,6 +15,7 @@ class clsMemberDashboard : protected clsScreen {
             BORROW_REQUEST,
             CANCEL_REQUEST,
             MEMBER_HISTORY,
+            CHANGE_PASSWORD,
             LOGOUT
         };
 
@@ -38,6 +39,8 @@ class clsMemberDashboard : protected clsScreen {
         static void _CancelRequest();
         // HISTORY
         static void _MemberHistory();
+        // CHANGE_PASSWORD
+        static void _ChangePassword();
 
     public:
         // member dashboard Screen

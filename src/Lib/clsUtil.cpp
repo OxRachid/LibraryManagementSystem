@@ -178,7 +178,7 @@ string clsUtil::EncryptText(string text, short key) {
 
 string clsUtil::DecryptText(string text, short key) {
     const string RandomChars = "N+pyEBdHfJWLzk(Z{K<TD2gXeF!sxQct5V$v@j*q&91ua}%)6?-mUYMn:RO#4iIS8l73=rbCGwohAP;^>,[]_.|";
-    string Decrypted;
+    string Decrypted = "";
     for (size_t i = 0; i < text.length(); i += 3) {
         for (size_t j = 0; j < RandomChars.length(); j++) {
             if (text[i] == RandomChars[j]) {

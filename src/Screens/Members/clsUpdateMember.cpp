@@ -73,7 +73,7 @@ void clsUpdateMember::_ReadNewData(clsMember &member) {
         cout << Colors::GetGreen() << " [ Role updated Succesfully ]" << endl;
     }
     if (clsInputValidate::AskUser("\n □ Update Password ")) {
-        member.SetPassword(clsInputValidate::ReadString("\n * Enter New Password : "));
+        member.SetPassword(clsInputValidate::ReadStringGreaterThan(5, "\n * Enter New Password : "));
         cout << Colors::GetGreen() << " [ Password updated Succesfully ]" << endl;
     }
     if (clsInputValidate::AskUser("\n □ Update TotalBorrowedBooks ")) {
@@ -100,12 +100,12 @@ void clsUpdateMember::UpdateMemberScreen() {
         // Save updated member
         clsMember::enSaveMode Result = TargetMember.save();
         switch (Result) {
-            case clsMember::enSaveMode::SaveSuccess: {
+            case clsMember::enSaveMode::SAVE_SUCCESS: {
                 _PrintMemberData(TargetMember);
                 cout << Colors::GetGreen() << " [ Member Data Updated Succesfully ]" << Colors::RESET() << endl;
                 break;
             }
-            case clsMember::enSaveMode::SaveFailed: {
+            case clsMember::enSaveMode::SAVE_FAILED: {
                 cout << Colors::GetRed() << " [ Update Failed ]" << Colors::RESET() << endl;
                 break;
             }

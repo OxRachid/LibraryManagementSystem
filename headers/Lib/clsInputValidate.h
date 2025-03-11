@@ -5,6 +5,7 @@
 #include <cmath>
 #include <ctime>
 #include <iostream>
+#include <string>
 using namespace std;
 
 class clsInputValidate {
@@ -16,7 +17,9 @@ class clsInputValidate {
         static bool AskUser(string action);
 
         // Read string from a user
-        static string ReadString(string text);
+        static string ReadString(string prompt);
+        // Read string that is greater than specific length
+        static string ReadStringGreaterThan(short length, string prompt);
 
         // Read Char
         static char ReadChar();

@@ -1,5 +1,6 @@
 #include "../../headers/Core/clsUser.h"
 #include "../../headers/Lib/clsString.h"
+#include "../../headers/Lib/clsUtil.h"
 #include "../../headers/Lib/constants.h"
 #include <__config>
 #include <fstream>
@@ -102,23 +103,23 @@ clsUser clsUser::GetAddUserObjMode(string username) {
 // convert line to user obj
 clsUser clsUser::LineToUser(string line, string seperator) {
     vector<string> vStr = clsString::Split(line, seperator);
-    return clsUser(enMode::UPDATE, // mode
-        vStr[0],                   // username
-        vStr[1],                   // password
-        vStr[2],                   // firstname
-        vStr[3],                   // lastname
-        vStr[4],                   // email
-        vStr[5],                   // phone
-        clsDate(vStr[6]),          // accountcreated_on
-        stoi(vStr[7]),             // totalTransMade
-        stoi(vStr[8]));            // permissions
+    return clsUser(enMode::UPDATE,     // mode
+        vStr[0],                       // username
+        clsUtil::DecryptText(vStr[1]), // password
+        vStr[2],                       // firstname
+        vStr[3],                       // lastname
+        vStr[4],                       // email
+        vStr[5],                       // phone
+        clsDate(vStr[6]),              // accountcreated_on
+        stoi(vStr[7]),                 // totalTransMade
+        stoi(vStr[8]));                // permissions
 }
 
 // convert user obj to line
 string clsUser::UserToLine(string seperator) {
     string line = "";
     line += _Username + seperator;
-    line += _Password + seperator;
+    line += clsUtil::EncryptText(_Password) + seperator;
     line += GetFirstName() + seperator;
     line += GetLastName() + seperator;
     line += GetEmail() + seperator;
@@ -140,14 +141,17 @@ clsUser::stUserLogin clsUser::_PrepareUserLoginInfo() {
 // Convert line to UserLogin obj
 clsUser::stUserLogin clsUser::_LineToUserLogin(string line, string seperator) {
     vector<string> vStr = clsString::Split(line, seperator);
-    return stUserLogin(vStr[0], vStr[1], stoi(vStr[2]), vStr[3]);
+    return stUserLogin(vStr[0],        // username
+        clsUtil::DecryptText(vStr[1]), // password
+        stoi(vStr[2]),                 // permissions
+        vStr[3]);                      // loginTime
 }
 
 // convert UserLogin to line
 string clsUser::_UserLoginToLine(stUserLogin log, string seperator) {
     string dataline = "";
     dataline += log._username + seperator;
-    dataline += log._password + seperator;
+    dataline += clsUtil::EncryptText(log._password) + seperator;
     dataline += to_string(log._permissions) + seperator;
     dataline += log._loginTime;
     return dataline;
