@@ -100,7 +100,7 @@ If you are using Windows, you may need to replace system("clear") with system("c
    ./Output_Dir/MyProgramRun  # Linux/Mac
    Output_Dir\MyProgramRun.exe  # Windows
    ```
-   Or use **make Run** to run in one go!
+   Or use `make Run` to run in one go!
 
 - Clean Up:
    To remove built files
