@@ -9,7 +9,7 @@ class clsWhoAreYou : protected clsScreen {
         // enum for login options
         enum eLoginOptions {
             USER_LOGIN = 1,
-            MEMBER_LOGIN = 2,
+            MEMBER_AUTH = 2,
             EXIT = 3
         };
         // print menu
@@ -21,7 +21,7 @@ class clsWhoAreYou : protected clsScreen {
         // user login screen
         static void _UserLogin();
         // member login screen
-        static void _MemberLogin();
+        static void _MemberAuth();
 
     public:
         // Who are you screen

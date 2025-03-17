@@ -133,6 +133,8 @@ class clsTransaction {
         static vector<clsTransaction> GetTransactionsForMember(string accountnumber);
         // Get all transactions by specific book
         static vector<clsTransaction> GetTransactionsForBook(int book_ID);
+        // Get requests counter for specific member
+        static short GetRequestsCounter(string accountnumber);
         // create BorrowRecords register
         static void log_borrowing_transaction(string accountnumber, int book_ID, enRole role);
         // convert enum book status to string
@@ -149,6 +151,7 @@ class clsTransaction {
         void RequestCanceled();
         // expected date to recieve book
         clsDate ExpectedDateToRecieveBook();
+
         // enum for saving result
         enum eSaveMode {
             SAVE_FAILED = 1,

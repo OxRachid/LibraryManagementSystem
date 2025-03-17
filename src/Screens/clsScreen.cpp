@@ -2,6 +2,8 @@
 #include "../../headers/Core/global.h"
 #include "../../headers/Lib/Colors.h"
 #include "../../headers/Lib/clsDate.h"
+#include <cstddef>
+#include <cstdlib>
 #include <iomanip>
 #include <iostream>
 #include <string>

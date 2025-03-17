@@ -1,7 +1,7 @@
 #include "../../headers/Screens/clsWhoAreYou.h"
 #include "../../headers/Lib/clsInputValidate.h"
-#include "../../headers/Screens/Members/clsMemberLogin.h"
-#include "../../headers/Screens/Users/clsUserLogin.h"
+#include "../../headers/Screens/MemberDashboard/clsMemberAuth.h"
+#include "../../headers/Screens/UserDashboard/clsUserLogin.h"
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -29,22 +29,13 @@ void clsWhoAreYou::_PerformOption(eLoginOptions option) {
             exit(0);
             break;
         }
-        case eLoginOptions::MEMBER_LOGIN: {
-            _MemberLogin();
-            exit(0);
+        case eLoginOptions::MEMBER_AUTH: {
+            _MemberAuth();
             break;
         }
         case eLoginOptions::EXIT: {
             break;
         }
-    }
-    // pause screen after each func finished
-    if (option != eLoginOptions::EXIT) {
-        // this trick just to pause termux screen until the user Contenu
-        cout << " \n\n\n\n\n\nEnter any Key to Contenu ... " << endl;
-        char Contenue = clsInputValidate::ReadChar();
-        Contenue = ' ';
-        cout << Contenue << endl;
     }
 }
 // user login screen
@@ -57,13 +48,9 @@ void clsWhoAreYou::_UserLogin() {
     }
 }
 // member login screen
-void clsWhoAreYou::_MemberLogin() {
+void clsWhoAreYou::_MemberAuth() {
     system("clear");
-    while (true) {
-        if (!clsMemberLogin::MemberLogin()) {
-            break;
-        }
-    }
+    clsMemberAuth::MemberAuthScreen();
 }
 
 // Who are you screen
