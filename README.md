@@ -1,6 +1,6 @@
-### [User Interface]
+### [ Admin Interface ]
 ![Diagram](UserDashboardscreenshot.jpg)
-### [Member Interface]
+### [ Member Interface ]
 ![Diagram](MemberDashboardscreenshot.jpg)
 
 # Library Management System - Command Line Program
