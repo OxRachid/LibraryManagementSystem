@@ -5,16 +5,16 @@
 
 # Library Management System - Command Line Program
 
-Welcome to my Library Management System—my first serious dive into C++ system programming!
+Welcome to my Library Management System my first serious dive into C++ system programming!
 This project is a command-line based application designed to manage library operations such as book management, member management, transactions, and user management. It is built using C++ and utilizes a Makefile for compilation and execution.
 Below, I’ll walk you through the journey of building this system, explore the code, and maybe even contribute I’d love that!
 
 ## Project Overview
 This is a command-line Library Management System built from scratch in C++. It’s designed to manage a library’s operations, 
 It allows librarians and members to perform various tasks such as adding, updating, deleting, and searching for books and members. It also handles transactions like borrowing and returning books, tracking requests, and generating statistics. The system is modular, I broke it into modules (Core, Lib, Screens) to keep things sane as it grew, making it easy to maintain and extend.
-It’s not just a toy project—it’s my proof that I can tackle C++ and make something useful.
+It’s not just a toy project, it’s my proof that I can tackle C++ and make something useful.
 
-### Features
+## Features
  1. **Book Management**: 
    - Add, update, delete, and find books.
    - List all books or filter by availability.
@@ -48,7 +48,7 @@ It’s not just a toy project—it’s my proof that I can tackle C++ and make s
    - Prevent unauthorized access to admin features.
 
 
-### Rules and Constraints
+## Rules and Constraints
 I wanted this system to feel like a real library, so I added some rules:
 - **Request and Borrowing Limits**: Members have caps based on their role—students can borrow up to 2 books, teachers up to 3, and request limits match these. No overloading the system!
 - **Pickup Deadline Rule**: Members must pick up requested books within a time limit (e.g., 24h). If they don’t, the request is auto-canceled, and their violation counter increases.
@@ -61,10 +61,12 @@ I wanted this system to feel like a real library, so I added some rules:
    - The project was implemented in C++ to leverage its object-oriented capabilities.
    - Classes were designed to represent entities like Book, Member, Transaction, and User.
    - Utility classes were created for input validation, date handling, and string manipulation.
+
 **Challenges**:
    - Managing a large codebase was challenging, but the modular structure helped.
    - Input validation and error handling required careful attention to ensure robustness.
    - Testing each feature manually was time-consuming but necessary.
+   
 **Learning Outcomes**:
    - Gained a deeper understanding of object-oriented programming (OOP) principles.
    - Learned to manage a large project with multiple files and dependencies.
@@ -78,7 +80,7 @@ If you are using Windows, you may need to replace system("clear") with system("c
 ### Prerequisites 
    - C++ compiler (`g++` recommended—I used GCC).
    - `make` utility (usually comes with Linux/Mac; get it via MinGW or MSYS2 on Windows).
-   - Git to clone the repo.
+   - `Git` to clone the repo.
 ### Installation
 1. Clone the repo:
     ```bash
@@ -93,14 +95,14 @@ If you are using Windows, you may need to replace system("clear") with system("c
    make
    ```
    (This compiles all .cpp files, links them into Output_Dir/MyProgramRun, and copies .txt data files.)
-4.  Run it:
+4. Run it:
    ```bash
    ./Output_Dir/MyProgramRun  # Linux/Mac
    Output_Dir\MyProgramRun.exe  # Windows
    ```
    Or use **make Run** to run in one go!
 
-- Clean Up: 
+- Clean Up:
    To remove built files
    ```bash
    make clear
