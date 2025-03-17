@@ -101,7 +101,7 @@ clsMember clsMember::_GetEmptyMemberObj() {
         EMPTY_STR,                           // Last name (empty)
         EMPTY_STR,                           // Email (empty)
         EMPTY_STR,                           // Phone (empty)
-        eMemberRole::NON,                    // Member role (none)
+        eMemberRole::STUDENT,                // Member role (none)
         DEFAULT_INT,                         // Total borrowed books (default integer value)
         DEFAULT_INT,                         //  violations (default integer value)
         DEFAULT_DATE,                        // accountcreated_on
@@ -117,7 +117,7 @@ clsMember clsMember::GetAddNewMemberObj(string accountnumber) {
         EMPTY_STR,                            // Last name
         EMPTY_STR,                            // Email
         EMPTY_STR,                            // Phone
-        eMemberRole::NON,                     // Member role
+        eMemberRole::STUDENT,                 // Member role
         DEFAULT_INT,                          // Total borrowed books
         DEFAULT_INT,                          // violations (default integer value)
         clsDate(),                            // accountcreated_on
@@ -303,12 +303,27 @@ void clsMember::BorrowBook() {
     _updateMember();
 }
 
-// Return book
-void clsMember::ReturnBook(bool isLate) {
-    if (isLate) {
-        _Violations++;
+// calculate penalty
+short clsMember::calculatePenalty(short daysLate) {
+    if (daysLate == 0) {
+        return 0;
+    } else if (daysLate > 0 && daysLate < 2) {
+        return 1;
+    } else if (daysLate > 1 && daysLate < 5) {
+        return 3;
+    } else if (daysLate > 4 && daysLate < 11) {
+        return 5;
+    } else {
+        return 10;
     }
-    if (_Violations > 10) {
+}
+
+// Return book
+void clsMember::ReturnBook(short daysLate) {
+    // calculate penalty
+    _Violations += calculatePenalty(daysLate);
+    // block account if it exceeded 15 of violations
+    if (_Violations > 15) {
         _AccountStatus = eAccountStatus::BLOCKED;
     }
     // decrease totalborrowedbooks
@@ -324,15 +339,15 @@ string clsMember::AccountStatusToString() {
 
 // convert enum eMemberRole to string
 string clsMember::MemberRoleToString() {
-    return (_Role == eMemberRole::STUDENT) ? "STUDENT" : (_Role == eMemberRole::TEACHER) ? "TEACHER" : "NON";
+    return (_Role == eMemberRole::STUDENT) ? "STUDENT" : "TEACHER";
 }
 
 // check if member exceeded the BorrowBook limit
-bool clsMember::isBorrowLimitExceeded() {
+bool clsMember::isBorrowLimitExceeded(short requestsCounter) {
     if (_Role == eMemberRole::STUDENT) {
-        return (_TotalBorrowedBooks > 2);
+        return (_TotalBorrowedBooks + requestsCounter > 2);
     }
-    return (_TotalBorrowedBooks > 4);
+    return (_TotalBorrowedBooks + requestsCounter > 3);
 }
 
 // reset members

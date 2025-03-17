@@ -384,6 +384,18 @@ vector<clsTransaction> clsTransaction::GetTransactionsForBook(int book_ID) {
     return vTrans;
 }
 
+// Get requests counter for specific member
+short clsTransaction::GetRequestsCounter(string accountnumber) {
+    short counter = 0;
+    vector<clsTransaction> vPending = GetPendingList();
+    for (clsTransaction &trans : _vTransactions) {
+        if (trans.GetAccountNumber() == accountnumber) {
+            ++counter;
+        }
+    }
+    return counter;
+}
+
 // add Borrow Record to vector
 void clsTransaction::_AddBorrowRecord() {
     // add record to vector
@@ -460,7 +472,6 @@ void clsTransaction::RequestCanceled() {
 clsDate clsTransaction::ExpectedDateToRecieveBook() {
     return clsDate::AddOneDay(_CheckoutDate);
 }
-
 clsTransaction::eSaveMode clsTransaction::save() {
     switch (_Mode) {
         case enMode::EMPTY_MODE: {

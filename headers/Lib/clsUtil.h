@@ -52,6 +52,7 @@ class clsUtil {
         static void ShuffleArray(int arr[], short ArrSize);
 
         static void ShuffleArray(string arr[], short ArrSize);
+
         static void ShuffleString(string &Text);
 
         static void FillArraywithRandomNumbers(int arr[], int ArrSize, int from, int to);

@@ -27,9 +27,8 @@ class clsMember : public clsPerson {
         };
         // enum for member Role
         enum eMemberRole {
-            STUDENT = 0,
-            TEACHER = 1,
-            NON = 2
+            STUDENT = 1,
+            TEACHER,
         };
 
         eMemberMode _Mode;
@@ -121,13 +120,15 @@ class clsMember : public clsPerson {
         // Borrow book
         void BorrowBook();
         // Return book
-        void ReturnBook(bool isLate = false);
+        void ReturnBook(short daysLate);
+        // calculate penalty
+        short calculatePenalty(short daysLate);
         // convert enum eAccountstatus to string
         string AccountStatusToString();
         // convert enum eMemberRole to string
         string MemberRoleToString();
         // check if member exceeded the BorrowBook limit
-        bool isBorrowLimitExceeded();
+        bool isBorrowLimitExceeded(short requestsCounter);
         // reset members
         static bool ResetMembers();
 };
